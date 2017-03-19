@@ -2,11 +2,17 @@
 <ContentView
     x:Class="CameraSlider.Frontend.Forms.Views.RoundButton"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions">
     <Frame
-        BackgroundColor="Green"
+        x:Name="Container"
+        BackgroundColor="Gray"
         CornerRadius="50"
-        HeightRequest="100"
-        OutlineColor="Red"
-        WidthRequest="100" />
+        OutlineColor="Red">
+
+        <Frame.GestureRecognizers>
+            <extensions:TouchGestureRecognizer x:Name="TouchRecognizer" />
+        </Frame.GestureRecognizers>
+
+    </Frame>
 </ContentView>

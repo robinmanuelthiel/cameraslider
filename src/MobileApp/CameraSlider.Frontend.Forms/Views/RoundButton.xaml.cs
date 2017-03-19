@@ -13,6 +13,19 @@ namespace CameraSlider.Frontend.Forms.Views
         public RoundButton()
         {
             InitializeComponent();
+
+            TouchRecognizer.TouchDown += TouchDown;
+            TouchRecognizer.TouchUp += TouchUp;
+        }
+
+        private void TouchDown()
+        {
+            Container.BackgroundColor = Color.Red;
+        }
+
+        private void TouchUp()
+        {
+            Container.BackgroundColor = Color.Transparent;
         }
     }
 }

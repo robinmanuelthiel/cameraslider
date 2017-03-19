@@ -13,7 +13,7 @@ namespace CameraSlider.Frontend.Forms
         {
             InitializeComponent();
 
-            MainPage = new CameraSlider.Frontend.Forms.MainPage();
+            MainPage = new NavigationPage(new CameraSlider.Frontend.Forms.MainPage());
         }
 
         protected override void OnStart()

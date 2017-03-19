@@ -4,8 +4,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CameraSlider.Frontend.Forms"
-    xmlns:views="clr-namespace:CameraSlider.Frontend.Forms.Views">
+    xmlns:views="clr-namespace:CameraSlider.Frontend.Forms.Views"
+    Title="Camera Slider">
 
-    <views:RoundButton HeightRequest="250" WidthRequest="250" />
+    <StackLayout>
+        <Label Text="Camera Slider" />
+        <views:RoundButton
+            HeightRequest="250"
+            HorizontalOptions="Center"
+            WidthRequest="250" />
+    </StackLayout>
 
 </ContentPage>
