@@ -1,1 +1,1 @@
-# CameraSlider
+# Camera Slider
