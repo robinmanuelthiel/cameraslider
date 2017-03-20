@@ -16,16 +16,18 @@ namespace CameraSlider.Frontend.Forms.Views
 
             TouchRecognizer.TouchDown += TouchDown;
             TouchRecognizer.TouchUp += TouchUp;
+
         }
 
         private void TouchDown()
         {
-            Container.BackgroundColor = Color.Red;
+            Container.MinimumHeightRequest = 50;
+            Container.BackgroundColor = Color.FromHex("279396");
         }
 
         private void TouchUp()
         {
-            Container.BackgroundColor = Color.Transparent;
+            Container.BackgroundColor = Color.Gray;
         }
     }
 }

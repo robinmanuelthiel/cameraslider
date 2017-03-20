@@ -10,11 +10,10 @@ using CameraSlider.Frontend.Forms.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-
 [assembly: ExportRenderer(typeof(Frame), typeof(GestureFrameRenderer))]
 namespace CameraSlider.Frontend.Forms.Droid.CustomRenderers
 {
-    public class GestureFrameRenderer : FrameRenderer
+    public class GestureFrameRenderer : Xamarin.Forms.Platform.Android.AppCompat.FrameRenderer
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Frame> e)
         {
@@ -28,7 +27,7 @@ namespace CameraSlider.Frontend.Forms.Droid.CustomRenderers
                 if (!e.NewElement.GestureRecognizers.Any(x => x.GetType() == typeof(TouchGestureRecognizer)))
                     return;
 
-                ViewGroup.Touch += (object sender, TouchEventArgs te) =>
+                Control.Touch += (object sender, TouchEventArgs te) =>
                 {
                     switch (te.Event.Action)
                     {
