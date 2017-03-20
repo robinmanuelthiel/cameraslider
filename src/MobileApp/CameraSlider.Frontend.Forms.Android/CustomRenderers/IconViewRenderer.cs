@@ -64,7 +64,6 @@ namespace CameraSlider.Frontend.Forms.Droid.CustomRenderers
                 var d = Resources.GetDrawable(Element.Source).Mutate();
                 d.SetColorFilter(Element.Foreground.ToAndroid(), PorterDuff.Mode.SrcAtop);
 
-
                 d.Alpha = Element.Foreground.ToAndroid().A;
                 Control.SetImageDrawable(d);
                 ((IVisualElementController)Element).NativeSizeChanged();

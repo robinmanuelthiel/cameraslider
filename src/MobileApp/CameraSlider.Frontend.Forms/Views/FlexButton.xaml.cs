@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using CameraSlider.Frontend.Forms.Effects;
 using Xamarin.Forms;
 
 namespace CameraSlider.Frontend.Forms.Views
@@ -38,7 +38,7 @@ namespace CameraSlider.Frontend.Forms.Views
         public Color IconColor
         {
             get { return (Color)GetValue(IconColorProperty); }
-            set { SetValue(IconColorProperty, value); }
+            set { SetValue(IconColorProperty, value);  Setup(); }
         }
 
         public static readonly BindableProperty HighlightIconColorProperty = BindableProperty.Create(nameof(HighlightIconColor), typeof(Color), typeof(FlexButton), Color.White);
@@ -50,7 +50,6 @@ namespace CameraSlider.Frontend.Forms.Views
 
         #endregion
 
-
         public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(int), typeof(FlexButton), 0);
         public int CornerRadius
         {
@@ -58,11 +57,15 @@ namespace CameraSlider.Frontend.Forms.Views
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(string), typeof(FlexButton), null);
-        public string Icon
+        public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(ImageSource), typeof(FlexButton), null);
+        public ImageSource Icon
         {
-            get { return (string)GetValue(IconProperty); }
-            set { SetValue(IconProperty, value); }
+            get { return (ImageSource)GetValue(IconProperty); }
+            set
+            {
+                SetValue(IconProperty, value);
+                Setup();
+            }
         }
 
         public View ButtonContent
@@ -83,12 +86,22 @@ namespace CameraSlider.Frontend.Forms.Views
             TouchRecognizer.TouchUp += TouchUp;
         }
 
+        private void Setup()
+        {
+            ColorIcon(IconColor);
+        }
+
         private void TouchDown()
         {
             TouchedDown?.Invoke();
 
             Container.BackgroundColor = HighlightColor;
-            ButtonIcon.Foreground = HighlightIconColor;
+
+            ColorIcon(HighlightIconColor);
+
+            //ButtonIcon.Effects.Remove(IconColorOverlayEffect);
+            //ButtonIcon.Effects.Add(HighlightIconColorOverlayEffect);
+
         }
 
         private void TouchUp()
@@ -96,7 +109,17 @@ namespace CameraSlider.Frontend.Forms.Views
             TouchedUp?.Invoke();
 
             Container.BackgroundColor = BackgroundColor;
-            ButtonIcon.Foreground = IconColor;
+
+            ColorIcon(IconColor);
+
+            //ButtonIcon.Effects.Remove(HighlightIconColorOverlayEffect);
+            //ButtonIcon.Effects.Add(IconColorOverlayEffect);
+        }
+
+        private void ColorIcon(Color color)
+        {
+            ButtonIcon.Effects.Clear();
+            ButtonIcon.Effects.Add(new ColorOverlayEffect() { Color = color });
         }
     }
 }

@@ -3,6 +3,7 @@
     x:Class="CameraSlider.Frontend.Forms.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:CameraSlider.Frontend.Forms.Effects"
     xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions"
     xmlns:local="clr-namespace:CameraSlider.Frontend.Forms"
     xmlns:views="clr-namespace:CameraSlider.Frontend.Forms.Views"
@@ -29,14 +30,15 @@
 
             <views:FlexButton
                 x:Name="TakePictureButton"
+                BackgroundColor="{StaticResource AccentColor}"
                 BorderColor="{StaticResource AccentColor}"
                 CornerRadius="50"
                 HeightRequest="100"
-                HighlightColor="{StaticResource AccentColor}"
-                HighlightIconColor="White"
+                HighlightColor="White"
+                HighlightIconColor="{StaticResource AccentColor}"
                 HorizontalOptions="Center"
                 Icon="camera.png"
-                IconColor="{StaticResource AccentColor}"
+                IconColor="White"
                 WidthRequest="100" />
 
             <views:FlexButton

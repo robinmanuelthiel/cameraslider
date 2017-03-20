@@ -24,12 +24,7 @@
             HorizontalOptions="Center"
             VerticalOptions="Center">
 
-            <extensions:IconView
-                x:Name="ButtonIcon"
-                Foreground="{Binding IconColor}"
-				HorizontalOptions="CenterAndExpand"
-				VerticalOptions="CenterAndExpand"
-                Source="{Binding Icon}" />
+            <Image x:Name="ButtonIcon" Source="{Binding Icon}" />
         </ContentView>
     </Frame>
 </ContentView>
