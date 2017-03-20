@@ -5,6 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
+[assembly: Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
 namespace CameraSlider.Frontend.Forms
 {
     public partial class App : Application

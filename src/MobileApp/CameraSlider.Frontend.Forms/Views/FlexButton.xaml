@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CameraSlider.Frontend.Forms.Views.FlexButton"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions"
+    xmlns:local="clr-namespace:CameraSlider.Frontend.Forms.Views.FlexButton"
+    BackgroundColor="Transparent"
+    VerticalOptions="Center">
+
+    <Frame
+        x:Name="Container"
+        BackgroundColor="{Binding BackgroundColor}"
+        CornerRadius="{Binding CornerRadius}"
+        HasShadow="False"
+        OutlineColor="{Binding BorderColor}">
+
+        <Frame.GestureRecognizers>
+            <extensions:TouchGestureRecognizer x:Name="TouchRecognizer" />
+        </Frame.GestureRecognizers>
+
+        <ContentView
+            x:Name="ContainerContent"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <extensions:IconView
+                x:Name="ButtonIcon"
+                Foreground="{Binding IconColor}"
+                Source="Icon-Small.png" />
+        </ContentView>
+    </Frame>
+</ContentView>

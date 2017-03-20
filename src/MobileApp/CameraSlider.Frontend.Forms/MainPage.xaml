@@ -3,16 +3,54 @@
     x:Class="CameraSlider.Frontend.Forms.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions"
     xmlns:local="clr-namespace:CameraSlider.Frontend.Forms"
     xmlns:views="clr-namespace:CameraSlider.Frontend.Forms.Views"
     Title="Camera Slider">
 
-    <StackLayout>
-        <Label Text="Camera Slider" />
-        <views:RoundButton
-            HeightRequest="250"
+    <Grid>
+        <StackLayout
+            Padding="20"
             HorizontalOptions="Center"
-            WidthRequest="250" />
-    </StackLayout>
+            Orientation="Horizontal"
+            VerticalOptions="End">
+
+            <views:FlexButton
+                x:Name="MoveLeftButton"
+                BorderColor="{StaticResource AccentColor}"
+                CornerRadius="38"
+                HeightRequest="76"
+                HighlightColor="{StaticResource AccentColor}"
+                HighlightIconColor="White"
+                HorizontalOptions="Center"
+                Icon="Icon-Small.png"
+                IconColor="{StaticResource AccentColor}"
+                WidthRequest="76" />
+
+            <views:FlexButton
+                x:Name="TakePictureButton"
+                BorderColor="{StaticResource AccentColor}"
+                CornerRadius="50"
+                HeightRequest="100"
+                HighlightColor="{StaticResource AccentColor}"
+                HighlightIconColor="White"
+                HorizontalOptions="Center"
+                Icon="Icon-Small.png"
+                IconColor="{StaticResource AccentColor}"
+                WidthRequest="100" />
+
+            <views:FlexButton
+                x:Name="MoveRightButton"
+                BorderColor="{StaticResource AccentColor}"
+                CornerRadius="38"
+                HeightRequest="76"
+                HighlightColor="{StaticResource AccentColor}"
+                HighlightIconColor="White"
+                HorizontalOptions="Center"
+                Icon="Icon-Small.png"
+                IconColor="{StaticResource AccentColor}"
+                WidthRequest="76" />
+        </StackLayout>
+    </Grid>
 
 </ContentPage>
