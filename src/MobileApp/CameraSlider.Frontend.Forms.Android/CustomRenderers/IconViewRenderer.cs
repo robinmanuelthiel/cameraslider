@@ -59,10 +59,12 @@ namespace CameraSlider.Frontend.Forms.Droid.CustomRenderers
 
         private void UpdateBitmap(IconView previous = null)
         {
-            if (!_isDisposed)
+            if (!_isDisposed && Element.Source != null)
             {
                 var d = Resources.GetDrawable(Element.Source).Mutate();
-                d.SetColorFilter(new LightingColorFilter(Element.Foreground.ToAndroid(), Element.Foreground.ToAndroid()));
+                d.SetColorFilter(Element.Foreground.ToAndroid(), PorterDuff.Mode.SrcAtop);
+
+
                 d.Alpha = Element.Foreground.ToAndroid().A;
                 Control.SetImageDrawable(d);
                 ((IVisualElementController)Element).NativeSizeChanged();

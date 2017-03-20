@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="CameraSlider.Frontend.Forms.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -23,7 +23,7 @@
                 HighlightColor="{StaticResource AccentColor}"
                 HighlightIconColor="White"
                 HorizontalOptions="Center"
-                Icon="Icon-Small.png"
+                Icon="left.png"
                 IconColor="{StaticResource AccentColor}"
                 WidthRequest="76" />
 
@@ -35,7 +35,7 @@
                 HighlightColor="{StaticResource AccentColor}"
                 HighlightIconColor="White"
                 HorizontalOptions="Center"
-                Icon="Icon-Small.png"
+                Icon="camera.png"
                 IconColor="{StaticResource AccentColor}"
                 WidthRequest="100" />
 
@@ -47,7 +47,7 @@
                 HighlightColor="{StaticResource AccentColor}"
                 HighlightIconColor="White"
                 HorizontalOptions="Center"
-                Icon="Icon-Small.png"
+                Icon="right.png"
                 IconColor="{StaticResource AccentColor}"
                 WidthRequest="76" />
         </StackLayout>

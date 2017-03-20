@@ -27,7 +27,9 @@
             <extensions:IconView
                 x:Name="ButtonIcon"
                 Foreground="{Binding IconColor}"
-                Source="Icon-Small.png" />
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+                Source="{Binding Icon}" />
         </ContentView>
     </Frame>
 </ContentView>

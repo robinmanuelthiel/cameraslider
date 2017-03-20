@@ -116,6 +116,15 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\left.png" />
+    <BundleResource Include="Resources\left%402x.png" />
+    <BundleResource Include="Resources\left%403x.png" />
+    <BundleResource Include="Resources\right.png" />
+    <BundleResource Include="Resources\right%402x.png" />
+    <BundleResource Include="Resources\right%403x.png" />
+    <BundleResource Include="Resources\camera.png" />
+    <BundleResource Include="Resources\camera%402x.png" />
+    <BundleResource Include="Resources\camera%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -141,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CameraSlider.Frontend.Forms\CameraSlider.Frontend.Forms.csproj">
-      <Project>{1963026f-e2c3-4322-9ed1-857326c4bf4c}</Project>
+      <Project>{045324F4-F286-497D-BE1B-12E8B1D453DD}</Project>
       <Name>CameraSlider.Frontend.Forms</Name>
     </ProjectReference>
   </ItemGroup>

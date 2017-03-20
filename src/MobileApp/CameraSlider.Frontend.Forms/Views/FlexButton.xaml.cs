@@ -20,7 +20,7 @@ namespace CameraSlider.Frontend.Forms.Views
             set { SetValue(BackgroundColorProperty, value); }
         }
 
-        public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(FlexButton), Color.Transparent);
+        public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(FlexButton), Color.Red);
         public Color BorderColor
         {
             get { return (Color)GetValue(BorderColorProperty); }
@@ -58,27 +58,18 @@ namespace CameraSlider.Frontend.Forms.Views
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-
-
-
-
-        public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(ImageSource), typeof(FlexButton), null);
-        public ImageSource Icon
+        public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(string), typeof(FlexButton), null);
+        public string Icon
         {
-            get { return (ImageSource)GetValue(IconProperty); }
+            get { return (string)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
 
-
-
-
-        public  View ButtonContent
+        public View ButtonContent
         {
             get { return ContainerContent.Content; }
             set { ContainerContent.Content = value; }
         }
-
-
 
         public Action TouchedDown = null;
         public Action TouchedUp = null;

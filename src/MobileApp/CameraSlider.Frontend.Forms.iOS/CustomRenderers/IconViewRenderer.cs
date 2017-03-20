@@ -70,7 +70,7 @@ namespace CameraSlider.Frontend.Forms.iOS.CustomRenderers
 
         private void SetImage(IconView previous = null)
         {
-            if (previous == null)
+            if (previous == null && Element.Source != null)
             {
                 var uiImage = new UIImage(Element.Source);
                 uiImage = uiImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);

@@ -17,7 +17,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
@@ -125,6 +125,21 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\left.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\left.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\left.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\left.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\left.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\right.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\right.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\right.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\right.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\right.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\camera.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\camera.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\camera.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\camera.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\camera.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -136,7 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CameraSlider.Frontend.Forms\CameraSlider.Frontend.Forms.csproj">
-      <Project>{1963026f-e2c3-4322-9ed1-857326c4bf4c}</Project>
+      <Project>{045324F4-F286-497D-BE1B-12E8B1D453DD}</Project>
       <Name>CameraSlider.Frontend.Forms</Name>
     </ProjectReference>
   </ItemGroup>
