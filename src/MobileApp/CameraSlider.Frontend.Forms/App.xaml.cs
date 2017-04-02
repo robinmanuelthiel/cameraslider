@@ -10,11 +10,23 @@ namespace CameraSlider.Frontend.Forms
 {
     public partial class App : Application
     {
+        public static ServiceLocator ServiceLocator;
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new CameraSlider.Frontend.Forms.MainPage());
+            // Initialize Service Locator
+            ServiceLocator = new ServiceLocator();
+
+            // Create Naviagation Page
+            var navigationPage = new NavigationPage(new MainPage());
+            Device.OnPlatform(iOS: () => { navigationPage.BarTextColor = Color.White; });
+
+            // Initialize NavigationService using the navigation page
+            ServiceLocator.RegisterNavigationService(navigationPage);
+
+            MainPage = navigationPage;
         }
 
         protected override void OnStart()

@@ -9,6 +9,15 @@
     xmlns:views="clr-namespace:CameraSlider.Frontend.Forms.Views"
     Title="Camera Slider">
 
+	<ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="ConnectItem"
+            Name="Connect"
+			Command="{Binding NavigateToDeviceSelectionCommand}"
+            Priority="0">
+        </ToolbarItem>
+	</ContentPage.ToolbarItems>
+
     <Grid>
         <StackLayout
             Padding="20"
