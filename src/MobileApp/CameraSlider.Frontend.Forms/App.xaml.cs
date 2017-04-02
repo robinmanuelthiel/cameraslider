@@ -20,11 +20,15 @@ namespace CameraSlider.Frontend.Forms
             ServiceLocator = new ServiceLocator();
 
             // Create Naviagation Page
-            var navigationPage = new NavigationPage(new MainPage());
-            Device.OnPlatform(iOS: () => { navigationPage.BarTextColor = Color.White; });
+            var navigationPage = new NavigationPage();
 
             // Initialize NavigationService using the navigation page
             ServiceLocator.RegisterNavigationService(navigationPage);
+
+            // Add MainPage as Navigation root afterwards, as MainPage constructor need to have the 
+            // NavigationService initialized
+            //var root = navigationPage.Navigation.NavigationStack[0];
+            navigationPage.Navigation.PushAsync(new MainPage());
 
             MainPage = navigationPage;
         }

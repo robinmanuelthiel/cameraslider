@@ -25,9 +25,11 @@ namespace CameraSlider.Frontend.Forms
 
             // Register Services
             SimpleIoc.Default.Register<IBluetoothLeService, BluetoothLeService>();
+            SimpleIoc.Default.Register<Shared.Services.IDialogService, DialogService>();
 
             // Register View Models
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<DeviceSelectionViewModel>();
         }
 
         public MainViewModel MainViewModel { get { return SimpleIoc.Default.GetInstance<MainViewModel>(); } }

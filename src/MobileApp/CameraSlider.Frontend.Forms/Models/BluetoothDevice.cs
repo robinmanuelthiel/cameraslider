@@ -14,8 +14,10 @@ namespace CameraSlider.Frontend.Forms.Models
         {
             this.Name = device.Name;
             this.Uuid = device.Id.ToString();
-
             this.Device = device;
+
+            if (Name == null)
+                Name = "Unknown device";
         }
     }
 }

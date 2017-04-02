@@ -8,6 +8,7 @@ using CameraSlider.Frontend.Forms.Services;
 using CameraSlider.Frontend.Shared.ViewModels;
 using CameraSlider.Frontend.Shared.Services;
 using GalaSoft.MvvmLight.Ioc;
+using CameraSlider.Frontend.Forms.Pages;
 
 namespace CameraSlider.Frontend.Forms
 {
@@ -56,14 +57,14 @@ namespace CameraSlider.Frontend.Forms
             DisplayAlert("Camera", "Picture taken!", "Ok");
         }
 
-        void MoveLeftButton_TouchedDown()
+        async void MoveLeftButton_TouchedDown()
         {
-            StartSliderMovement(SliderDirection.Left);
+            await StartSliderMovement(SliderDirection.Left);
         }
 
-        void MoveRightButton_TouchedDown()
+        async void MoveRightButton_TouchedDown()
         {
-            StartSliderMovement(SliderDirection.Right);
+            await StartSliderMovement(SliderDirection.Right);
         }
 
         void MoveButton_TouchedUp()
@@ -71,7 +72,7 @@ namespace CameraSlider.Frontend.Forms
             StopSliderMovement();
         }
 
-        async void StartSliderMovement(SliderDirection direction)
+        async Task StartSliderMovement(SliderDirection direction)
         {
             var bluetoothLeService = SimpleIoc.Default.GetInstance<IBluetoothLeService>();
 

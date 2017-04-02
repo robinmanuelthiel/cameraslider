@@ -2,16 +2,26 @@
 <ContentPage
     x:Class="CameraSlider.Frontend.Forms.Pages.DeviceSelectionPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	Title="Bluetooth Devices">
 
-    <ListView
-        x:Name="DeviceList"
-        ItemSelected="ListView_ItemSelected"
-        ItemsSource="{Binding BluetoothDevices}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding Name}" />
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+	<Grid>
+        <ListView
+            x:Name="DeviceList"
+            ItemSelected="ListView_ItemSelected"
+            ItemsSource="{Binding BluetoothDevices}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Uuid}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+		<ActivityIndicator
+            HeightRequest="{StaticResource ActivityIndicatorHeight}"
+            HorizontalOptions="Fill"
+            IsRunning="True"
+            IsVisible="{Binding IsBusy, Mode=OneWay}"
+            VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+	</Grid>
 </ContentPage>

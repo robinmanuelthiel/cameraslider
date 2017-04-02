@@ -23,12 +23,6 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             set { bluetoothDevices = value; RaisePropertyChanged(); }
         }
 
-        public DeviceSelectionViewModel(INavigationService navigationService, IDialogService dialogService, IBluetoothLeService bluetoothLeService)
-        {
-            this.navigationService = navigationService;
-            this.dialogService = dialogService;
-            this.bluetoothLeService = bluetoothLeService;
-        }
 
         private RelayCommand<IBluetoothDevice> connectToDeviceCommand;
         public RelayCommand<IBluetoothDevice> ConnectToDeviceCommand
@@ -47,6 +41,15 @@ namespace CameraSlider.Frontend.Shared.ViewModels
                         await dialogService.DisplayDialogAsync("Connection failed", "Could not connect to device...", "Ok");
                 }));
             }
+        }
+
+        public DeviceSelectionViewModel(INavigationService navigationService, IDialogService dialogService, IBluetoothLeService bluetoothLeService)
+        {
+            this.navigationService = navigationService;
+            this.dialogService = dialogService;
+            this.bluetoothLeService = bluetoothLeService;
+
+            BluetoothDevices = new ObservableCollection<IBluetoothDevice>();
         }
 
         public override async Task RefreshAsync()
