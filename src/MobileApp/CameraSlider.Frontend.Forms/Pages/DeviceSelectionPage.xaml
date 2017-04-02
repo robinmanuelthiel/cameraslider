@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
+    x:Class="CameraSlider.Frontend.Forms.Pages.DeviceSelectionPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="CameraSlider.Frontend.Forms.Pages.DeviceSelectionPage">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <ListView ItemsSource="{Binding BluetoothDevices}" >
-		<ListView.ItemTemplate>
-			<DataTemplate>
-				<TextCell Text="{Binding Name}" />
-			</DataTemplate>
-		</ListView.ItemTemplate>
-	</ListView>	
+    <ListView
+        x:Name="DeviceList"
+        ItemSelected="ListView_ItemSelected"
+        ItemsSource="{Binding BluetoothDevices}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Name}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
