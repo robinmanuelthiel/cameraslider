@@ -19,7 +19,38 @@
 	</ContentPage.ToolbarItems>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <StackLayout Padding="20">
+                <Label
+                    Text="Status"
+                    FontSize="Small"
+                    TextColor="{StaticResource SubtleColor}"/>
+                <Label
+                    Text="{Binding ConnectionStatus}"
+                    FontSize="Small"
+                    TextColor="{StaticResource AccentColor}"/>
+                                
+                <Label
+                    Text="Speed"
+                    FontSize="Small"
+                    TextColor="{StaticResource SubtleColor}"
+                    Margin="0, 20, 0, 0"/>
+                <Slider
+                    x:Name="SpeedSlider"
+                    Maximum="900"
+                    Minimum="100"
+                    Value="500"
+                    Margin="-10, 0, -10, 0"/>
+            </StackLayout>
+        </ScrollView>
+        
         <StackLayout
+            Grid.Row="1"
             Padding="20"
             HorizontalOptions="Center"
             Orientation="Horizontal"
@@ -63,5 +94,4 @@
                 WidthRequest="76" />
         </StackLayout>
     </Grid>
-
 </ContentPage>

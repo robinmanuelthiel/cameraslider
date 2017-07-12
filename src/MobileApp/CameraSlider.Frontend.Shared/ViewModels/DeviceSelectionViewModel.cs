@@ -31,14 +31,18 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             {
                 return connectToDeviceCommand ?? (connectToDeviceCommand = new RelayCommand<IBluetoothDevice>(async (IBluetoothDevice device) =>
                 {
+                    IsBusy = true;
+
                     // Try to connect with device
                     await bluetoothLeService.ConnectToDeviceAsync(device);
+
+                    IsBusy = false;
 
                     // Check if connection has been successfully
                     if (bluetoothLeService.ConnectedDevice != null)
                         navigationService.GoBack();
                     else
-                        await dialogService.DisplayDialogAsync("Connection failed", "Could not connect to device...", "Ok");
+                        await dialogService.DisplayDialogAsync("Connection failed", "Could not connect to device.", "Ok");
                 }));
             }
         }
@@ -58,6 +62,7 @@ namespace CameraSlider.Frontend.Shared.ViewModels
 
             var availableBluetoothDevices = await bluetoothLeService.ScanForDevicesAsync();
 
+            BluetoothDevices.Clear();
             foreach (var device in availableBluetoothDevices)
             {
                 BluetoothDevices.Add(device);

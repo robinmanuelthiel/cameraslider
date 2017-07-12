@@ -32,14 +32,25 @@ namespace CameraSlider.Frontend.Forms.Services
             return devices;
         }
 
-        public async Task WriteToServiceCharacteristicAsync(string message, string serviceUuid, string characteristicUuid)
+        public async Task<bool> WriteToServiceCharacteristicAsync(string message, string serviceUuid, string characteristicUuid)
         {
-            if (ConnectedDevice != null && ConnectedDevice is BluetoothDevice)
+            if (ConnectedDevice == null || !(ConnectedDevice is BluetoothDevice))
+                return false;
+
+            try
             {
                 var service = await ((BluetoothDevice)ConnectedDevice).Device.GetServiceAsync(Guid.Parse(serviceUuid));
                 var characteristic = await service.GetCharacteristicAsync(Guid.Parse(characteristicUuid));
                 await characteristic.WriteAsync(Encoding.UTF8.GetBytes(message));
+
             }
+            catch (NullReferenceException)
+            {
+                // Service or Characteristics UUID might not have been found
+                return false;
+            }
+
+            return true;
         }
 
         public async Task ConnectToDeviceAsync(IBluetoothDevice device)
@@ -49,11 +60,16 @@ namespace CameraSlider.Frontend.Forms.Services
                 await adapter.ConnectToDeviceAsync(((BluetoothDevice)device).Device);
                 ConnectedDevice = device;
             }
-            catch (DeviceConnectionException e)
+            catch (DeviceConnectionException)
             {
                 // ... could not connect to device
                 ConnectedDevice = null;
             }
+        }
+
+        public Task<bool> TestDeviceConnectionAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

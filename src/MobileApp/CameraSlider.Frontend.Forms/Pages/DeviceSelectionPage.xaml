@@ -3,12 +3,20 @@
     x:Class="CameraSlider.Frontend.Forms.Pages.DeviceSelectionPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:CameraSlider.Frontend.Forms.Converters;assembly=CameraSlider.Frontend.Forms"   
 	Title="Bluetooth Devices">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToNegatedBoolConverter x:Key="BoolToNegatedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
 	<Grid>
         <ListView
             x:Name="DeviceList"
             ItemSelected="ListView_ItemSelected"
+            IsEnabled="{Binding IsBusy, Converter={StaticResource BoolToNegatedBoolConverter}}"
             ItemsSource="{Binding BluetoothDevices}">
             <ListView.ItemTemplate>
                 <DataTemplate>

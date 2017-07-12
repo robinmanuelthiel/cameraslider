@@ -5,12 +5,14 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using CameraSlider.Frontend.Shared.Misc;
 using System.Threading.Tasks;
+using IDialogService = CameraSlider.Frontend.Shared.Services.IDialogService;
 
 namespace CameraSlider.Frontend.Shared.ViewModels
 {
     public class MainViewModel : AsyncViewModelBase
     {
         private INavigationService navigationService;
+        private IDialogService dialogService;
         private IBluetoothLeService bluetoothLeService;
 
         public bool isDeviceConnected;
@@ -18,6 +20,16 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         {
             get { return isDeviceConnected; }
             set { isDeviceConnected = value; RaisePropertyChanged(); }
+        }
+
+
+        private string connectionStatus;
+        public string ConnectionStatus
+        {
+            get
+            {
+                return isDeviceConnected ? "Connected" : "Not connected";
+            }
         }
 
         private RelayCommand navigateToDeviceSelectionCommand;
@@ -32,15 +44,35 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             }
         }
 
-        public MainViewModel(INavigationService navigationService, IBluetoothLeService bluetoothLeService)
+        public MainViewModel(INavigationService navigationService, IDialogService dialogService, IBluetoothLeService bluetoothLeService)
         {
             this.navigationService = navigationService;
+            this.dialogService = dialogService;
             this.bluetoothLeService = bluetoothLeService;
         }
 
-        public override async Task RefreshAsync()
+        public async Task TestConnectionAsync(string serviceUuid, string characteristicUuid)
         {
-            IsDeviceConnected = bluetoothLeService.ConnectedDevice != null;
+            IsDeviceConnected = false;
+
+            if (bluetoothLeService.ConnectedDevice != null)
+            {
+                if (await bluetoothLeService.WriteToServiceCharacteristicAsync("test", serviceUuid, characteristicUuid))
+                {
+                    IsDeviceConnected = true;
+                }
+                else
+                {
+                    await dialogService.DisplayDialogAsync("Connection failed", "Could not connect with device. Please check the connection and select the correct device.", "Ok");
+                }
+            }
+
+            RaisePropertyChanged(nameof(ConnectionStatus));
+        }
+
+        public override Task RefreshAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

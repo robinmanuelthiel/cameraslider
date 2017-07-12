@@ -57,6 +57,7 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Models\BluetoothDevice.cs" />
+    <Compile Include="Converters\BoolToNegatedBoolConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainPage.xaml">
@@ -113,6 +114,7 @@
     <Folder Include="Pages\" />
     <Folder Include="Services\" />
     <Folder Include="Pages\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CameraSlider.Frontend.Shared\CameraSlider.Frontend.Shared.csproj">

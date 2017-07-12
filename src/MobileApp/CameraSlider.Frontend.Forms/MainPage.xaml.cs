@@ -15,6 +15,7 @@ namespace CameraSlider.Frontend.Forms
     public partial class MainPage : ContentPage
     {
         private MainViewModel viewModel;
+        private IBluetoothLeService bluetoothLeService;
 
         private const string cameraSliderGuid = "00000000-0000-0000-0000-606405d147b4";
         private const string serviceUuid = "0000ffe0-0000-1000-8000-00805f9b34fb";
@@ -23,7 +24,10 @@ namespace CameraSlider.Frontend.Forms
         public MainPage()
         {
             InitializeComponent();
+
             viewModel = App.ServiceLocator.MainViewModel;
+            bluetoothLeService = SimpleIoc.Default.GetInstance<IBluetoothLeService>();
+
             BindingContext = viewModel;
         }
 
@@ -35,14 +39,15 @@ namespace CameraSlider.Frontend.Forms
             MoveRightButton.TouchedDown += MoveRightButton_TouchedDown;
             MoveRightButton.TouchedUp += MoveButton_TouchedUp;
             TakePictureButton.TouchedUp += TakePictureButton_TouchedUp;
-            await viewModel.RefreshAsync();
+
+            await viewModel.TestConnectionAsync(serviceUuid, characteristicUuid);
         }
 
-        protected override void OnDisappearing()
+        protected override async void OnDisappearing()
         {
             base.OnDisappearing();
 
-            StopSliderMovement();
+            await StopSliderMovement();
 
             MoveLeftButton.TouchedDown -= MoveLeftButton_TouchedDown;
             MoveLeftButton.TouchedUp -= MoveButton_TouchedUp;
@@ -59,32 +64,40 @@ namespace CameraSlider.Frontend.Forms
 
         async void MoveLeftButton_TouchedDown()
         {
+            SpeedSlider.IsEnabled = false;
             await StartSliderMovement(SliderDirection.Left);
         }
 
         async void MoveRightButton_TouchedDown()
         {
+            SpeedSlider.IsEnabled = false;
             await StartSliderMovement(SliderDirection.Right);
         }
 
-        void MoveButton_TouchedUp()
+        async void MoveButton_TouchedUp()
         {
-            StopSliderMovement();
+            await StopSliderMovement();
+            SpeedSlider.IsEnabled = true;
         }
 
         async Task StartSliderMovement(SliderDirection direction)
         {
-            var bluetoothLeService = SimpleIoc.Default.GetInstance<IBluetoothLeService>();
+            // Direction
+            var directionCommand = direction == SliderDirection.Right ? "dr#" : "dl#";
+            await bluetoothLeService.WriteToServiceCharacteristicAsync(directionCommand, serviceUuid, characteristicUuid);
 
-            if (direction == SliderDirection.Right)
-                await bluetoothLeService.WriteToServiceCharacteristicAsync("on#", serviceUuid, characteristicUuid);
-            else
-                await bluetoothLeService.WriteToServiceCharacteristicAsync("off#", serviceUuid, characteristicUuid);
+            // Speed
+            var speedValue = 1000 - SpeedSlider.Value;
+            await bluetoothLeService.WriteToServiceCharacteristicAsync($"sp{speedValue}#", serviceUuid, characteristicUuid);
+
+            // Start
+            await bluetoothLeService.WriteToServiceCharacteristicAsync("on#", serviceUuid, characteristicUuid);
+
         }
 
-        void StopSliderMovement()
+        async Task StopSliderMovement()
         {
-            //throw new NotImplementedException();
+            await bluetoothLeService.WriteToServiceCharacteristicAsync("off#", serviceUuid, characteristicUuid);
         }
     }
 }

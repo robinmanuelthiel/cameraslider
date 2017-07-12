@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Application
 	x:Class="CameraSlider.Frontend.Forms.App"
 	xmlns="http://xamarin.com/schemas/2014/forms"
@@ -8,6 +8,10 @@
 		<ResourceDictionary>
 			<Color
 				x:Key="AccentColor">#279396</Color>
+
+            <Color
+                x:Key="SubtleColor">#CCCCCC</Color>
+            
 			<!-- Activity Indicator -->
 			<OnPlatform
 				x:Key="ActivityIndicatorHeight"
