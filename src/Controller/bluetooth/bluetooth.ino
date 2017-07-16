@@ -10,12 +10,18 @@ const int motorLedPin = 10; // Motor
 const int directionLedPin = 11; // Direction
 bool isMotorRunning = false;
 int motorDirection = 0; // 0 = left, 1 = right
+int speed = 300;
 
 // Serial
 const char endMarker = '#';
 const byte numChars = 32;
 char receivedChars[numChars];
 boolean newData = false;
+
+// Camera
+const int shutterPin = 0;
+const int exposureTime = 100;
+bool isShutterToBeTriggered = false;
 
 void setup()
 {  
@@ -41,7 +47,17 @@ void loop()
 
   readBluetoothSerial();
   processBluetoothInput();
-  
+
+  // Shutter
+  if (isShutterToBeTriggered)
+  {
+    digitalWrite(shutterPin, HIGH);
+    delay(exposureTime);
+    digitalWrite(shutterPin, LOW);
+    isShutterToBeTriggered = false;
+  }
+
+  // Move 
   if (isMotorRunning)
   {
     // Direction
@@ -52,9 +68,9 @@ void loop()
       
     // Step
     digitalWrite(motorLedPin, HIGH);
-    delay(300);
+    delay(speed);
     digitalWrite(motorLedPin, LOW);
-    delay(300);      
+    delay(speed);      
   }
   else
   {
@@ -91,8 +107,10 @@ void processBluetoothInput()
 {
   if (newData)
   {
+    String command(receivedChars);
+    
     Serial.print("Command: ");
-    Serial.println(receivedChars);
+    Serial.println(command);
 
     // Motor
     if (strcmp(receivedChars, "on") == 0)
@@ -105,7 +123,15 @@ void processBluetoothInput()
       motorDirection = 0;
     else if (strcmp(receivedChars, "dr") == 0) // right
       motorDirection = 1;
-    
+
+    // Speed
+    if (command.indexOf("sp") > -1)
+      speed = command.substring(2).toInt();
+
+    // Camera
+    if (strcmp(receivedChars, "shutter") == 0)
+      isShutterToBeTriggered = true;
+ 
     newData = false;
   }
 }

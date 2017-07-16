@@ -10,6 +10,7 @@ You can send the following commands to the controller via Bluetooth.
 - `dl#` to define *left* as the motor direction
 - `dr#` to define *right* as the motor direction
 - `spXXX#` to define the motor speed between 0 (fastest) to 999 (slowest)
+- `shutter#` triggers the shutter
 
 ### Examples
 To let the motor turn left with medium speed, send
