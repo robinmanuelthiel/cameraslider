@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CameraSlider.Frontend.Forms.Pages;
 
 using Xamarin.Forms;
 

@@ -36,6 +36,7 @@
     <Compile Include="ViewModels\DeviceSelectionViewModel.cs" />
     <Compile Include="Models\IBluetoothDevice.cs" />
     <Compile Include="ViewModels\AsyncViewModelBase.cs" />
+    <Compile Include="ViewModels\ConfigurationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
