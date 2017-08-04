@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:versionCode="1"
+	android:versionName="0.1 Alpha"
+	package="com.thepagedot.cameraslider">
 	<uses-sdk
 		android:minSdkVersion="15" />
 	<uses-permission
