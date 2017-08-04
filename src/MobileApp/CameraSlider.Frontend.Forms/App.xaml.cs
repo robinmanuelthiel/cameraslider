@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CameraSlider.Frontend.Forms.Pages;
-
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
+using Microsoft.Azure.Mobile.Distribute;
 using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
@@ -36,7 +39,11 @@ namespace CameraSlider.Frontend.Forms
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            MobileCenter.Start(
+                "android=f7090947-7e5b-4e61-9adf-4003961fa537;",
+                typeof(Analytics),
+                typeof(Crashes),
+                typeof(Distribute));
         }
 
         protected override void OnSleep()
