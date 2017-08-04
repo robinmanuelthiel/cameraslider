@@ -2,7 +2,7 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:versionCode="1"
-	android:versionName="0.1 Alpha"
+	android:versionName="0.1.0 Alpha"
 	package="com.thepagedot.cameraslider">
 	<uses-sdk
 		android:minSdkVersion="15" />
