@@ -14,12 +14,14 @@
             x:Name="ConnectItem"
             Name="Connect"
 			Command="{Binding NavigateToDeviceSelectionCommand}"
-            Priority="0" />
+            Icon="connect.png"
+            Order="Secondary" />
+        
         <ToolbarItem
             x:Name="ConfigureItem"
             Name="Configure"
-            Command="{Binding NavigateToConfigurationCommand}"
-            Priority="0" />
+            Command="{Binding NavigateToConfigurationCommand}"            
+            Icon="configure.png" />
 	</ContentPage.ToolbarItems>
 
     <Grid>
