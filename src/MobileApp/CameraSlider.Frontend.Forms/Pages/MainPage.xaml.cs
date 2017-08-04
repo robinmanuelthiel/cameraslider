@@ -10,7 +10,7 @@ using CameraSlider.Frontend.Shared.Services;
 using GalaSoft.MvvmLight.Ioc;
 using CameraSlider.Frontend.Forms.Pages;
 
-namespace CameraSlider.Frontend.Forms
+namespace CameraSlider.Frontend.Forms.Pages
 {
     public partial class MainPage : ContentPage
     {

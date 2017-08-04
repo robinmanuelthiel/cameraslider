@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="CameraSlider.Frontend.Forms.Pages.ConfigurationPage"
+    Title="Configuration">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="10">
+            <Label 
+                Text="You can create a configuration for your Camera Slider here. This configuration will be sent to the Slider remotely."
+                Style="{StaticResource SubTextStyle}"
+                Margin="0,0,0,10"/>
+
+            <!-- Number of shots -->
+            <Label Text="Number of shots" Style="{StaticResource ControlHeaderStyle}" />
+            <Picker
+                Style="{StaticResource PickerStyle}"
+                ItemsSource="{Binding NumberOfShotsOptions}"
+                SelectedItem="{Binding NumberOfShots}"
+                SelectedIndex="0" />
+
+            <!-- Interval -->
+            <Label Text="Interval (in seconds)" Style="{StaticResource ControlHeaderStyle}" />
+            <Entry
+                Text="{Binding Interval}"
+                Style="{StaticResource EntryStyle}"
+                Keyboard="Numeric" />
+
+            <!-- Exposure Time -->
+            <Label Text="Exposure Time" Style="{StaticResource ControlHeaderStyle}" />
+            <Entry
+                Text="{Binding ExposureTime}"
+                Style="{StaticResource EntryStyle}"
+                Keyboard="Numeric" />
+            
+            <Button
+                Text="Send to slider"
+                Command="{Binding SendToSliderCommand}"
+                BackgroundColor="{StaticResource AccentColor}"
+                TextColor="White"
+                Margin="0,10,0,0"/>
+        </StackLayout>
+    </ScrollView>    
+</ContentPage>

@@ -15,6 +15,6 @@
 		android:name="android.hardware.bluetooth_le"
 		android:required="true" />
 	<application
-		android:label="CameraSlider.Frontend.Forms.Android">
+		android:label="Camera Slider">
 	</application>
 </manifest>

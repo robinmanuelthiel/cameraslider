@@ -3,10 +3,11 @@
 
 namespace CameraSlider.Frontend.Shared.Misc
 {
-    public class PageNames
+    public static class PageNames
     {
         public static string MainPage = "MainPage";
         public static string DeviceSelectionPage = "DeviceSelectionPage";
+        public static string ConfigurationPage = "ConfigurationPage";
     }
 }
 

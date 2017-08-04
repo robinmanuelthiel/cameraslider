@@ -144,6 +144,19 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\connection.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\connect.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\connect.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\connect.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\connect.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\connect.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\configure.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\configure.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\configure.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\configure.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\configure.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

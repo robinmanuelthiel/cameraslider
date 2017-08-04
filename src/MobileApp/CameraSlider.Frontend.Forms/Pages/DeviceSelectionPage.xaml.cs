@@ -26,6 +26,7 @@ namespace CameraSlider.Frontend.Forms.Pages
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            // Execute ViewModel command on selected Bluetooth device
             var bluetoothDevice = e.SelectedItem as IBluetoothDevice;
             if (bluetoothDevice != null)
                 viewModel.ConnectToDeviceCommand.Execute(bluetoothDevice);

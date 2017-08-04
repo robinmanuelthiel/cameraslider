@@ -30,16 +30,19 @@ namespace CameraSlider.Frontend.Forms
             // Register View Models
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<DeviceSelectionViewModel>();
+            SimpleIoc.Default.Register<ConfigurationViewModel>();
         }
 
         public MainViewModel MainViewModel { get { return SimpleIoc.Default.GetInstance<MainViewModel>(); } }
         public DeviceSelectionViewModel DeviceSelectionViewModel { get { return SimpleIoc.Default.GetInstance<DeviceSelectionViewModel>(); } }
+        public ConfigurationViewModel ConfigurationViewModel { get { return SimpleIoc.Default.GetInstance<ConfigurationViewModel>(); } }
 
         public void RegisterNavigationService(NavigationPage navigationPage)
         {
             var navigationService = new NavigationService(navigationPage);
             navigationService.Configure(PageNames.MainPage, typeof(MainPage));
             navigationService.Configure(PageNames.DeviceSelectionPage, typeof(DeviceSelectionPage));
+            navigationService.Configure(PageNames.ConfigurationPage, typeof(ConfigurationPage));
 
             if (SimpleIoc.Default.IsRegistered<INavigationService>())
                 SimpleIoc.Default.Unregister<INavigationService>();

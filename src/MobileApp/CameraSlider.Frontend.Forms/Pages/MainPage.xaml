@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CameraSlider.Frontend.Forms.Pages.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:CameraSlider.Frontend.Forms.Effects"
+    xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions"
+    xmlns:local="clr-namespace:CameraSlider.Frontend.Forms"
+    xmlns:views="clr-namespace:CameraSlider.Frontend.Forms.Views"
+    Title="Camera Slider">
+
+	<ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="ConnectItem"
+            Name="Connect"
+			Command="{Binding NavigateToDeviceSelectionCommand}"
+            Icon="connect.png"
+            Order="Secondary" />
+        
+        <ToolbarItem
+            x:Name="ConfigureItem"
+            Name="Configure"
+            Command="{Binding NavigateToConfigurationCommand}"            
+            Icon="configure.png" />
+	</ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <StackLayout Padding="20">
+                <Label
+                    Text="Status"
+                    FontSize="Small"
+                    TextColor="{StaticResource SubtleColor}"/>
+                <Label
+                    Text="{Binding ConnectionStatus}"
+                    FontSize="Small"
+                    TextColor="{StaticResource AccentColor}"/>
+                                
+                <Label
+                    Text="Speed"
+                    FontSize="Small"
+                    TextColor="{StaticResource SubtleColor}"
+                    Margin="0, 20, 0, 0"/>
+
+                 <Slider
+                    x:Name="SpeedSlider"
+                    Maximum="900"
+                    Minimum="100"
+                    Value="500"
+                    Margin="-10, 0"/>                
+            </StackLayout>
+        </ScrollView>
+
+        <Grid 
+            VerticalOptions="End"  
+            Grid.Row="1"
+            Padding="20,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Controls -->
+            <StackLayout
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                Orientation="Horizontal">
+
+                <views:FlexButton
+                    x:Name="MoveLeftButton"
+                    BorderColor="{StaticResource AccentColor}"
+                    CornerRadius="38"
+                    HeightRequest="76"
+                    HighlightColor="{StaticResource AccentColor}"
+                    HighlightIconColor="White"
+                    HorizontalOptions="Center"
+                    Icon="left.png"
+                    IconColor="{StaticResource AccentColor}"
+                    WidthRequest="76" />
+
+                <views:FlexButton
+                    x:Name="TakePictureButton"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    BorderColor="{StaticResource AccentColor}"
+                    CornerRadius="50"
+                    HeightRequest="100"
+                    HighlightColor="White"
+                    HighlightIconColor="{StaticResource AccentColor}"
+                    HorizontalOptions="Center"
+                    Icon="camera.png"
+                    IconColor="White"
+                    WidthRequest="100" />
+
+                <views:FlexButton
+                    x:Name="MoveRightButton"
+                    BorderColor="{StaticResource AccentColor}"
+                    CornerRadius="38"
+                    HeightRequest="76"
+                    HighlightColor="{StaticResource AccentColor}"
+                    HighlightIconColor="White"
+                    HorizontalOptions="Center"
+                    Icon="right.png"
+                    IconColor="{StaticResource AccentColor}"
+                    WidthRequest="76" />
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

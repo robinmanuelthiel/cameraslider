@@ -11,15 +11,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using Xamarin.Forms.Platform.Android;
-using Android.Widget;
-using System.ComponentModel;
-using Xamarin.Forms;
-
-using Android.Graphics;
-using Android.Graphics.Drawables;
 using CameraSlider.Frontend.Forms.Extensions;
 using CameraSlider.Frontend.Forms.Droid.CustomRenderers;
 
@@ -30,7 +22,7 @@ namespace CameraSlider.Frontend.Forms.Droid.Effects
 {
     public class ColorOverlayEffectDrod : PlatformEffect
     {
-        private Drawable originalImage;
+        //private Drawable originalImage;
 
         protected override void OnAttached()
         {
@@ -41,7 +33,7 @@ namespace CameraSlider.Frontend.Forms.Droid.Effects
             if (!(Control is ImageView))
                 return;
 
-            originalImage = ((ImageView)Control).Drawable;
+            //originalImage = ((ImageView)Control).Drawable;
 
             SetOverlay(effect.Color);
         }
