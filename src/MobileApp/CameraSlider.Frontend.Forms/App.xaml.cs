@@ -39,11 +39,13 @@ namespace CameraSlider.Frontend.Forms
 
         protected override void OnStart()
         {
+#if !DEBUG
             MobileCenter.Start(
                 "android=f7090947-7e5b-4e61-9adf-4003961fa537;",
                 typeof(Analytics),
                 typeof(Crashes),
                 typeof(Distribute));
+#endif
         }
 
         protected override void OnSleep()
