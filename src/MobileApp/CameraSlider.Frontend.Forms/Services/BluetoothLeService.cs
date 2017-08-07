@@ -71,5 +71,10 @@ namespace CameraSlider.Frontend.Forms.Services
         {
             throw new NotImplementedException();
         }
+
+        public bool GetConnectionStatus()
+        {
+            return bluetoothLe.IsAvailable;
+        }
     }
 }

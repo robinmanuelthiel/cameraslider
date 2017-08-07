@@ -60,12 +60,20 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         {
             IsBusy = true;
 
-            var availableBluetoothDevices = await bluetoothLeService.ScanForDevicesAsync();
 
-            BluetoothDevices.Clear();
-            foreach (var device in availableBluetoothDevices)
+            if (bluetoothLeService.GetConnectionStatus())
             {
-                BluetoothDevices.Add(device);
+                var availableBluetoothDevices = await bluetoothLeService.ScanForDevicesAsync();
+
+                BluetoothDevices.Clear();
+                foreach (var device in availableBluetoothDevices)
+                {
+                    BluetoothDevices.Add(device);
+                }
+            }
+            else
+            {
+                await dialogService.DisplayDialogAsync("Bluetooth not available", "BluetoothLE is not available. Please check your BLuetooth settings and try again", "Ok");
             }
 
             IsBusy = false;

@@ -34,5 +34,11 @@ namespace CameraSlider.Frontend.Shared.Services
         /// <returns>The to device async.</returns>
         /// <param name="device">Device.</param>
         Task ConnectToDeviceAsync(IBluetoothDevice device);
+
+        /// <summary>
+        /// Checks if Bluetooth LE is activated and available on this device
+        /// </summary>
+        /// <value><c>true</c> if is bluetooth le available; otherwise, <c>false</c>.</value>
+        bool GetConnectionStatus();
     }
 }
