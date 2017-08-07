@@ -43,7 +43,8 @@ namespace CameraSlider.Frontend.Forms
             MobileCenter.Start(
                 "android=f7090947-7e5b-4e61-9adf-4003961fa537;",
                 typeof(Analytics),
-                typeof(Crashes));
+                typeof(Crashes),
+                typeof(Distribute));
 #endif
         }
 
