@@ -49,9 +49,9 @@
 
                  <Slider
                     x:Name="SpeedSlider"
-                    Maximum="900"
-                    Minimum="100"
-                    Value="500"
+                    Maximum="9"
+                    Minimum="1"
+                    Value="5"
                     Margin="-10, 0"/>                
             </StackLayout>
         </ScrollView>
