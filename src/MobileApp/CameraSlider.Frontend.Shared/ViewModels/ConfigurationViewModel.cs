@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using CameraSlider.Frontend.Shared.Services;
+using CameraSlider.Frontend.Shared.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace CameraSlider.Frontend.Shared.ViewModels
 {
@@ -31,8 +34,15 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             set { interval = value; RaisePropertyChanged(); }
         }
 
-        private int exposureTime;
-        public int ExposureTime
+        private ObservableCollection<ExposureTime> exposureTimeOptions;
+        public ObservableCollection<ExposureTime> ExposureTimeOptions
+        {
+            get { return exposureTimeOptions; }
+            set { exposureTimeOptions = value; RaisePropertyChanged(); }
+        }
+
+        private ExposureTime exposureTime;
+        public ExposureTime ExposureTime
         {
             get { return exposureTime; }
             set { exposureTime = value; RaisePropertyChanged(); }
@@ -45,7 +55,7 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             {
                 return sendToSliderCommand ?? (sendToSliderCommand = new RelayCommand(() =>
                 {
-                    dialogService.DisplayDialogAsync("", $"Shots: {NumberOfShots}\nInterval: {Interval}\nExposure: {ExposureTime}", "Aha");
+                    dialogService.DisplayDialogAsync("", $"Shots: {NumberOfShots}\nInterval: {Interval}\nExposure: {ExposureTime.Milliseconds}", "Aha");
                 }));
             }
         }
@@ -54,11 +64,11 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         {
             this.dialogService = dialogService;
 
-            // Set defaults
+            exposureTimeOptions = new ObservableCollection<ExposureTime>(ExposureTime.Times);
+            exposureTime = exposureTimeOptions.FirstOrDefault();
             numberOfShotsOptions = new int[] { 1, 2, 3, 4, 5 };
             numberOfShots = 5;
             Interval = 2;
-            ExposureTime = 1;
         }
 
         public override Task RefreshAsync()
