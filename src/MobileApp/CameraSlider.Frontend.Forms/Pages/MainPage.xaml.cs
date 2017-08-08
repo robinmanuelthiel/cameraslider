@@ -54,7 +54,6 @@ namespace CameraSlider.Frontend.Forms.Pages
             MoveRightButton.TouchedDown -= MoveRightButton_TouchedDown;
             MoveRightButton.TouchedUp -= MoveButton_TouchedUp;
             TakePictureButton.TouchedUp -= TakePictureButton_TouchedUp;
-
         }
 
         async void TakePictureButton_TouchedUp()
@@ -65,20 +64,20 @@ namespace CameraSlider.Frontend.Forms.Pages
 
         async void MoveLeftButton_TouchedDown()
         {
-            SpeedSlider.IsEnabled = false;
+            //SpeedSlider.IsEnabled = false;
             await StartSliderMovement(SliderDirection.Left);
         }
 
         async void MoveRightButton_TouchedDown()
         {
-            SpeedSlider.IsEnabled = false;
+            //SpeedSlider.IsEnabled = false;
             await StartSliderMovement(SliderDirection.Right);
         }
 
         async void MoveButton_TouchedUp()
         {
             await StopSliderMovement();
-            SpeedSlider.IsEnabled = true;
+            //SpeedSlider.IsEnabled = true;
         }
 
         async Task StartSliderMovement(SliderDirection direction)
@@ -88,7 +87,7 @@ namespace CameraSlider.Frontend.Forms.Pages
             await bluetoothLeService.WriteToServiceCharacteristicAsync(directionCommand, serviceUuid, characteristicUuid);
 
             // Speed
-            var speedValue = 10 - (int)SpeedSlider.Value;
+            var speedValue = 1; // 10 - (int)SpeedSlider.Value;
             await bluetoothLeService.WriteToServiceCharacteristicAsync($"sp{speedValue}#", serviceUuid, characteristicUuid);
 
             // Start
