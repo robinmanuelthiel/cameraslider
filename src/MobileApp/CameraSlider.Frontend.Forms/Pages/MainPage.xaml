@@ -34,25 +34,31 @@
             <StackLayout Padding="20">
                 <Label
                     Text="Status"
-                    FontSize="Small"
-                    TextColor="{StaticResource SubtleColor}"/>
+                    Style="{StaticResource ControlHeaderStyle}"/>
                 <Label
                     Text="{Binding ConnectionStatus}"
-                    FontSize="Small"
-                    TextColor="{StaticResource AccentColor}"/>
+                    FontSize="Small" />
                                 
-                <!--<Label
+                <Label
                     Text="Speed"
-                    FontSize="Small"
-                    TextColor="{StaticResource SubtleColor}"
-                    Margin="0, 20, 0, 0"/>
+                    Style="{StaticResource ControlHeaderStyle}"
+                    Margin="0,20,0,0" />
 
                  <Slider
                     x:Name="SpeedSlider"
-                    Maximum="9"
-                    Minimum="1"
-                    Value="5"
-                    Margin="-10, 0"/> -->           
+                    Maximum="2000"
+                    Minimum="500"
+                    Value="1300"
+                    Margin="-10, 0"/>    
+
+                <!-- Exposure Time -->
+                <Label Text="Exposure Time" Style="{StaticResource ControlHeaderStyle}" Margin="0,20,0,0" />
+                <Picker
+                    Style="{StaticResource PickerStyle}"
+                    ItemsSource="{Binding ExposureTimeOptions}"
+                    SelectedItem="{Binding ExposureTime}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedIndex="0" />
             </StackLayout>
         </ScrollView>
 

@@ -20,7 +20,7 @@ boolean newData = false;
 
 // Camera
 const int shutterPin = 11; // was 12 11
-const int exposureTime = 8;
+int exposureTime = 8;
 bool isShutterToBeTriggered = false;
 
 // Procedure
@@ -106,9 +106,9 @@ void loop()
       
     // Step
     digitalWrite(motorStepPin, HIGH);
-    delay(speed);
+    delayMicroseconds(speed);
     digitalWrite(motorStepPin, LOW);
-    delay(speed);      
+    delayMicroseconds(speed);      
   }
   else
   {
@@ -169,6 +169,10 @@ void processBluetoothInput()
     // Camera
     if (strcmp(receivedChars, "shutter") == 0)
       isShutterToBeTriggered = true;
+
+    // Exposure Time
+    if (command.indexOf("et") != -1)
+      exposureTime = command.substring(2).toInt();
 
     // Procedure
     if (command.indexOf("pr") != -1) // Example: pr100,10

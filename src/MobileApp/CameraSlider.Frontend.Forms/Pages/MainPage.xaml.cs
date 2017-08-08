@@ -58,6 +58,7 @@ namespace CameraSlider.Frontend.Forms.Pages
 
         async void TakePictureButton_TouchedUp()
         {
+            await bluetoothLeService.WriteToServiceCharacteristicAsync($"et{viewModel.ExposureTime.Milliseconds}#", serviceUuid, characteristicUuid);
             await bluetoothLeService.WriteToServiceCharacteristicAsync("shutter#", serviceUuid, characteristicUuid);
         }
 
@@ -86,7 +87,7 @@ namespace CameraSlider.Frontend.Forms.Pages
             await bluetoothLeService.WriteToServiceCharacteristicAsync(directionCommand, serviceUuid, characteristicUuid);
 
             // Speed
-            var speedValue = 1; // 10 - (int)SpeedSlider.Value;
+            var speedValue = 2500 - (int)SpeedSlider.Value;
             await bluetoothLeService.WriteToServiceCharacteristicAsync($"sp{speedValue}#", serviceUuid, characteristicUuid);
 
             // Start

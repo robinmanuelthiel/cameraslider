@@ -6,6 +6,9 @@ using GalaSoft.MvvmLight.Command;
 using CameraSlider.Frontend.Shared.Misc;
 using System.Threading.Tasks;
 using IDialogService = CameraSlider.Frontend.Shared.Services.IDialogService;
+using System.Collections.ObjectModel;
+using CameraSlider.Frontend.Shared.Models;
+using System.Linq;
 
 namespace CameraSlider.Frontend.Shared.ViewModels
 {
@@ -20,6 +23,20 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         {
             get { return isDeviceConnected; }
             set { isDeviceConnected = value; RaisePropertyChanged(); }
+        }
+
+        private ObservableCollection<ExposureTime> exposureTimeOptions;
+        public ObservableCollection<ExposureTime> ExposureTimeOptions
+        {
+            get { return exposureTimeOptions; }
+            set { exposureTimeOptions = value; RaisePropertyChanged(); }
+        }
+
+        private ExposureTime exposureTime;
+        public ExposureTime ExposureTime
+        {
+            get { return exposureTime; }
+            set { exposureTime = value; RaisePropertyChanged(); }
         }
 
         public string ConnectionStatus
@@ -59,6 +76,9 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             this.navigationService = navigationService;
             this.dialogService = dialogService;
             this.bluetoothLeService = bluetoothLeService;
+
+            exposureTimeOptions = new ObservableCollection<ExposureTime>(ExposureTime.Times);
+            exposureTime = exposureTimeOptions.FirstOrDefault();
         }
 
         public async Task TestConnectionAsync(string serviceUuid, string characteristicUuid)
@@ -67,7 +87,7 @@ namespace CameraSlider.Frontend.Shared.ViewModels
 
             if (bluetoothLeService.ConnectedDevice != null)
             {
-                if (await bluetoothLeService.WriteToServiceCharacteristicAsync("test", serviceUuid, characteristicUuid))
+                if (await bluetoothLeService.WriteToServiceCharacteristicAsync("test#", serviceUuid, characteristicUuid))
                 {
                     IsDeviceConnected = true;
                 }
