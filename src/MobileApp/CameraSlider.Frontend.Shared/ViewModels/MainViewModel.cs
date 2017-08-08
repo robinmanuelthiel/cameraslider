@@ -22,8 +22,6 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             set { isDeviceConnected = value; RaisePropertyChanged(); }
         }
 
-
-        private string connectionStatus;
         public string ConnectionStatus
         {
             get

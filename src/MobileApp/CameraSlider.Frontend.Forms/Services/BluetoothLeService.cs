@@ -49,6 +49,11 @@ namespace CameraSlider.Frontend.Forms.Services
                 // Service or Characteristics UUID might not have been found
                 return false;
             }
+            catch (CharacteristicReadException)
+            {
+                // TODO: Find out when and why this happens
+                return false;
+            }
 
             return true;
         }
@@ -74,7 +79,9 @@ namespace CameraSlider.Frontend.Forms.Services
 
         public bool GetConnectionStatus()
         {
-            return bluetoothLe.IsAvailable;
+            return
+                (bluetoothLe.State == BluetoothState.On || bluetoothLe.State == BluetoothState.TurningOn) &&
+                bluetoothLe.IsAvailable;
         }
     }
 }

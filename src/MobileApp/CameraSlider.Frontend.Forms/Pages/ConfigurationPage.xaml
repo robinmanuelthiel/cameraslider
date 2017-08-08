@@ -29,10 +29,12 @@
 
             <!-- Exposure Time -->
             <Label Text="Exposure Time" Style="{StaticResource ControlHeaderStyle}" />
-            <Entry
-                Text="{Binding ExposureTime}"
-                Style="{StaticResource EntryStyle}"
-                Keyboard="Numeric" />
+            <Picker
+                Style="{StaticResource PickerStyle}"
+                ItemsSource="{Binding ExposureTimeOptions}"
+                SelectedItem="{Binding ExposureTime}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedIndex="0" />
             
             <Button
                 Text="Send to slider"

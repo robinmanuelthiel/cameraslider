@@ -41,7 +41,7 @@
                     FontSize="Small"
                     TextColor="{StaticResource AccentColor}"/>
                                 
-                <Label
+                <!--<Label
                     Text="Speed"
                     FontSize="Small"
                     TextColor="{StaticResource SubtleColor}"
@@ -52,7 +52,7 @@
                     Maximum="9"
                     Minimum="1"
                     Value="5"
-                    Margin="-10, 0"/>                
+                    Margin="-10, 0"/> -->           
             </StackLayout>
         </ScrollView>
 
