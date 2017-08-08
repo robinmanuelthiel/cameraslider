@@ -76,7 +76,7 @@ namespace CameraSlider.Frontend.Shared.ViewModels
                         string characteristicUuid = "0000ffe1-0000-1000-8000-00805f9b34fb";
 
                         // Send Exposure Time
-                        await bluetoothLeService.WriteToServiceCharacteristicAsync($"et{ExposureTime}#", serviceUuid, characteristicUuid);
+                        await bluetoothLeService.WriteToServiceCharacteristicAsync($"et{ExposureTime.Milliseconds}#", serviceUuid, characteristicUuid);
 
                         // Send Procedure
                         await bluetoothLeService.WriteToServiceCharacteristicAsync($"pr{stepsPerInterval},{NumberOfShots},{maxExposureTime}#", serviceUuid, characteristicUuid);
