@@ -49,6 +49,10 @@ namespace CameraSlider.Frontend.Forms.Services
                 // Service or Characteristics UUID might not have been found
                 return false;
             }
+            catch (CharacteristicReadException)
+            {
+                return false;
+            }
 
             return true;
         }
