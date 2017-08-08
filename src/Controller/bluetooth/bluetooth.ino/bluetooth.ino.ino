@@ -1,13 +1,13 @@
 #include <SoftwareSerial.h>
 
 // Bluetooth
-const int rxpin = 13; // Receiver // was 2
-const int txpin = 12; // Sender // was 3
+const int rxpin = 13; // Receiver // was 2 13
+const int txpin = 12; // Sender // was 3 12
 SoftwareSerial bluetooth(rxpin, txpin);
 
 // Motor
-const int motorStepPin = 5; // Motor // was 10
-const int directionLedPin = 2; // Direction // was1
+const int motorStepPin = 5; // Motor // was 10 5
+const int directionLedPin = 2; // Direction // was 11 2
 bool isMotorRunning = false;
 int motorDirection = 0; // 0 = left, 1 = right
 int speed = 300;
@@ -19,7 +19,7 @@ char receivedChars[numChars];
 boolean newData = false;
 
 // Camera
-const int shutterPin = 11; // was 12
+const int shutterPin = 11; // was 12 11
 const int exposureTime = 8;
 bool isShutterToBeTriggered = false;
 
@@ -28,7 +28,7 @@ bool isProcedureRunning = false;
 int stepsPerInterval = 200; 
 int shots = 5;
 
-const int maxExposureTime = 4000; 
+int maxExposureTime = 4000; 
 const int bufferTime = 250;
 
 void setup()
@@ -172,16 +172,20 @@ void processBluetoothInput()
 
     // Procedure
     if (command.indexOf("pr") != -1) // Example: pr100,10
-    {
+    { 
       // Get procedure values out of command      
-      Serial.println("Procedure command detected.");
-      Serial.print("Steps per Interval: ");
-      Serial.println(command.substring(2, command.indexOf(",")));
-      Serial.print("Number of shots: ");
-      Serial.println(command.substring(command.indexOf(",") + 1));
+      Serial.println("Procedure command detected.");      
       
-      stepsPerInterval = command.substring(2, command.indexOf(",")).toInt();;
-      shots = command.substring(command.indexOf(",") + 1).toInt();;
+      stepsPerInterval = command.substring(2, command.indexOf(",")).toInt();
+      shots = command.substring(command.indexOf(",") + 1, command.lastIndexOf(",")).toInt();
+      maxExposureTime = command.substring(command.lastIndexOf(",") + 1).toInt();
+
+      Serial.print("Steps per Interval: ");
+      Serial.println(stepsPerInterval);
+      Serial.print("Number of shots: ");
+      Serial.println(shots);
+      Serial.print("Max exposure time: ");
+      Serial.println(maxExposureTime);
 
       Serial.println("Starting procedure...");
       isProcedureRunning = true;
