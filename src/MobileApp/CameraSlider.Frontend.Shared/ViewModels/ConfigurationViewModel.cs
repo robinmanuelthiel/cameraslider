@@ -12,6 +12,7 @@ namespace CameraSlider.Frontend.Shared.ViewModels
     public class ConfigurationViewModel : AsyncViewModelBase
     {
         private IDialogService dialogService;
+        private IBluetoothLeService bluetoothLeService;
 
         private int[] numberOfShotsOptions;
         public int[] NumberOfShotsOptions
@@ -53,16 +54,25 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         {
             get
             {
-                return sendToSliderCommand ?? (sendToSliderCommand = new RelayCommand(() =>
+                return sendToSliderCommand ?? (sendToSliderCommand = new RelayCommand(async () =>
                 {
-                    dialogService.DisplayDialogAsync("", $"Shots: {NumberOfShots}\nInterval: {Interval}\nExposure: {ExposureTime.Milliseconds}", "Aha");
+                    if (await dialogService.DisplayDialogAsync("Procedure", $"Shots: {NumberOfShots}\nInterval: {Interval}\nExposure: {ExposureTime.Milliseconds}", "Start", "Cancel"))
+                    {
+                        string serviceUuid = "0000ffe0-0000-1000-8000-00805f9b34fb";
+                        string characteristicUuid = "0000ffe1-0000-1000-8000-00805f9b34fb";
+
+                        var stepsPerInterval = Interval;
+
+                        await bluetoothLeService.WriteToServiceCharacteristicAsync($"pr{stepsPerInterval},{NumberOfShots}#", serviceUuid, characteristicUuid);
+                    }
                 }));
             }
         }
 
-        public ConfigurationViewModel(IDialogService dialogService)
+        public ConfigurationViewModel(IDialogService dialogService, IBluetoothLeService bluetoothLeService)
         {
             this.dialogService = dialogService;
+            this.bluetoothLeService = bluetoothLeService;
 
             exposureTimeOptions = new ObservableCollection<ExposureTime>(ExposureTime.Times);
             exposureTime = exposureTimeOptions.FirstOrDefault();

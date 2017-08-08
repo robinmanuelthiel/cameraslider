@@ -51,6 +51,7 @@ namespace CameraSlider.Frontend.Forms.Services
             }
             catch (CharacteristicReadException)
             {
+                // TODO: Find out when and why this happens
                 return false;
             }
 
