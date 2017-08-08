@@ -189,6 +189,12 @@
     <Reference Include="Microsoft.Azure.Mobile.Distribute.iOS.Bindings">
       <HintPath>..\packages\Microsoft.Azure.Mobile.Distribute.0.14.0\lib\Xamarin.iOS10\Microsoft.Azure.Mobile.Distribute.iOS.Bindings.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.DeviceInfo.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.3.0.1\lib\Xamarin.iOS10\Plugin.DeviceInfo.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.DeviceInfo">
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.3.0.1\lib\Xamarin.iOS10\Plugin.DeviceInfo.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CameraSlider.Frontend.Forms\CameraSlider.Frontend.Forms.csproj">

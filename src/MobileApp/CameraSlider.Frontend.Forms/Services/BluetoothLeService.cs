@@ -74,7 +74,9 @@ namespace CameraSlider.Frontend.Forms.Services
 
         public bool GetConnectionStatus()
         {
-            return bluetoothLe.IsAvailable;
+            return
+                (bluetoothLe.State == BluetoothState.On || bluetoothLe.State == BluetoothState.TurningOn) &&
+                bluetoothLe.IsAvailable;
         }
     }
 }

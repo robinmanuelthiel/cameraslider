@@ -17,7 +17,10 @@
             x:Name="DeviceList"
             ItemSelected="ListView_ItemSelected"
             IsEnabled="{Binding IsBusy, Converter={StaticResource BoolToNegatedBoolConverter}}"
-            ItemsSource="{Binding BluetoothDevices}">
+            ItemsSource="{Binding BluetoothDevices}"
+            IsPullToRefreshEnabled="true"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" Detail="{Binding Uuid}" />
@@ -30,6 +33,14 @@
             HorizontalOptions="Fill"
             IsRunning="True"
             IsVisible="{Binding IsBusy, Mode=OneWay}"
-            VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}" />
+            VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}">
+            <ActivityIndicator.IsVisible>
+                <OnPlatform x:TypeArguments="x:Boolean">
+                    <On Platform="Android" Value="false"/>
+                    <On Platform="WinPhone" Value="true"/>
+                    <On Platform="iOS" Value="false"/>
+                </OnPlatform>                
+            </ActivityIndicator.IsVisible>
+        </ActivityIndicator>
 	</Grid>
 </ContentPage>

@@ -7,6 +7,7 @@ using CameraSlider.Frontend.Shared.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using IDialogService = CameraSlider.Frontend.Shared.Services.IDialogService;
+using MvvmHelpers;
 
 namespace CameraSlider.Frontend.Shared.ViewModels
 {
@@ -16,8 +17,8 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         private IDialogService dialogService;
         private IBluetoothLeService bluetoothLeService;
 
-        public ObservableCollection<IBluetoothDevice> bluetoothDevices;
-        public ObservableCollection<IBluetoothDevice> BluetoothDevices
+        public ObservableRangeCollection<IBluetoothDevice> bluetoothDevices;
+        public ObservableRangeCollection<IBluetoothDevice> BluetoothDevices
         {
             get { return bluetoothDevices; }
             set { bluetoothDevices = value; RaisePropertyChanged(); }
@@ -53,30 +54,29 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             this.dialogService = dialogService;
             this.bluetoothLeService = bluetoothLeService;
 
-            BluetoothDevices = new ObservableCollection<IBluetoothDevice>();
+            BluetoothDevices = new ObservableRangeCollection<IBluetoothDevice>();
         }
 
         public override async Task RefreshAsync()
         {
             IsBusy = true;
 
-
+            // Check BluetoothLE connection status
             if (bluetoothLeService.GetConnectionStatus())
             {
+                // Get a list of BluetoothLE devices
                 var availableBluetoothDevices = await bluetoothLeService.ScanForDevicesAsync();
+                BluetoothDevices.ReplaceRange(availableBluetoothDevices);
 
-                BluetoothDevices.Clear();
-                foreach (var device in availableBluetoothDevices)
-                {
-                    BluetoothDevices.Add(device);
-                }
+                IsBusy = false;
             }
             else
             {
-                await dialogService.DisplayDialogAsync("Bluetooth not available", "BluetoothLE is not available. Please check your BLuetooth settings and try again", "Ok");
-            }
+                IsBusy = false;
 
-            IsBusy = false;
+                // Bluetooth LE not available
+                await dialogService.DisplayDialogAsync("Bluetooth not available", "Bluetooth is not available. Please check your Bluetooth settings and try again", "Ok");
+            }
         }
     }
 }

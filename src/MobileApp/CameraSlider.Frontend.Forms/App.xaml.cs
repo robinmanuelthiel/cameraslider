@@ -7,6 +7,7 @@ using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using Microsoft.Azure.Mobile.Distribute;
+using Plugin.DeviceInfo;
 using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
@@ -40,11 +41,15 @@ namespace CameraSlider.Frontend.Forms
         protected override void OnStart()
         {
 #if !DEBUG
-            MobileCenter.Start(
+            // Disable Mobile Center for Simulators and Emulators
+            if(!CrossDeviceInfo.Current.Model.Contains("Android SDK")) 
+            {
+                MobileCenter.Start(
                 "android=0036cb00-df40-4131-a919-6e5a83b0371c;",
                 typeof(Analytics),
                 typeof(Crashes),
                 typeof(Distribute));
+            }
 #endif
         }
 
