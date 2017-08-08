@@ -59,7 +59,6 @@ namespace CameraSlider.Frontend.Forms.Pages
         async void TakePictureButton_TouchedUp()
         {
             await bluetoothLeService.WriteToServiceCharacteristicAsync("shutter#", serviceUuid, characteristicUuid);
-            //await DisplayAlert("Camera", "Picture taken!", "Ok");
         }
 
         async void MoveLeftButton_TouchedDown()
