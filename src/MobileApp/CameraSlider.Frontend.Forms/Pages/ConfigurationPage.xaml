@@ -14,16 +14,22 @@
 
             <!-- Number of shots -->
             <Label Text="Number of shots" Style="{StaticResource ControlHeaderStyle}" />
-            <Picker
-                Style="{StaticResource PickerStyle}"
-                ItemsSource="{Binding NumberOfShotsOptions}"
-                SelectedItem="{Binding NumberOfShots}"
-                SelectedIndex="0" />
+            <Entry
+                Style="{StaticResource EntryStyle}"
+                Text="{Binding NumberOfShots}"
+                Keyboard="Numeric" />
 
             <!-- Interval -->
             <Label Text="Interval (in seconds)" Style="{StaticResource ControlHeaderStyle}" />
             <Entry
                 Text="{Binding Interval}"
+                Style="{StaticResource EntryStyle}"
+                Keyboard="Numeric" />
+
+            <!-- Total Steps -->
+            <Label Text="Number of total steps" Style="{StaticResource ControlHeaderStyle}" />
+            <Entry
+                Text="{Binding TotalSteps}"
                 Style="{StaticResource EntryStyle}"
                 Keyboard="Numeric" />
 
@@ -35,6 +41,13 @@
                 SelectedItem="{Binding ExposureTime}"
                 ItemDisplayBinding="{Binding Name}"
                 SelectedIndex="0" />
+
+            <!-- Max Exposure Time -->
+            <Label Text="Maximum Exposure Time" Style="{StaticResource ControlHeaderStyle}" />
+            <Entry
+                Text="{Binding MaxExposureTime}"
+                Style="{StaticResource EntryStyle}"
+                IsEnabled="false" />
             
             <Button
                 Text="Send to slider"

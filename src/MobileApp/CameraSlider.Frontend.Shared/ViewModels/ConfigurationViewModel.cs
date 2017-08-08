@@ -14,25 +14,30 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         private IDialogService dialogService;
         private IBluetoothLeService bluetoothLeService;
 
-        private int[] numberOfShotsOptions;
-        public int[] NumberOfShotsOptions
-        {
-            get { return numberOfShotsOptions; }
-            set { numberOfShotsOptions = value; RaisePropertyChanged(); }
-        }
+        // Procedure Values
+        private readonly int bufferTime = 250;
+        private readonly int speed = 1;
+        private int stepsPerInterval;
 
         private int numberOfShots;
         public int NumberOfShots
         {
             get { return numberOfShots; }
-            set { numberOfShots = value; RaisePropertyChanged(); }
+            set { numberOfShots = value; RaisePropertyChanged(); CalculateProcedureValues(); }
         }
 
         private int interval;
         public int Interval
         {
             get { return interval; }
-            set { interval = value; RaisePropertyChanged(); }
+            set { interval = value; RaisePropertyChanged(); CalculateProcedureValues(); }
+        }
+
+        private int totalSteps;
+        public int TotalSteps
+        {
+            get { return totalSteps; }
+            set { totalSteps = value; RaisePropertyChanged(); CalculateProcedureValues(); }
         }
 
         private ObservableCollection<ExposureTime> exposureTimeOptions;
@@ -46,7 +51,14 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         public ExposureTime ExposureTime
         {
             get { return exposureTime; }
-            set { exposureTime = value; RaisePropertyChanged(); }
+            set { exposureTime = value; RaisePropertyChanged(); CalculateProcedureValues(); }
+        }
+
+        private int maxExposureTime;
+        public int MaxExposureTime
+        {
+            get { return maxExposureTime; }
+            set { maxExposureTime = value; RaisePropertyChanged(); }
         }
 
         private RelayCommand sendToSliderCommand;
@@ -56,16 +68,20 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             {
                 return sendToSliderCommand ?? (sendToSliderCommand = new RelayCommand(async () =>
                 {
-                    if (await dialogService.DisplayDialogAsync("Procedure", $"Shots: {NumberOfShots}\nInterval: {Interval}\nExposure: {ExposureTime.Milliseconds}", "Start", "Cancel"))
+                    CalculateProcedureValues();
+
+                    if (await dialogService.DisplayDialogAsync("Procedure", $"Shots: {NumberOfShots}\nInterval: {Interval}\nExposure: {ExposureTime.Milliseconds}\nSteps per Interval: {stepsPerInterval}\nMax Exposure Time: {maxExposureTime}", "Start", "Cancel"))
                     {
                         string serviceUuid = "0000ffe0-0000-1000-8000-00805f9b34fb";
                         string characteristicUuid = "0000ffe1-0000-1000-8000-00805f9b34fb";
 
-                        var stepsPerInterval = Interval;
+                        // Send Exposure Time
+                        await bluetoothLeService.WriteToServiceCharacteristicAsync($"et{ExposureTime}#", serviceUuid, characteristicUuid);
 
-                        await bluetoothLeService.WriteToServiceCharacteristicAsync($"pr{stepsPerInterval},{NumberOfShots}#", serviceUuid, characteristicUuid);
+                        // Send Procedure
+                        await bluetoothLeService.WriteToServiceCharacteristicAsync($"pr{stepsPerInterval},{NumberOfShots},{maxExposureTime}#", serviceUuid, characteristicUuid);
                     }
-                }));
+                }, () => MaxExposureTime >= 0));
             }
         }
 
@@ -76,7 +92,7 @@ namespace CameraSlider.Frontend.Shared.ViewModels
 
             exposureTimeOptions = new ObservableCollection<ExposureTime>(ExposureTime.Times);
             exposureTime = exposureTimeOptions.FirstOrDefault();
-            numberOfShotsOptions = new int[] { 1, 2, 3, 4, 5 };
+            totalSteps = 1000;
             numberOfShots = 5;
             Interval = 2;
         }
@@ -84,6 +100,13 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         public override Task RefreshAsync()
         {
             throw new NotImplementedException();
+        }
+
+        private void CalculateProcedureValues()
+        {
+            stepsPerInterval = TotalSteps / NumberOfShots;
+            MaxExposureTime = (Interval * 1000) - (2 * bufferTime) - ExposureTime.Milliseconds - (stepsPerInterval * speed * 2);
+            SendToSliderCommand.RaiseCanExecuteChanged();
         }
     }
 }
