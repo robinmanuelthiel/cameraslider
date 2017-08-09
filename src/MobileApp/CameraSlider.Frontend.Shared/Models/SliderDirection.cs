@@ -1,5 +1,6 @@
 ﻿using System;
-namespace CameraSlider.Frontend.Forms
+
+namespace CameraSlider.Frontend.Shared.Models
 {
     public enum SliderDirection
     {

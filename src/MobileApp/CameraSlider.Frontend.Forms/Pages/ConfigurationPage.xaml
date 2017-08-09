@@ -6,55 +6,85 @@
     Title="Configuration">
 
     <ScrollView>
-        <StackLayout Padding="20" Spacing="10">
+        <StackLayout Padding="20">
             <Label 
-                Text="You can create a configuration for your Camera Slider here. This configuration will be sent to the Slider remotely."
-                Style="{StaticResource SubTextStyle}"
-                Margin="0,0,0,10"/>
-
-            <!-- Number of shots -->
-            <Label Text="Number of shots" Style="{StaticResource ControlHeaderStyle}" />
-            <Entry
-                Style="{StaticResource EntryStyle}"
-                Text="{Binding NumberOfShots}"
-                Keyboard="Numeric" />
-
-            <!-- Interval -->
-            <Label Text="Interval (in seconds)" Style="{StaticResource ControlHeaderStyle}" />
-            <Entry
-                Text="{Binding Interval}"
-                Style="{StaticResource EntryStyle}"
-                Keyboard="Numeric" />
+                Text="You can configure an automatic procedure for your Camera Slider here. This configuration will be sent to the Slider remotely and it will start running the configured procedure without needing a connection to the app."
+                Style="{StaticResource SubTextStyle}"/>
 
             <!-- Total Steps -->
-            <Label Text="Number of total steps" Style="{StaticResource ControlHeaderStyle}" />
+            <Label
+                Text="Total number of steps"
+                Margin="{StaticResource DefaultTopThickness}"
+                Style="{StaticResource ControlHeaderStyle}" />
             <Entry
                 Text="{Binding TotalSteps}"
                 Style="{StaticResource EntryStyle}"
                 Keyboard="Numeric" />
+            <Label Text="First things first: How long should the full ride of your slider be for this procedure?" Style="{StaticResource ExplainationTextStyle}" />
+
+            <!-- Direction -->
+            <Label
+                Text="Direction"
+                Margin="{StaticResource DefaultTopThickness}"
+                Style="{StaticResource ControlHeaderStyle}" />
+            <Picker
+                Style="{StaticResource PickerStyle}"
+                ItemsSource="{Binding DirectionOptions}"
+                SelectedItem="{Binding Direction}"
+                SelectedIndex="0" />
+            <Label Text="If you are unsure about the directions, go back to the remote controls and try them out." Style="{StaticResource ExplainationTextStyle}" />
+
+            <!-- Number of shots -->
+            <Label
+                Text="Number of shots"
+                Margin="{StaticResource DefaultTopThickness}"
+                Style="{StaticResource ControlHeaderStyle}" />
+            <Entry
+                Style="{StaticResource EntryStyle}"
+                Text="{Binding NumberOfShots}"
+                Keyboard="Numeric" />
+            <Label Text="The total number of shots you want to take during this procedure." Style="{StaticResource ExplainationTextStyle}" />
 
             <!-- Exposure Time -->
-            <Label Text="Exposure Time" Style="{StaticResource ControlHeaderStyle}" />
+            <Label
+                Text="Exposure Time"
+                Margin="{StaticResource DefaultTopThickness}"
+                Style="{StaticResource ControlHeaderStyle}" />
             <Picker
                 Style="{StaticResource PickerStyle}"
                 ItemsSource="{Binding ExposureTimeOptions}"
                 SelectedItem="{Binding ExposureTime}"
                 ItemDisplayBinding="{Binding Name}"
                 SelectedIndex="0" />
+            <Label Text="Set your camera to 'Bulb' mode to respect this. Otherwise tis will be ignored and the camera settings will be taken." Style="{StaticResource ExplainationTextStyle}"/>
+                            
+            <!-- Interval -->
+            <Label
+                Text="Interval (in seconds)"
+                Margin="{StaticResource DefaultTopThickness}"
+                Style="{StaticResource ControlHeaderStyle}" />
+            <Entry
+                Text="{Binding Interval}"
+                Style="{StaticResource EntryStyle}"
+                Keyboard="Numeric" />
+            <Label Text="The interval in which the slider stops and let the camera take a picture." Style="{StaticResource ExplainationTextStyle}" />
 
             <!-- Max Exposure Time -->
-            <Label Text="Maximum Exposure Time" Style="{StaticResource ControlHeaderStyle}" />
+            <Label
+                Text="Maximum Exposure Time"
+                Margin="{StaticResource DefaultTopThickness}"
+                Style="{StaticResource ControlHeaderStyle}" />
             <Entry
                 Text="{Binding MaxExposureTime}"
                 Style="{StaticResource EntryStyle}"
                 IsEnabled="false" />
+            <Label Text="This value gets calculated from your inputs and represents the full duration of which the camera stands still." Style="{StaticResource ExplainationTextStyle}" />
+
             
             <Button
                 Text="Send to slider"
                 Command="{Binding SendToSliderCommand}"
-                BackgroundColor="{StaticResource AccentColor}"
-                TextColor="White"
-                Margin="0,10,0,0"/>
+                Style="{StaticResource ButtonStyle}"/>
         </StackLayout>
     </ScrollView>    
 </ContentPage>

@@ -78,7 +78,7 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             this.bluetoothLeService = bluetoothLeService;
 
             exposureTimeOptions = new ObservableCollection<ExposureTime>(ExposureTime.Times);
-            exposureTime = exposureTimeOptions.FirstOrDefault();
+            exposureTime = exposureTimeOptions.FirstOrDefault(e => e.Milliseconds == 8);
         }
 
         public async Task TestConnectionAsync(string serviceUuid, string characteristicUuid)

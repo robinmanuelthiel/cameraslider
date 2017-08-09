@@ -57,10 +57,19 @@ void loop()
   readBluetoothSerial();
   processBluetoothInput();
 
+  // Procedure
   if (isProcedureRunning)
   {
     for (int i = 0; i < shots; i++)
-    {   
+    {
+
+      // Direction
+      if (motorDirection == 0)
+        digitalWrite(directionLedPin, LOW);
+      else
+        digitalWrite(directionLedPin, HIGH);
+
+      // Motor
       for(int j = 0; j < stepsPerInterval; j++)
       {
         digitalWrite(motorStepPin,HIGH);
@@ -68,6 +77,9 @@ void loop()
         digitalWrite(motorStepPin,LOW);
         delay(1);
       }
+
+      // Turn off direction pin
+      digitalWrite(directionLedPin, LOW);
  
       //digitalWrite(en1, HIGH);
       delay (bufferTime);

@@ -38,6 +38,7 @@
     <Compile Include="ViewModels\AsyncViewModelBase.cs" />
     <Compile Include="ViewModels\ConfigurationViewModel.cs" />
     <Compile Include="Models\ExposureTime.cs" />
+    <Compile Include="Models\SliderDirection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
