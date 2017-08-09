@@ -40,6 +40,20 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             set { totalSteps = value; RaisePropertyChanged(); CalculateProcedureValues(); }
         }
 
+        private ObservableCollection<SliderDirection> directionOptions;
+        public ObservableCollection<SliderDirection> DirectionOptions
+        {
+            get { return directionOptions; }
+            set { directionOptions = value; RaisePropertyChanged(); }
+        }
+
+        private SliderDirection direction;
+        public SliderDirection Direction
+        {
+            get { return direction; }
+            set { direction = value; RaisePropertyChanged(); }
+        }
+
         private ObservableCollection<ExposureTime> exposureTimeOptions;
         public ObservableCollection<ExposureTime> ExposureTimeOptions
         {
@@ -75,6 +89,10 @@ namespace CameraSlider.Frontend.Shared.ViewModels
                         string serviceUuid = "0000ffe0-0000-1000-8000-00805f9b34fb";
                         string characteristicUuid = "0000ffe1-0000-1000-8000-00805f9b34fb";
 
+                        // Send Direction
+                        var directionCommand = direction == SliderDirection.Right ? "dr#" : "dl#";
+                        await bluetoothLeService.WriteToServiceCharacteristicAsync(directionCommand, serviceUuid, characteristicUuid);
+
                         // Send Exposure Time
                         await bluetoothLeService.WriteToServiceCharacteristicAsync($"et{ExposureTime.Milliseconds}#", serviceUuid, characteristicUuid);
 
@@ -91,10 +109,14 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             this.bluetoothLeService = bluetoothLeService;
 
             exposureTimeOptions = new ObservableCollection<ExposureTime>(ExposureTime.Times);
-            exposureTime = exposureTimeOptions.FirstOrDefault();
-            totalSteps = 1000;
-            numberOfShots = 5;
-            Interval = 2;
+            directionOptions = new ObservableCollection<SliderDirection>(Enum.GetValues(typeof(SliderDirection)).Cast<SliderDirection>());
+
+            // Set defaults
+            exposureTime = exposureTimeOptions.FirstOrDefault(e => e.Milliseconds == 8);
+            direction = directionOptions.FirstOrDefault();
+            totalSteps = 10000;
+            numberOfShots = 10;
+            Interval = 5;
         }
 
         public override Task RefreshAsync()

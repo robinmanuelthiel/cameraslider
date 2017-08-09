@@ -9,6 +9,7 @@ using CameraSlider.Frontend.Shared.ViewModels;
 using CameraSlider.Frontend.Shared.Services;
 using GalaSoft.MvvmLight.Ioc;
 using CameraSlider.Frontend.Forms.Pages;
+using CameraSlider.Frontend.Shared.Models;
 
 namespace CameraSlider.Frontend.Forms.Pages
 {

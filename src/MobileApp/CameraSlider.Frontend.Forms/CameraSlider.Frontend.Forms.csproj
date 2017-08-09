@@ -41,7 +41,6 @@
     <Compile Include="Effects\ColorOverlayEffect.cs" />
     <Compile Include="Extensions\IconView.cs" />
     <Compile Include="Extensions\TouchGestureRecognizer.cs" />
-    <Compile Include="Models\SliderDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\FlexButton.xaml.cs">
       <DependentUpon>FlexButton.xaml</DependentUpon>

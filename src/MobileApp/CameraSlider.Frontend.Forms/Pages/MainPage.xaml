@@ -37,22 +37,25 @@
                     Style="{StaticResource ControlHeaderStyle}"/>
                 <Label
                     Text="{Binding ConnectionStatus}"
-                    FontSize="Small" />
+                    Style="{StaticResource SubTextStyle}" />
                                 
                 <Label
                     Text="Speed"
-                    Style="{StaticResource ControlHeaderStyle}"
-                    Margin="0,20,0,0" />
+                    Margin="{StaticResource DefaultTopThickness}"
+                    Style="{StaticResource ControlHeaderStyle}" />
 
                  <Slider
                     x:Name="SpeedSlider"
                     Maximum="2000"
                     Minimum="500"
                     Value="1300"
-                    Margin="-10, 0"/>    
+                    Style="{StaticResource SliderStyle}" />    
 
                 <!-- Exposure Time -->
-                <Label Text="Exposure Time" Style="{StaticResource ControlHeaderStyle}" Margin="0,20,0,0" />
+                <Label
+                    Text="Exposure Time"
+                    Margin="{StaticResource DefaultTopThickness}"
+                    Style="{StaticResource ControlHeaderStyle}" />
                 <Picker
                     Style="{StaticResource PickerStyle}"
                     ItemsSource="{Binding ExposureTimeOptions}"
