@@ -60,14 +60,19 @@ namespace CameraSlider.Frontend.Forms.Droid.Effects
             if (formsImage?.Source == null)
                 return;
 
-            var drawable = ((ImageView)Control).Drawable.Mutate();
-            //var drawable = Control.Context.Resources.GetDrawable("left.png");
+            try
+            {
+                var drawable = ((ImageView)Control).Drawable.Mutate();
+                drawable.SetColorFilter(color.ToAndroid(), PorterDuff.Mode.SrcAtop);
+                drawable.Alpha = color.ToAndroid().A;
 
-            drawable.SetColorFilter(color.ToAndroid(), PorterDuff.Mode.SrcAtop);
-            drawable.Alpha = color.ToAndroid().A;
-
-            ((ImageView)Control).SetImageDrawable(drawable);
-            ((IVisualElementController)Element).NativeSizeChanged();
+                ((ImageView)Control).SetImageDrawable(drawable);
+                ((IVisualElementController)Element).NativeSizeChanged();
+            }
+            catch (ObjectDisposedException)
+            {
+                return;
+            }
         }
 
         protected override void OnDetached()
