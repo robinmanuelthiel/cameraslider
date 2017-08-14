@@ -1,13 +1,13 @@
 #include <SoftwareSerial.h>
 
 // Bluetooth
-const int rxpin = 13; // Receiver // was 2 13
-const int txpin = 12; // Sender // was 3 12
+const int rxpin = 13; // Receiver 
+const int txpin = 12; // Sender 
 SoftwareSerial bluetooth(rxpin, txpin);
 
 // Motor
-const int motorStepPin = 5; // Motor // was 10 5
-const int directionLedPin = 2; // Direction // was 11 2
+const int motorStepPin = 5; // Motor 
+const int directionLedPin = 2; // Direction 
 bool isMotorRunning = false;
 int motorDirection = 0; // 0 = left, 1 = right
 int speed = 300;
@@ -19,7 +19,7 @@ char receivedChars[numChars];
 boolean newData = false;
 
 // Camera
-const int shutterPin = 11; // was 12 11
+const int shutterPin = 11;
 int exposureTime = 8;
 bool isShutterToBeTriggered = false;
 
