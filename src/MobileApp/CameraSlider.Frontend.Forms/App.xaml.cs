@@ -8,6 +8,7 @@ using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using Microsoft.Azure.Mobile.Distribute;
 using Plugin.DeviceInfo;
+using Plugin.VersionTracking;
 using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
@@ -40,6 +41,8 @@ namespace CameraSlider.Frontend.Forms
 
         protected override void OnStart()
         {
+            CrossVersionTracking.Current.Track();
+
 #if !DEBUG
             // Disable Mobile Center for Simulators and Emulators
             if(!CrossDeviceInfo.Current.Model.Contains("Android SDK")) 

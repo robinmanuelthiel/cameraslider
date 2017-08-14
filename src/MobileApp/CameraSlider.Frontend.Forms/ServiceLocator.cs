@@ -43,6 +43,7 @@ namespace CameraSlider.Frontend.Forms
             navigationService.Configure(PageNames.MainPage, typeof(MainPage));
             navigationService.Configure(PageNames.DeviceSelectionPage, typeof(DeviceSelectionPage));
             navigationService.Configure(PageNames.ConfigurationPage, typeof(ConfigurationPage));
+            navigationService.Configure(PageNames.AboutPage, typeof(AboutPage));
 
             if (SimpleIoc.Default.IsRegistered<INavigationService>())
                 SimpleIoc.Default.Unregister<INavigationService>();

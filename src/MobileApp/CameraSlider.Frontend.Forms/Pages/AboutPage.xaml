@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="CameraSlider.Frontend.Forms.Pages.AboutPage"
+    Title="About">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Version" Style="{StaticResource ControlHeaderStyle}" />
+            <Label x:Name="VersionText" Text="1.0" Style="{StaticResource SubTextStyle}" />
+
+            <Label Text="License" Style="{StaticResource ControlHeaderStyle}" Margin="{StaticResource DefaultTopThickness}" />
+            <Label Text="4PROS © 2017 (Preview Software)" Style="{StaticResource SubTextStyle}" />
+
+            <Label Text="3rd Party Libraries" Style="{StaticResource ControlHeaderStyle}" Margin="{StaticResource DefaultTopThickness}" />
+            <Label Text="MVVM Light by Laurent Bugnion" Style="{StaticResource SubTextStyle}" />
+            <Label Text="Version Tracking Plugin by Colbyl Williams" Style="{StaticResource SubTextStyle}" />
+            <Label Text="Bluetooth LE Plugin by Adrian Seceleanu" Style="{StaticResource SubTextStyle}" />
+            <Label Text="MVVM Helpers by James Montemagno" Style="{StaticResource SubTextStyle}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
