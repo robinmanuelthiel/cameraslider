@@ -16,6 +16,10 @@
 			Command="{Binding NavigateToDeviceSelectionCommand}"
             Icon="connect.png"
             Order="Secondary" />
+        <ToolbarItem
+            Name="About"
+            Command="{Binding NavigateToAboutCommand}"
+            Order="Secondary" />
         
         <ToolbarItem
             x:Name="ConfigureItem"

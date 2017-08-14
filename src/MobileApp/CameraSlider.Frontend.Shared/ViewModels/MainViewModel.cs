@@ -71,6 +71,18 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             }
         }
 
+        private RelayCommand navigateToAboutCommand;
+        public RelayCommand NavigateToAboutCommand
+        {
+            get
+            {
+                return navigateToAboutCommand ?? (navigateToAboutCommand = new RelayCommand(() =>
+                {
+                    navigationService.NavigateTo(PageNames.AboutPage);
+                }));
+            }
+        }
+
         public MainViewModel(INavigationService navigationService, IDialogService dialogService, IBluetoothLeService bluetoothLeService)
         {
             this.navigationService = navigationService;
