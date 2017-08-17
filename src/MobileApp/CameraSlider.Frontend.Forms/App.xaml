@@ -9,6 +9,8 @@
             <Color x:Key="AccentColor">#279396</Color>
 			<Color x:Key="SecondaryForegroundColor">#DDDDDD</Color>
             <Color x:Key="SubtleColor">#777777</Color>
+            <Color x:Key="BackgroundColor">#333333</Color>
+            <Color x:Key="ControlBackgroundColoriOS">#777777</Color>
 
             <Thickness x:Key="DefaultTopThickness" Top="15" />
             
@@ -51,6 +53,11 @@
                         <On Platform="Android" Value="-3,-8"/>     
                     </OnPlatform>
                 </Setter>
+                <Setter Property="BackgroundColor">
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="iOS" Value="{StaticResource ControlBackgroundColoriOS}"/>
+                    </OnPlatform>
+                </Setter>
             </Style>
 
             <!-- Entry -->
@@ -59,6 +66,11 @@
                 <Setter Property="Margin">
                     <OnPlatform x:TypeArguments="Thickness">
                         <On Platform="Android" Value="-3,-8"/>       
+                    </OnPlatform>
+                </Setter>
+                <Setter Property="BackgroundColor">
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="iOS" Value="{StaticResource ControlBackgroundColoriOS}"/>
                     </OnPlatform>
                 </Setter>
             </Style>

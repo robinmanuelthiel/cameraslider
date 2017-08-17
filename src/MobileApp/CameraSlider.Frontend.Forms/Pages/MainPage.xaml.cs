@@ -25,6 +25,7 @@ namespace CameraSlider.Frontend.Forms.Pages
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "Back");
 
             viewModel = App.ServiceLocator.MainViewModel;
             bluetoothLeService = SimpleIoc.Default.GetInstance<IBluetoothLeService>();

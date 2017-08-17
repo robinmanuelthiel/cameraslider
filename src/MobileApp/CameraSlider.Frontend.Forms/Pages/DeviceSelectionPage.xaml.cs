@@ -14,6 +14,8 @@ namespace CameraSlider.Frontend.Forms.Pages
         public DeviceSelectionPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "Back");
+
             viewModel = App.ServiceLocator.DeviceSelectionViewModel;
             BindingContext = viewModel;
         }

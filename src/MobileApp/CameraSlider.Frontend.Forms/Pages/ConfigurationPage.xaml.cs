@@ -13,6 +13,8 @@ namespace CameraSlider.Frontend.Forms.Pages
         public ConfigurationPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "Back");
+
             BindingContext = viewModel = App.ServiceLocator.ConfigurationViewModel;
         }
     }

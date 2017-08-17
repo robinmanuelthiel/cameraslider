@@ -27,6 +27,8 @@ namespace CameraSlider.Frontend.Forms
 
             // Create Naviagation Page
             var navigationPage = new NavigationPage();
+            navigationPage.BarBackgroundColor = (Color)Resources["AccentColor"];
+            navigationPage.BarTextColor = Color.White;
 
             // Initialize NavigationService using the navigation page
             ServiceLocator.RegisterNavigationService(navigationPage);

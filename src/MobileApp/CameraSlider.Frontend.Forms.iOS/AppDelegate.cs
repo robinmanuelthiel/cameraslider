@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
-using Microsoft.Azure.Mobile.Distribute;
+//using Microsoft.Azure.Mobile.Distribute;
 using UIKit;
 
 namespace CameraSlider.Frontend.Forms.iOS
@@ -25,7 +25,7 @@ namespace CameraSlider.Frontend.Forms.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-            Distribute.DontCheckForUpdatesInDebug();
+            //Distribute.DontCheckForUpdatesInDebug();
 
             LoadApplication(new App());
 
