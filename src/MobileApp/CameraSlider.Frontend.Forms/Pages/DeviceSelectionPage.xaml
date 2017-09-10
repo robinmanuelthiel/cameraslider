@@ -21,11 +21,17 @@
             ItemsSource="{Binding BluetoothDevices}"
             BackgroundColor="Transparent"
             IsPullToRefreshEnabled="true"
+            SeparatorVisibility="None"
+            HasUnevenRows="true"
             RefreshCommand="{Binding RefreshCommand}"
             IsRefreshing="{Binding IsBusy, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Uuid}" TextColor="White" DetailColor="White" />
+                    <ViewCell>
+                        <Grid Padding="20">
+                            <Label  Text="{Binding Name}" TextColor="White"/>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
