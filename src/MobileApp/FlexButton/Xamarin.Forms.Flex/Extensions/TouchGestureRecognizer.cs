@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace CameraSlider.Frontend.Forms.Extensions
+namespace Xamarin.Forms.Flex.Extensions
 {
     public class TouchGestureRecognizer : Element, IGestureRecognizer
     {

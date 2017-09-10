@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:CameraSlider.Frontend.Forms.Converters;assembly=CameraSlider.Frontend.Forms"   
-	Title="Bluetooth Devices">
+	Title="Bluetooth Devices"
+    BackgroundColor="{StaticResource BackgroundColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -18,12 +19,19 @@
             ItemSelected="ListView_ItemSelected"
             IsEnabled="{Binding IsBusy, Converter={StaticResource BoolToNegatedBoolConverter}}"
             ItemsSource="{Binding BluetoothDevices}"
+            BackgroundColor="Transparent"
             IsPullToRefreshEnabled="true"
+            SeparatorVisibility="None"
+            HasUnevenRows="true"
             RefreshCommand="{Binding RefreshCommand}"
             IsRefreshing="{Binding IsBusy, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Uuid}" />
+                    <ViewCell>
+                        <Grid Padding="20">
+                            <Label  Text="{Binding Name}" TextColor="White"/>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

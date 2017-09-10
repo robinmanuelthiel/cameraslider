@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace CameraSlider.Frontend.Forms.Effects
+namespace Xamarin.Forms.Flex.Effects
 {
     public class ColorOverlayEffect : RoutingEffect
     {
         public Color Color { get; set; }
 
-        public ColorOverlayEffect() : base("CameraSlider.ColorOverlayEffect")
+        public ColorOverlayEffect() : base("Xamarin.Forms.Flex.Effects.ColorOverlayEffect")
         {
 
         }

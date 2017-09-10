@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xamarin.Forms.Platform.Android;
 using Android.Widget;
 using System.ComponentModel;
 using Xamarin.Forms;
 
 using Android.Graphics;
-using Android.Graphics.Drawables;
-using CameraSlider.Frontend.Forms.Extensions;
-using CameraSlider.Frontend.Forms.Droid.CustomRenderers;
+using Xamarin.Forms.Flex.Extensions;
+using Xamarin.Forms.Flex.CustomRenderers;
 
-[assembly: ExportRendererAttribute(typeof(IconView), typeof(IconViewRenderer))]
-namespace CameraSlider.Frontend.Forms.Droid.CustomRenderers
+[assembly: ExportRenderer(typeof(IconView), typeof(IconViewRenderer))]
+namespace Xamarin.Forms.Flex.CustomRenderers
 {
     public class IconViewRenderer : ViewRenderer<IconView, ImageView>
     {

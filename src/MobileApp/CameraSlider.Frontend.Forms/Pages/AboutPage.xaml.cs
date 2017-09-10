@@ -10,6 +10,7 @@ namespace CameraSlider.Frontend.Forms.Pages
         public AboutPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "Back");
 
             var version = CrossVersionTracking.Current;
             VersionText.Text = $"{version.CurrentVersion} (Build {version.CurrentBuild})";

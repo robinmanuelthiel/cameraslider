@@ -3,7 +3,8 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="CameraSlider.Frontend.Forms.Pages.ConfigurationPage"
-    Title="Configuration">
+    Title="Configuration"
+    BackgroundColor="{StaticResource BackgroundColor}">
 
     <ScrollView>
         <StackLayout Padding="20">
@@ -19,7 +20,7 @@
             <Entry
                 Text="{Binding TotalSteps}"
                 Style="{StaticResource EntryStyle}"
-                Keyboard="Numeric" />
+                Keyboard="Numeric"/>
             <Label Text="First things first: How long should the full ride of your slider be for this procedure?" Style="{StaticResource ExplainationTextStyle}" />
 
             <!-- Direction -->
@@ -77,8 +78,12 @@
             <Entry
                 Text="{Binding MaxExposureTime}"
                 Style="{StaticResource EntryStyle}"
+                TextColor="#999999"
                 IsEnabled="false" />
-            <Label Text="This value gets calculated from your inputs and represents the full duration of which the camera stands still." Style="{StaticResource ExplainationTextStyle}" />
+            <Label
+                Text="This value gets calculated from your inputs and represents the full duration of which the camera stands still."
+                Style="{StaticResource ExplainationTextStyle}"
+                />
 
             
             <Button

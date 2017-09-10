@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Android.Views;
-using CameraSlider.Frontend.Forms.Droid.CustomRenderers;
-using CameraSlider.Frontend.Forms.Extensions;
-
-
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Xamarin.Froms.Flex.Android.CustomRenderers;
+using Xamarin.Forms.Flex.Extensions;
 
 [assembly: ExportRenderer(typeof(Frame), typeof(GestureFrameRenderer))]
-namespace CameraSlider.Frontend.Forms.Droid.CustomRenderers
+namespace Xamarin.Froms.Flex.Android.CustomRenderers
 {
     public class GestureFrameRenderer : Xamarin.Forms.Platform.Android.AppCompat.FrameRenderer
     {
@@ -34,8 +29,7 @@ namespace CameraSlider.Frontend.Forms.Droid.CustomRenderers
                         case MotionEventActions.Down:
                             foreach (var recognizer in Element.GestureRecognizers.Where(x => x.GetType() == typeof(TouchGestureRecognizer)))
                             {
-                                var touchGestureRecognizer = recognizer as TouchGestureRecognizer;
-                                if (touchGestureRecognizer != null)
+                                if (recognizer is TouchGestureRecognizer touchGestureRecognizer)
                                 {
                                     if (touchGestureRecognizer.TouchDownCommand != null)
                                         touchGestureRecognizer.TouchDownCommand.Execute(touchGestureRecognizer.TouchDownCommandParameter);
@@ -48,8 +42,7 @@ namespace CameraSlider.Frontend.Forms.Droid.CustomRenderers
                         case MotionEventActions.Up:
                             foreach (var recognizer in Element.GestureRecognizers.Where(x => x.GetType() == typeof(TouchGestureRecognizer)))
                             {
-                                var touchGestureRecognizer = recognizer as TouchGestureRecognizer;
-                                if (touchGestureRecognizer != null)
+                                if (recognizer is TouchGestureRecognizer touchGestureRecognizer)
                                 {
                                     if (touchGestureRecognizer.TouchUpCommand != null)
                                         touchGestureRecognizer.TouchUpCommand.Execute(touchGestureRecognizer.TouchUpCommandParameter);

@@ -5,19 +5,19 @@ using Xamarin.Forms;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
 using CoreGraphics;
-using CameraSlider.Frontend.Forms.iOS.CustomRenderers;
-using CameraSlider.Frontend.Forms.Extensions;
+using Xamarin.Forms.Flex.iOS.CustomRenderers;
+using Xamarin.Forms.Flex.Extensions;
 
-[assembly: ExportRendererAttribute(typeof(IconView), typeof(IconViewRenderer))]
-namespace CameraSlider.Frontend.Forms.iOS.CustomRenderers
+[assembly: ExportRenderer(typeof(IconView), typeof(IconViewRenderer))]
+namespace Xamarin.Forms.Flex.iOS.CustomRenderers
 {
     public class IconViewRenderer : ViewRenderer<IconView, UIImageView>
     {
-        private bool _isDisposed;
+        private bool isDisposed;
 
         protected override void Dispose(bool disposing)
         {
-            if (_isDisposed)
+            if (isDisposed)
             {
                 return;
             }
@@ -33,7 +33,7 @@ namespace CameraSlider.Frontend.Forms.iOS.CustomRenderers
                 }
             }
 
-            _isDisposed = true;
+            isDisposed = true;
             base.Dispose(disposing);
         }
 
@@ -76,7 +76,7 @@ namespace CameraSlider.Frontend.Forms.iOS.CustomRenderers
                 uiImage = uiImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
                 Control.TintColor = Element.Foreground.ToUIColor();
                 Control.Image = uiImage;
-                if (!_isDisposed)
+                if (!isDisposed)
                 {
                     ((IVisualElementController)Element).NativeSizeChanged();
                 }

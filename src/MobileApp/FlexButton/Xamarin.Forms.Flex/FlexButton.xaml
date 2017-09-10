@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="CameraSlider.Frontend.Forms.Views.FlexButton"
+    x:Class="Xamarin.Forms.Flex.FlexButton"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions"
-    xmlns:local="clr-namespace:CameraSlider.Frontend.Forms.Views.FlexButton"
+    xmlns:extensions="clr-namespace:Xamarin.Forms.Flex.Extensions"
+    xmlns:local="clr-namespace:Xamarin.Forms.Flex.FlexButton"
     BackgroundColor="Transparent"
     VerticalOptions="Center">
 
@@ -12,8 +12,10 @@
         x:Name="Container"
         BackgroundColor="{Binding BackgroundColor}"
         CornerRadius="{Binding CornerRadius}"
-        HasShadow="False"
-        OutlineColor="{Binding BorderColor}">
+        HasShadow="false">
+
+        <!-- BorderColor does not work at the moment (Xamarin.Forms bug) -->
+        <!--OutlineColor="{Binding BorderColor}">-->
 
         <Frame.GestureRecognizers>
             <extensions:TouchGestureRecognizer x:Name="TouchRecognizer" />

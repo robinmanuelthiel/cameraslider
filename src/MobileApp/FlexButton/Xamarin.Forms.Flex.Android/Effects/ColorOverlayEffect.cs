@@ -5,22 +5,19 @@ using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Widget;
-using CameraSlider.Frontend.Forms.Droid.Effects;
-using CameraSlider.Frontend.Forms.Effects;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CameraSlider.Frontend.Forms.Extensions;
-using CameraSlider.Frontend.Forms.Droid.CustomRenderers;
+using Xamarin.Forms.Flex.Android.Effects;
+using Xamarin.Forms.Flex.Effects;
 
-
-[assembly: ResolutionGroupName("CameraSlider")]
-[assembly: ExportEffect(typeof(ColorOverlayEffectDrod), nameof(ColorOverlayEffect))]
-namespace CameraSlider.Frontend.Forms.Droid.Effects
+[assembly: ResolutionGroupName("Xamarin.Forms.Flex.Effects")]
+[assembly: ExportEffect(typeof(ColorOverlayEffectAndroid), nameof(ColorOverlayEffect))]
+namespace Xamarin.Forms.Flex.Android.Effects
 {
-    public class ColorOverlayEffectDrod : PlatformEffect
+    public class ColorOverlayEffectAndroid : PlatformEffect
     {
         //private Drawable originalImage;
 

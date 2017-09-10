@@ -6,26 +6,44 @@
     xmlns:effects="clr-namespace:CameraSlider.Frontend.Forms.Effects"
     xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions"
     xmlns:local="clr-namespace:CameraSlider.Frontend.Forms"
-    xmlns:views="clr-namespace:CameraSlider.Frontend.Forms.Views"
-    Title="Camera Slider">
+    xmlns:flex="clr-namespace:Xamarin.Forms.Flex;assembly=Xamarin.Forms.Flex"
+    Title="Camera Slider"
+    BackgroundColor="{StaticResource BackgroundColor}">
 
 	<ContentPage.ToolbarItems>
         <ToolbarItem
             x:Name="ConnectItem"
             Name="Connect"
 			Command="{Binding NavigateToDeviceSelectionCommand}"
-            Icon="connect.png"
-            Order="Secondary" />
+            Icon="connect.png">
+            <ToolbarItem.Order>
+                <OnPlatform x:TypeArguments="ToolbarItemOrder">
+                    <On Platform="iOS" Value="Primary"/>
+                    <On Platform="Android" Value="Secondary"/>
+                </OnPlatform>
+            </ToolbarItem.Order>
+        </ToolbarItem>
+        
         <ToolbarItem
             Name="About"
             Command="{Binding NavigateToAboutCommand}"
-            Order="Secondary" />
+            Icon="info.png"
+            Order="Secondary">
+            <ToolbarItem.Order>
+                <OnPlatform x:TypeArguments="ToolbarItemOrder">
+                    <On Platform="iOS" Value="Primary"/>
+                    <On Platform="Android" Value="Secondary"/>
+                </OnPlatform>
+            </ToolbarItem.Order>
+        </ToolbarItem>
         
         <ToolbarItem
             x:Name="ConfigureItem"
             Name="Configure"
             Command="{Binding NavigateToConfigurationCommand}"            
-            Icon="configure.png" />
+            Icon="configure.png"
+            Order="Primary">
+        </ToolbarItem>
 	</ContentPage.ToolbarItems>
 
     <Grid>
@@ -36,12 +54,38 @@
 
         <ScrollView Grid.Row="0">
             <StackLayout Padding="20">
-                <Label
-                    Text="Status"
-                    Style="{StaticResource ControlHeaderStyle}"/>
-                <Label
-                    Text="{Binding ConnectionStatus}"
-                    Style="{StaticResource SubTextStyle}" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Text="Status"
+                        Grid.Row="0"
+                        Style="{StaticResource ControlHeaderStyle}"/>
+                    <Label
+                        Text="{Binding ConnectionStatus}"
+                        Grid.Row="1"
+                        Style="{StaticResource SubTextStyle}" />
+
+                    <!--<views:FlexButton
+                        Grid.RowSpan="2"
+                        BorderColor="{StaticResource AccentColor}"
+                        CornerRadius="20"
+                        HeightRequest="40"
+                        HighlightColor="{StaticResource AccentColor}"
+                        HighlightIconColor="White"
+                        HorizontalOptions="End"
+                        Icon="left.png"
+                        IconColor="{StaticResource AccentColor}"
+                        WidthRequest="40" />-->
+                </Grid>
+
                                 
                 <Label
                     Text="Speed"
@@ -85,9 +129,8 @@
                 HorizontalOptions="Center"
                 Orientation="Horizontal">
 
-                <views:FlexButton
-                    x:Name="MoveLeftButton"
-                    BorderColor="{StaticResource AccentColor}"
+                <flex:FlexButton
+                    x:Name="MoveLeftButton"                    
                     CornerRadius="38"
                     HeightRequest="76"
                     HighlightColor="{StaticResource AccentColor}"
@@ -97,10 +140,9 @@
                     IconColor="{StaticResource AccentColor}"
                     WidthRequest="76" />
 
-                <views:FlexButton
+                <flex:FlexButton
                     x:Name="TakePictureButton"
                     BackgroundColor="{StaticResource AccentColor}"
-                    BorderColor="{StaticResource AccentColor}"
                     CornerRadius="50"
                     HeightRequest="100"
                     HighlightColor="White"
@@ -110,9 +152,8 @@
                     IconColor="White"
                     WidthRequest="100" />
 
-                <views:FlexButton
+                <flex:FlexButton
                     x:Name="MoveRightButton"
-                    BorderColor="{StaticResource AccentColor}"
                     CornerRadius="38"
                     HeightRequest="76"
                     HighlightColor="{StaticResource AccentColor}"

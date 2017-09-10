@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using CameraSlider.Frontend.Shared.ViewModels;
 using CameraSlider.Frontend.Shared.Models;
+using CameraSlider.Frontend.Forms.Models;
 
 namespace CameraSlider.Frontend.Forms.Pages
 {
@@ -14,8 +15,11 @@ namespace CameraSlider.Frontend.Forms.Pages
         public DeviceSelectionPage()
         {
             InitializeComponent();
+            NavigationPage.SetBackButtonTitle(this, "Back");
+
             viewModel = App.ServiceLocator.DeviceSelectionViewModel;
             BindingContext = viewModel;
+
         }
 
         protected override async void OnAppearing()
