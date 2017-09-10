@@ -56,5 +56,14 @@
 	<false/>
 	<key>CFBundleShortVersionString</key>
 	<string>0.1.0 Alpha</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>mobilecenter-177833a8-ea1c-4ceb-b784-83330ca933b7</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
