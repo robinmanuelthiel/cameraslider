@@ -2,8 +2,8 @@
 ## Mobile App
 | Platform | Build Status                                                                                                                                     |
 |----------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| iOS      | [![Build status](https://build.mobile.azure.com/v0.1/apps/05542a9b-1639-4e49-993e-0e3e2e060624/branches/master/badge)](https://mobile.azure.com) |
-| Android  | [![Build status](https://build.mobile.azure.com/v0.1/apps/e5d9f288-6a27-41a4-8037-607a93649205/branches/master/badge)](https://mobile.azure.com) |
+| iOS      | [![Build status](https://build.mobile.azure.com/v0.1/apps/e5d9f288-6a27-41a4-8037-607a93649205/branches/master/badge)](https://mobile.azure.com) |
+| Android  | [![Build status](https://build.mobile.azure.com/v0.1/apps/05542a9b-1639-4e49-993e-0e3e2e060624/branches/master/badge)](https://mobile.azure.com) |
 
 ## Controller
 You can send the following commands to the controller via Bluetooth.
