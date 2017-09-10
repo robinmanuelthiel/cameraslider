@@ -29,8 +29,7 @@ namespace Xamarin.Froms.Flex.Android.CustomRenderers
                         case MotionEventActions.Down:
                             foreach (var recognizer in Element.GestureRecognizers.Where(x => x.GetType() == typeof(TouchGestureRecognizer)))
                             {
-                                var touchGestureRecognizer = recognizer as TouchGestureRecognizer;
-                                if (touchGestureRecognizer != null)
+                                if (recognizer is TouchGestureRecognizer touchGestureRecognizer)
                                 {
                                     if (touchGestureRecognizer.TouchDownCommand != null)
                                         touchGestureRecognizer.TouchDownCommand.Execute(touchGestureRecognizer.TouchDownCommandParameter);
@@ -43,8 +42,7 @@ namespace Xamarin.Froms.Flex.Android.CustomRenderers
                         case MotionEventActions.Up:
                             foreach (var recognizer in Element.GestureRecognizers.Where(x => x.GetType() == typeof(TouchGestureRecognizer)))
                             {
-                                var touchGestureRecognizer = recognizer as TouchGestureRecognizer;
-                                if (touchGestureRecognizer != null)
+                                if (recognizer is TouchGestureRecognizer touchGestureRecognizer)
                                 {
                                     if (touchGestureRecognizer.TouchUpCommand != null)
                                         touchGestureRecognizer.TouchUpCommand.Execute(touchGestureRecognizer.TouchUpCommandParameter);
