@@ -12,7 +12,7 @@
         x:Name="Container"
         BackgroundColor="{Binding BackgroundColor}"
         CornerRadius="{Binding CornerRadius}"
-        HasShadow="False">
+        HasShadow="false">
 
         <!-- BorderColor does not work at the moment (Xamarin.Forms bug) -->
         <!--OutlineColor="{Binding BorderColor}">-->

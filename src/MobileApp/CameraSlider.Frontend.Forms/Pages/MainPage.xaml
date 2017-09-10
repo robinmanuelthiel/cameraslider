@@ -27,6 +27,7 @@
         <ToolbarItem
             Name="About"
             Command="{Binding NavigateToAboutCommand}"
+            Icon="info.png"
             Order="Secondary">
             <ToolbarItem.Order>
                 <OnPlatform x:TypeArguments="ToolbarItemOrder">

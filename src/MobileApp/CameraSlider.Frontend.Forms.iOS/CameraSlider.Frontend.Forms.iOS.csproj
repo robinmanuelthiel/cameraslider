@@ -131,6 +131,9 @@
     <BundleResource Include="Resources\connect.png" />
     <BundleResource Include="Resources\connect%402x.png" />
     <BundleResource Include="Resources\connect%403x.png" />
+    <BundleResource Include="Resources\info.png" />
+    <BundleResource Include="Resources\info%402x.png" />
+    <BundleResource Include="Resources\info%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

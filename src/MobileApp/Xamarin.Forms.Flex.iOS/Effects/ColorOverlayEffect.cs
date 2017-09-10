@@ -11,7 +11,7 @@ using UIKit;
 [assembly: ResolutionGroupName("Xamarin.Forms.Flex.Effects")]
 [assembly: ExportEffect(typeof(ColorOverlayEffectiOS), nameof(ColorOverlayEffect))]
 namespace Xamarin.Forms.Flex.iOS.Effects
-{ 
+{
     public class ColorOverlayEffectiOS : PlatformEffect
     {
         protected override void OnAttached()
@@ -20,7 +20,7 @@ namespace Xamarin.Forms.Flex.iOS.Effects
             if (effect == null)
                 return;
 
-            if (!(Control is UIImage))
+            if (!(Control is UIImageView))
                 return;
 
             SetOverlay(effect.Color);
@@ -39,7 +39,7 @@ namespace Xamarin.Forms.Flex.iOS.Effects
 
             try
             {
-               
+
             }
             catch (ObjectDisposedException)
             {

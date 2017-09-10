@@ -7,7 +7,7 @@ using Android.Graphics;
 using Xamarin.Forms.Flex.Extensions;
 using Xamarin.Forms.Flex.CustomRenderers;
 
-[assembly: ExportRendererAttribute(typeof(IconView), typeof(IconViewRenderer))]
+[assembly: ExportRenderer(typeof(IconView), typeof(IconViewRenderer))]
 namespace Xamarin.Forms.Flex.CustomRenderers
 {
     public class IconViewRenderer : ViewRenderer<IconView, ImageView>

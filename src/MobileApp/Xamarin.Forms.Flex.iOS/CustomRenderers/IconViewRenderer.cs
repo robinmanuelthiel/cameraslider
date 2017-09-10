@@ -8,16 +8,16 @@ using CoreGraphics;
 using Xamarin.Forms.Flex.iOS.CustomRenderers;
 using Xamarin.Forms.Flex.Extensions;
 
-[assembly: ExportRendererAttribute(typeof(IconView), typeof(IconViewRenderer))]
+[assembly: ExportRenderer(typeof(IconView), typeof(IconViewRenderer))]
 namespace Xamarin.Forms.Flex.iOS.CustomRenderers
 {
     public class IconViewRenderer : ViewRenderer<IconView, UIImageView>
     {
-        private bool _isDisposed;
+        private bool isDisposed;
 
         protected override void Dispose(bool disposing)
         {
-            if (_isDisposed)
+            if (isDisposed)
             {
                 return;
             }
@@ -33,7 +33,7 @@ namespace Xamarin.Forms.Flex.iOS.CustomRenderers
                 }
             }
 
-            _isDisposed = true;
+            isDisposed = true;
             base.Dispose(disposing);
         }
 
@@ -76,7 +76,7 @@ namespace Xamarin.Forms.Flex.iOS.CustomRenderers
                 uiImage = uiImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
                 Control.TintColor = Element.Foreground.ToUIColor();
                 Control.Image = uiImage;
-                if (!_isDisposed)
+                if (!isDisposed)
                 {
                     ((IVisualElementController)Element).NativeSizeChanged();
                 }

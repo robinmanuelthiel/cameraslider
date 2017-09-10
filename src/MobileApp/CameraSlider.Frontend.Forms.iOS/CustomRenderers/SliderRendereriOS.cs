@@ -16,7 +16,7 @@ namespace CameraSlider.Frontend.Forms.iOS.CustomRenderers
         {
             base.OnElementChanged(e);
 
-            Control.TintColor = UIColor.FromRGB(39,147,150);
+            Control.TintColor = UIColor.FromRGB(39, 147, 150);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 //using Microsoft.Azure.Mobile.Distribute;
 using UIKit;
+using Xamarin.Forms.Flex.iOS;
 
 namespace CameraSlider.Frontend.Forms.iOS
 {
@@ -24,6 +25,7 @@ namespace CameraSlider.Frontend.Forms.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Flex.Init();
 
             //Distribute.DontCheckForUpdatesInDebug();
 

@@ -58,6 +58,7 @@
     <Compile Include="CustomRenderers\IconViewRenderer.cs" />
     <Compile Include="Effects\ColorOverlayEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Flex.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
