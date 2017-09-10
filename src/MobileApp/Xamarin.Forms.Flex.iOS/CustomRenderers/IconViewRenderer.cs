@@ -5,11 +5,11 @@ using Xamarin.Forms;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
 using CoreGraphics;
-using CameraSlider.Frontend.Forms.iOS.CustomRenderers;
-using CameraSlider.Frontend.Forms.Extensions;
+using Xamarin.Forms.Flex.iOS.CustomRenderers;
+using Xamarin.Forms.Flex.Extensions;
 
 [assembly: ExportRendererAttribute(typeof(IconView), typeof(IconViewRenderer))]
-namespace CameraSlider.Frontend.Forms.iOS.CustomRenderers
+namespace Xamarin.Forms.Flex.iOS.CustomRenderers
 {
     public class IconViewRenderer : ViewRenderer<IconView, UIImageView>
     {

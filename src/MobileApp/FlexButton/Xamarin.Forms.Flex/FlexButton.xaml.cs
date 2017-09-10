@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CameraSlider.Frontend.Forms.Effects;
+using Xamarin.Forms.Flex.Effects;
 using Xamarin.Forms;
 
-namespace CameraSlider.Frontend.Forms.Views
-{
+namespace Xamarin.Forms.Flex
+{ 
     //[ContentProperty(nameof(ButtonContent))]
     public partial class FlexButton : ContentView
     {
@@ -20,12 +20,13 @@ namespace CameraSlider.Frontend.Forms.Views
             set { SetValue(BackgroundColorProperty, value); }
         }
 
-        public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(FlexButton), Color.Red);
-        public Color BorderColor
-        {
-            get { return (Color)GetValue(BorderColorProperty); }
-            set { SetValue(BorderColorProperty, value); }
-        }
+        // TODO: Border Color does not wokr on Android at the moment due to a Xamarin.Forms bug
+        //public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(FlexButton), Color.Red);
+        //public Color BorderColor
+        //{
+        //    get { return (Color)GetValue(BorderColorProperty); }
+        //    set { SetValue(BorderColorProperty, value); }
+        //}
 
         public static readonly BindableProperty HighlightColorProperty = BindableProperty.Create(nameof(HighlightColor), typeof(Color), typeof(FlexButton), Color.Transparent);
         public Color HighlightColor

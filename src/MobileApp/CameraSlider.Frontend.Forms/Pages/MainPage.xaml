@@ -6,7 +6,7 @@
     xmlns:effects="clr-namespace:CameraSlider.Frontend.Forms.Effects"
     xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions"
     xmlns:local="clr-namespace:CameraSlider.Frontend.Forms"
-    xmlns:views="clr-namespace:CameraSlider.Frontend.Forms.Views"
+    xmlns:flex="clr-namespace:Xamarin.Forms.Flex;assembly=Xamarin.Forms.Flex"
     Title="Camera Slider"
     BackgroundColor="{StaticResource BackgroundColor}">
 
@@ -128,9 +128,8 @@
                 HorizontalOptions="Center"
                 Orientation="Horizontal">
 
-                <views:FlexButton
-                    x:Name="MoveLeftButton"
-                    BorderColor="{StaticResource AccentColor}"
+                <flex:FlexButton
+                    x:Name="MoveLeftButton"                    
                     CornerRadius="38"
                     HeightRequest="76"
                     HighlightColor="{StaticResource AccentColor}"
@@ -140,10 +139,9 @@
                     IconColor="{StaticResource AccentColor}"
                     WidthRequest="76" />
 
-                <views:FlexButton
+                <flex:FlexButton
                     x:Name="TakePictureButton"
                     BackgroundColor="{StaticResource AccentColor}"
-                    BorderColor="{StaticResource AccentColor}"
                     CornerRadius="50"
                     HeightRequest="100"
                     HighlightColor="White"
@@ -153,9 +151,8 @@
                     IconColor="White"
                     WidthRequest="100" />
 
-                <views:FlexButton
+                <flex:FlexButton
                     x:Name="MoveRightButton"
-                    BorderColor="{StaticResource AccentColor}"
                     CornerRadius="38"
                     HeightRequest="76"
                     HighlightColor="{StaticResource AccentColor}"

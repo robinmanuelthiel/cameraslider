@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using System.ComponentModel;
 
-namespace CameraSlider.Frontend.Forms.Extensions
+namespace Xamarin.Forms.Flex.Extensions
 {
     public class IconView : View
     {

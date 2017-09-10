@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CameraSlider.Frontend.Forms.Extensions;
-using CameraSlider.Frontend.Forms.iOS.CustomRenderers;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using Xamarin.Forms.Flex.iOS.CustomRenderers;
+using Xamarin.Forms.Flex.Extensions;
 
 [assembly: ExportRenderer(typeof(Frame), typeof(GestureFrameRenderer))]
-namespace CameraSlider.Frontend.Forms.iOS.CustomRenderers
+namespace Xamarin.Forms.Flex.iOS.CustomRenderers
 {
     public class GestureFrameRenderer : FrameRenderer
     {
