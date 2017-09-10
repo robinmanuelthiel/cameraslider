@@ -10,6 +10,7 @@ using Microsoft.Azure.Mobile.Distribute;
 using Plugin.DeviceInfo;
 using Plugin.VersionTracking;
 using Xamarin.Forms;
+using CameraSlider.Frontend.Forms.Services;
 
 [assembly: Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
 namespace CameraSlider.Frontend.Forms
@@ -46,14 +47,16 @@ namespace CameraSlider.Frontend.Forms
             CrossVersionTracking.Current.Track();
 
 #if !DEBUG
-            // Disable Mobile Center for Simulators and Emulators
-            if(!CrossDeviceInfo.Current.Model.Contains("Android SDK")) 
+            // Enable Mobile Center only if not running on Simulator/Emulator or in Debug Mode
+            var environment = DependencyService.Get<IEnvironmentCheckService>();
+            if (environment?.IsSimulatorOrEmulator() == false)
             {
                 MobileCenter.Start(
-                "android=0036cb00-df40-4131-a919-6e5a83b0371c;",
-                typeof(Analytics),
-                typeof(Crashes),
-                typeof(Distribute));
+                    "ios=177833a8-ea1c-4ceb-b784-83330ca933b7;" +
+                    "android=0036cb00-df40-4131-a919-6e5a83b0371c;",
+                    typeof(Analytics),
+                    typeof(Crashes),
+                    typeof(Distribute));
             }
 #endif
         }
