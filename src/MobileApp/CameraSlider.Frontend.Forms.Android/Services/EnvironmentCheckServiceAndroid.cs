@@ -7,19 +7,20 @@ namespace CameraSlider.Frontend.Forms.Droid.Services
 {
     public class EnvironmentCheckServiceAndroid : IEnvironmentCheckService
     {
-        public bool IsSimulatorEmulatorOrTestCloud()
+        public bool IsRunningInRealWorld()
         {
-            if (Build.Fingerprint != null)
-            {
-                if (Build.Fingerprint.Contains("vbox") || Build.Fingerprint.Contains("generic"))
-                    return true;
-            }
-
-            // https://developer.xamarin.com/guides/testcloud/apis/environment_variables/
-            if (Environment.GetEnvironmentVariable("XAMARIN_TEST_CLOUD") != null)
-                return true;
-
+#if DEBUG
             return false;
+#endif
+
+            if (Build?.Fingerprint.Contains("vbox") || 
+                Build?.Fingerprint.Contains("generic") ||
+                Environment.GetEnvironmentVariable("XAMARIN_TEST_CLOUD") != null)
+            {
+                return false;
+            }                             
+
+            return true;
         }
     }
 }

@@ -8,12 +8,18 @@ namespace CameraSlider.Frontend.Forms.iOS.Services
 {
     public class EnvironmentCheckServiceiOS : IEnvironmentCheckService
     {
-        public bool IsSimulatorEmulatorOrTestCloud()
+        public bool IsRunningInRealWorld()
         {
-            if (Runtime.Arch == Arch.SIMULATOR || Environment.GetEnvironmentVariable("XAMARIN_TEST_CLOUD") != null)
-                return true;
-
+#if DEBUG
             return false;
+#endif
+
+            if (Runtime.Arch == Arch.SIMULATOR || Environment.GetEnvironmentVariable("XAMARIN_TEST_CLOUD") != null)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

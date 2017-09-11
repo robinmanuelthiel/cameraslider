@@ -2,6 +2,6 @@
 {
     public interface IEnvironmentCheckService
     {
-        bool IsSimulatorEmulatorOrTestCloud();
+        bool IsRunningInRealWorld();
     }
 }

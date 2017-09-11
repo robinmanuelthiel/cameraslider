@@ -46,10 +46,9 @@ namespace CameraSlider.Frontend.Forms
         {
             CrossVersionTracking.Current.Track();
 
-#if !DEBUG
             // Enable Mobile Center only if not running on Simulator/Emulator or in Debug Mode
             var environment = DependencyService.Get<IEnvironmentCheckService>();
-            if (environment?.IsSimulatorOrEmulator() == false)
+            if (environment?.IsRunningInRealWorld() == true)
             {
                 MobileCenter.Start(
                     "ios=177833a8-ea1c-4ceb-b784-83330ca933b7;" +
@@ -58,7 +57,6 @@ namespace CameraSlider.Frontend.Forms
                     typeof(Crashes),
                     typeof(Distribute));
             }
-#endif
         }
 
         protected override void OnSleep()
