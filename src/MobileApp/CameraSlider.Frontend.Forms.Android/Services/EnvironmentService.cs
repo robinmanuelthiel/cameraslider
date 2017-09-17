@@ -2,10 +2,10 @@
 using CameraSlider.Frontend.Forms.Droid.Services;
 using CameraSlider.Frontend.Forms.Services;
 
-[assembly: Xamarin.Forms.Dependency(typeof(EnvironmentCheckServiceAndroid))]
+[assembly: Xamarin.Forms.Dependency(typeof(EnvironmentCheckService))]
 namespace CameraSlider.Frontend.Forms.Droid.Services
 {
-    public class EnvironmentCheckServiceAndroid : IEnvironmentCheckService
+    public class EnvironmentService : IEnvironmentService
     {
         public bool IsRunningInRealWorld()
         {
@@ -13,12 +13,12 @@ namespace CameraSlider.Frontend.Forms.Droid.Services
             return false;
 #endif
 
-            if (Build?.Fingerprint.Contains("vbox") || 
+            if (Build?.Fingerprint.Contains("vbox") ||
                 Build?.Fingerprint.Contains("generic") ||
                 Environment.GetEnvironmentVariable("XAMARIN_TEST_CLOUD") != null)
             {
                 return false;
-            }                             
+            }
 
             return true;
         }

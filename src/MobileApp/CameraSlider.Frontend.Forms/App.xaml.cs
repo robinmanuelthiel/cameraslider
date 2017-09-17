@@ -47,7 +47,7 @@ namespace CameraSlider.Frontend.Forms
             CrossVersionTracking.Current.Track();
 
             // Enable Mobile Center only if not running on Simulator/Emulator or in Debug Mode
-            var environment = DependencyService.Get<IEnvironmentCheckService>();
+            var environment = DependencyService.Get<IEnvironmentService>();
             if (environment?.IsRunningInRealWorld() == true)
             {
                 MobileCenter.Start(

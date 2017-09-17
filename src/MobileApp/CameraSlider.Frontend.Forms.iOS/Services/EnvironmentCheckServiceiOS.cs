@@ -3,10 +3,10 @@ using CameraSlider.Frontend.Forms.Services;
 using ObjCRuntime;
 using System;
 
-[assembly: Xamarin.Forms.Dependency(typeof(EnvironmentCheckServiceiOS))]
+[assembly: Xamarin.Forms.Dependency(typeof(EnvironmentService))]
 namespace CameraSlider.Frontend.Forms.iOS.Services
 {
-    public class EnvironmentCheckServiceiOS : IEnvironmentCheckService
+    public class EnvironmentService : IEnvironmentService
     {
         public bool IsRunningInRealWorld()
         {

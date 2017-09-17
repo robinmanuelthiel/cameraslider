@@ -181,7 +181,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainApplication.cs" />
-    <Compile Include="Services\EnvironmentCheckServiceAndroid.cs" />
+    <Compile Include="Services\EnvironmentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

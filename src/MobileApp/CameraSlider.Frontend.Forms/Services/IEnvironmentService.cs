@@ -1,6 +1,6 @@
 ﻿namespace CameraSlider.Frontend.Forms.Services
 {
-    public interface IEnvironmentCheckService
+    public interface IEnvironmentService
     {
         bool IsRunningInRealWorld();
     }
