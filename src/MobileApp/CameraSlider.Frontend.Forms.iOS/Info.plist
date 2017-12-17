@@ -55,7 +55,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1.0 Alpha</string>
+	<string>0.2.0 Alpha</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

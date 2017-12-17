@@ -1,24 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="CameraSlider.Frontend.Forms.Pages.AboutPage"
-    Title="About"
-    BackgroundColor="{StaticResource BackgroundColor}">
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CameraSlider.Frontend.Forms.Pages.AboutPage"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="Information">
     
-    <ScrollView>
-        <StackLayout Padding="20">
-            <Label Text="Version" Style="{StaticResource ControlHeaderStyle}" />
-            <Label x:Name="VersionText" Text="1.0" Style="{StaticResource SubTextStyle}" />
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="HeadlineStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />  
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+            </Style>
 
-            <Label Text="License" Style="{StaticResource ControlHeaderStyle}" Margin="{StaticResource DefaultTopThickness}" />
-            <Label Text="4PROS © 2017 (Preview Software)" Style="{StaticResource SubTextStyle}" />
+            <Style x:Key="ExplainationTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />      
+                <Setter Property="TextColor" Value="{StaticResource SecondaryForegroundColor}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-            <Label Text="3rd Party Libraries" Style="{StaticResource ControlHeaderStyle}" Margin="{StaticResource DefaultTopThickness}" />
-            <Label Text="MVVM Light by Laurent Bugnion" Style="{StaticResource SubTextStyle}" />
-            <Label Text="Version Tracking Plugin by Colbyl Williams" Style="{StaticResource SubTextStyle}" />
-            <Label Text="Bluetooth LE Plugin by Adrian Seceleanu" Style="{StaticResource SubTextStyle}" />
-            <Label Text="MVVM Helpers by James Montemagno" Style="{StaticResource SubTextStyle}" />
-        </StackLayout>
-    </ScrollView>
+    
+    <ListView
+        ItemsSource="{Binding ThirdPartyLibraries}"
+        ItemSelected="Handle_ItemSelected"
+        BackgroundColor="{StaticResource BackgroundColor}"
+        SeparatorVisibility="None"
+        HasUnevenRows="true">
+        
+        <ListView.Header>
+            <StackLayout CompressedLayout.IsHeadless="true">
+
+                <!-- Version -->
+                <StackLayout Padding="{StaticResource DefaultItemThickness}" CompressedLayout.IsHeadless="true">
+                    <Label Style="{StaticResource HeadlineStyle}" Text="Version" />
+                    <Label Style="{StaticResource ExplainationTextStyle}" x:Name="VersionLabel" Text=""/>
+                </StackLayout> 
+
+                <!-- License -->
+                <StackLayout Padding="{StaticResource DefaultItemThickness}" CompressedLayout.IsHeadless="true">
+                    <Label Style="{StaticResource HeadlineStyle}" Text="License" />
+                    <Label Style="{StaticResource ExplainationTextStyle}" Text="4PROS © 2017 (Preview Software)"/>
+                </StackLayout> 
+               
+               <!-- 3rd Party Libraries --> 
+                <StackLayout Padding="{StaticResource DefaultItemThickness}" CompressedLayout.IsHeadless="true">
+                    <Label Style="{StaticResource HeadlineStyle}" Text="3rd Party Libraries" />  
+                    <Label Style="{StaticResource ExplainationTextStyle}" Text="Credits to these incredible community projects that made my life easier!"/>
+                </StackLayout>
+            </StackLayout>
+        </ListView.Header>
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="{StaticResource DefaultItemThickness}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            FontAttributes="Bold"
+                            FontSize="{StaticResource FontSizeMedium}"
+                            TextColor="{StaticResource SecondaryForegroundColor}"
+                            Text="{Binding Name}" />                           
+
+                        <Label
+                            Grid.Row="1"
+                            Margin="0,-4,0,0"
+                            FontSize="{StaticResource FontSizeMedium}"
+                            TextColor="{StaticResource SecondaryForegroundColor}"
+                            Text="{Binding Author}" />
+
+                        <Image
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            HeightRequest="15"
+                            Source="next.png"
+                            VerticalOptions="Center">
+                            <Image.IsVisible>
+                                <OnPlatform x:TypeArguments="x:Boolean">
+                                    <On Platform="iOS" Value="true" />
+                                    <On Platform="Android,WinPhone" Value="false" />
+                                </OnPlatform>
+                            </Image.IsVisible>
+                        </Image>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+        <ListView.Footer>
+            <StackLayout>
+                <!--<BoxView HeightRequest="1" Color="{StaticResource SecondaryFontColor}" />-->
+
+                <!-- Additional Information -->
+                <!--<StackLayout Padding="{StaticResource DefaultItemThickness}">
+                    <Label Style="{StaticResource HeadlineStyle}" Text="Additional Information" />
+                    <Label Style="{StaticResource ExplainationTextStyle}" Text="This application has been built using Visual Studio Tools for Xamarin and is using Xamarin.Forms as its UI Framework. The full Frontend- and Backend code is open source and can be used for demos or as reference project."/>
+                </StackLayout> -->
+            </StackLayout>
+        </ListView.Footer>
+    </ListView>
 </ContentPage>

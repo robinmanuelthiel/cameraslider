@@ -40,6 +40,8 @@
     <Compile Include="Models\SliderDirection.cs" />
     <Compile Include="Abstractions\IBluetoothDevice.cs" />
     <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="ViewModels\AboutPageViewModel.cs" />
+    <Compile Include="Models\ThirdPartyLibrary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />

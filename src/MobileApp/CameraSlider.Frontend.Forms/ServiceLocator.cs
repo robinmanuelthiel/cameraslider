@@ -31,11 +31,13 @@ namespace CameraSlider.Frontend.Forms
             SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<DeviceSelectionViewModel>();
             SimpleIoc.Default.Register<ConfigurationViewModel>();
+            SimpleIoc.Default.Register<AboutPageViewModel>();
         }
 
         public MainPageViewModel MainPageViewModel { get { return SimpleIoc.Default.GetInstance<MainPageViewModel>(); } }
         public DeviceSelectionViewModel DeviceSelectionViewModel { get { return SimpleIoc.Default.GetInstance<DeviceSelectionViewModel>(); } }
         public ConfigurationViewModel ConfigurationViewModel { get { return SimpleIoc.Default.GetInstance<ConfigurationViewModel>(); } }
+        public AboutPageViewModel AboutPageViewModel { get { return SimpleIoc.Default.GetInstance<AboutPageViewModel>(); } }
 
         public void RegisterNavigationService(NavigationPage navigationPage)
         {

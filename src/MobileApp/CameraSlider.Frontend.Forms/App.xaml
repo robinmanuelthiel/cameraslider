@@ -15,6 +15,24 @@
             <Color x:Key="ControlBackgroundColoriOS">#777777</Color>
 
             <Thickness x:Key="DefaultTopThickness" Top="15" />
+
+             <!-- Font Sizes -->
+            <x:Double x:Key="FontSizeSmall">12</x:Double>
+            <x:Double x:Key="FontSizeMedium">14</x:Double>
+            <OnPlatform x:Key="FontSizeLarge" x:TypeArguments="x:Double">
+                <On Platform="Android" Value="18" />
+                <On Platform="iOS,WinPhone" Value="20" />
+            </OnPlatform>
+            
+            <!-- Margin -->
+            <OnPlatform x:Key="DefaultMargin" x:TypeArguments="x:Double" Android="14" WinPhone="20" iOS="10" />
+            <OnPlatform x:Key="DefaultItemMargin" x:TypeArguments="x:Double" Android="{StaticResource DefaultMargin}" WinPhone="{StaticResource DefaultMargin}" iOS="15" />
+            <OnPlatform x:Key="DefaultItemMarginRight" x:TypeArguments="x:Double" Android="{StaticResource DefaultMargin}" WinPhone="{StaticResource DefaultMargin}" iOS="8" />
+
+            <!-- Thickness -->
+            <Thickness x:Key="DefaultThickness" Bottom="{StaticResource DefaultMargin}" Left="{StaticResource DefaultMargin}" Right="{StaticResource DefaultMargin}" Top="{StaticResource DefaultMargin}" />
+            <Thickness x:Key="DefaultItemThickness" Bottom="{StaticResource DefaultItemMargin}" Left="{StaticResource DefaultItemMargin}" Right="{StaticResource DefaultItemMarginRight}" Top="{StaticResource DefaultItemMargin}" />
+
             
 			<!-- Activity Indicator -->
 			<OnPlatform
