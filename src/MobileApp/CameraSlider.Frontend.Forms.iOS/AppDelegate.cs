@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using ButtonCircle.FormsPlugin.iOS;
 using Foundation;
-using Microsoft.Azure.Mobile.Distribute;
+using Microsoft.AppCenter.Distribute;
 using UIKit;
-using Xamarin.Forms.Flex.iOS;
 
 namespace CameraSlider.Frontend.Forms.iOS
 {
@@ -24,8 +23,9 @@ namespace CameraSlider.Frontend.Forms.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            Flex.Init();
+            Xamarin.Forms.Forms.Init();
+            Xamarin.Forms.FlexButton.Init();
+            ButtonCircleRenderer.Init();
 
             Distribute.DontCheckForUpdatesInDebug();
 

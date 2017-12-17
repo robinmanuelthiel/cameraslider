@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CameraSlider.Frontend.Shared.Models
+namespace CameraSlider.Frontend.Shared.Abstractions
 {
     public interface IBluetoothDevice
     {

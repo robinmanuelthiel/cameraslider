@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CameraSlider.Frontend.Forms.Pages;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
-using Microsoft.Azure.Mobile.Distribute;
 using Plugin.DeviceInfo;
 using Plugin.VersionTracking;
 using Xamarin.Forms;
 using CameraSlider.Frontend.Forms.Services;
+using Xamarin.Forms.Xaml;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
 
-[assembly: Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CameraSlider.Frontend.Forms
 {
     public partial class App : Application
@@ -27,9 +30,10 @@ namespace CameraSlider.Frontend.Forms
             ServiceLocator = new ServiceLocator();
 
             // Create Naviagation Page
-            var navigationPage = new NavigationPage();
+            var navigationPage = new Xamarin.Forms.NavigationPage();
             navigationPage.BarBackgroundColor = (Color)Resources["AccentColor"];
             navigationPage.BarTextColor = Color.White;
+            navigationPage.On<iOS>().SetPrefersLargeTitles(true);
 
             // Initialize NavigationService using the navigation page
             ServiceLocator.RegisterNavigationService(navigationPage);
@@ -50,7 +54,7 @@ namespace CameraSlider.Frontend.Forms
             var environment = DependencyService.Get<IEnvironmentService>();
             if (environment?.IsRunningInRealWorld() == true)
             {
-                MobileCenter.Start(
+                AppCenter.Start(
                     "ios=177833a8-ea1c-4ceb-b784-83330ca933b7;" +
                     "android=0036cb00-df40-4131-a919-6e5a83b0371c;",
                     typeof(Analytics),

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CameraSlider.Frontend.Shared.Abstractions;
 using CameraSlider.Frontend.Shared.Models;
 
 namespace CameraSlider.Frontend.Shared.Services

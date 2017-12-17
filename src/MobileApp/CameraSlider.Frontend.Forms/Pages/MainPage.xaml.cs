@@ -15,7 +15,7 @@ namespace CameraSlider.Frontend.Forms.Pages
 {
     public partial class MainPage : ContentPage
     {
-        private MainViewModel viewModel;
+        private MainPageViewModel viewModel;
         private IBluetoothLeService bluetoothLeService;
 
         private const string cameraSliderGuid = "00000000-0000-0000-0000-606405d147b4";
@@ -27,7 +27,7 @@ namespace CameraSlider.Frontend.Forms.Pages
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "Back");
 
-            viewModel = App.ServiceLocator.MainViewModel;
+            viewModel = App.ServiceLocator.MainPageViewModel;
             bluetoothLeService = SimpleIoc.Default.GetInstance<IBluetoothLeService>();
 
             BindingContext = viewModel;
@@ -36,6 +36,7 @@ namespace CameraSlider.Frontend.Forms.Pages
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            //ConnectButton.TouchedUp += ConnectButton_TouchedUp;
             MoveLeftButton.TouchedDown += MoveLeftButton_TouchedDown;
             MoveLeftButton.TouchedUp += MoveButton_TouchedUp;
             MoveRightButton.TouchedDown += MoveRightButton_TouchedDown;
@@ -56,6 +57,31 @@ namespace CameraSlider.Frontend.Forms.Pages
             MoveRightButton.TouchedDown -= MoveRightButton_TouchedDown;
             MoveRightButton.TouchedUp -= MoveButton_TouchedUp;
             TakePictureButton.TouchedUp -= TakePictureButton_TouchedUp;
+        }
+
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            var pos = viewModel.MenuItems.IndexOf(e.SelectedItem as Shared.Models.MenuItem);
+            switch (pos)
+            {
+                case 0: // Device Selection
+                    viewModel.NavigateToDeviceSelectionCommand.Execute(null);
+                    break;
+                case 1: // Configuration
+                    viewModel.NavigateToConfigurationCommand.Execute(null);
+                    break;
+                default:
+                    break;
+            }
+
+            (sender as ListView).SelectedItem = null;
+        }
+
+        void ConnectButton_TouchedUp()
+        {
+            //ConnectButton.IsEnabled = false;
+            //viewModel.NavigateToDeviceSelectionCommand.Execute(null);
+            //ConnectButton.IsEnabled = true;
         }
 
         async void TakePictureButton_TouchedUp()
@@ -89,7 +115,8 @@ namespace CameraSlider.Frontend.Forms.Pages
             await bluetoothLeService.WriteToServiceCharacteristicAsync(directionCommand, serviceUuid, characteristicUuid);
 
             // Speed
-            var speedValue = 2500 - (int)SpeedSlider.Value;
+            //var speedValue = 2500 - (int)SpeedSlider.Value;
+            var speedValue = 500;
             await bluetoothLeService.WriteToServiceCharacteristicAsync($"sp{speedValue}#", serviceUuid, characteristicUuid);
 
             // Start

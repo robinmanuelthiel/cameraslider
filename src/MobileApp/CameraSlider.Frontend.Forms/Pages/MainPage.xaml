@@ -5,25 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:effects="clr-namespace:CameraSlider.Frontend.Forms.Effects"
     xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions"
+    xmlns:buttoncircle="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
     xmlns:local="clr-namespace:CameraSlider.Frontend.Forms"
     xmlns:flex="clr-namespace:Xamarin.Forms.Flex;assembly=Xamarin.Forms.Flex"
     Title="Camera Slider"
-    BackgroundColor="{StaticResource BackgroundColor}">
+    Style="{StaticResource PageStyle}">
 
-	<ContentPage.ToolbarItems>
-        <ToolbarItem
-            x:Name="ConnectItem"
-            Name="Connect"
-			Command="{Binding NavigateToDeviceSelectionCommand}"
-            Icon="connect.png">
-            <ToolbarItem.Order>
-                <OnPlatform x:TypeArguments="ToolbarItemOrder">
-                    <On Platform="iOS" Value="Primary"/>
-                    <On Platform="Android" Value="Secondary"/>
-                </OnPlatform>
-            </ToolbarItem.Order>
-        </ToolbarItem>
-        
+	<ContentPage.ToolbarItems>        
         <ToolbarItem
             Name="About"
             Command="{Binding NavigateToAboutCommand}"
@@ -36,14 +24,6 @@
                 </OnPlatform>
             </ToolbarItem.Order>
         </ToolbarItem>
-        
-        <ToolbarItem
-            x:Name="ConfigureItem"
-            Name="Configure"
-            Command="{Binding NavigateToConfigurationCommand}"            
-            Icon="configure.png"
-            Order="Primary">
-        </ToolbarItem>
 	</ContentPage.ToolbarItems>
 
     <Grid>
@@ -52,54 +32,62 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ScrollView Grid.Row="0">
-            <StackLayout Padding="20">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+        <ListView
+            Grid.Row="0"
+            BackgroundColor="{StaticResource BackgroundColor}"
+            SeparatorVisibility="None"
+            HasUnevenRows="true"
+            ItemsSource="{Binding MenuItems}"
+            ItemSelected="Handle_ItemSelected">
 
-                    <Label
-                        Text="Status"
-                        Grid.Row="0"
-                        Style="{StaticResource ControlHeaderStyle}"/>
-                    <Label
-                        Text="{Binding ConnectionStatus}"
-                        Grid.Row="1"
-                        Style="{StaticResource SubTextStyle}" />
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                    <!--<views:FlexButton
-                        Grid.RowSpan="2"
-                        BorderColor="{StaticResource AccentColor}"
-                        CornerRadius="20"
-                        HeightRequest="40"
-                        HighlightColor="{StaticResource AccentColor}"
-                        HighlightIconColor="White"
-                        HorizontalOptions="End"
-                        Icon="left.png"
-                        IconColor="{StaticResource AccentColor}"
-                        WidthRequest="40" />-->
-                </Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                                
-                <Label
-                    Text="Speed"
-                    Margin="{StaticResource DefaultTopThickness}"
-                    Style="{StaticResource ControlHeaderStyle}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Style="{StaticResource ControlHeaderStyle}"
+                                Text="{Binding Title}" />
 
-                 <Slider
-                    x:Name="SpeedSlider"
-                    Maximum="2000"
-                    Minimum="500"
-                    Value="1300"
-                    Style="{StaticResource SliderStyle}" />    
+                            <Label
+                                Grid.Row="1"
+                                Margin="0,-4,0,0"
+                                Style="{StaticResource SubTextStyle}"
+                                Text="{Binding Subtitle}" />
 
-                <!-- Exposure Time -->
+                            <Image
+                                Grid.RowSpan="2"
+                                Grid.Column="2"
+                                Margin="10,0,0,0"
+                                HeightRequest="15"
+                                Source="next.png"
+                                VerticalOptions="Center">
+                                <Image.IsVisible>
+                                    <OnPlatform x:TypeArguments="x:Boolean">
+                                        <On Platform="iOS" Value="true" />
+                                        <On Platform="Android,WinPhone" Value="false" />
+                                    </OnPlatform>
+                                </Image.IsVisible>
+                            </Image>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.Footer>
+                <StackLayout Padding="20,0,20,20" >
                 <Label
                     Text="Exposure Time"
                     Margin="{StaticResource DefaultTopThickness}"
@@ -110,8 +98,39 @@
                     SelectedItem="{Binding ExposureTime}"
                     ItemDisplayBinding="{Binding Name}"
                     SelectedIndex="0" />
-            </StackLayout>
-        </ScrollView>
+                </StackLayout>
+            </ListView.Footer>
+        </ListView>
+
+                <!--<flex:FlexButton
+                        x:Name="ConnectButton"
+                        Grid.Column="1"
+                        Grid.RowSpan="2"
+                        CornerRadius="20"
+                        HeightRequest="40"
+                        WidthRequest="40"
+                        BackgroundColor="{StaticResource AccentColor}"
+                        IconColor="White"
+                        HighlightColor="White"
+                        HighlightIconColor="{StaticResource AccentColor}"
+                        HorizontalOptions="Center"
+                        Icon="connect.png" />-->
+
+                <!--<Label
+                    Text="Speed"
+                    Margin="{StaticResource DefaultTopThickness}"
+                    Style="{StaticResource ControlHeaderStyle}" />
+
+                 <Slider
+                    x:Name="SpeedSlider"
+                    Maximum="2000"
+                    Minimum="500"
+                    Value="1300"
+                    Style="{StaticResource SliderStyle}" />-->
+
+                <!-- Exposure Time -->
+
+
 
         <Grid 
             VerticalOptions="End"  
@@ -142,9 +161,9 @@
 
                 <flex:FlexButton
                     x:Name="TakePictureButton"
-                    BackgroundColor="{StaticResource AccentColor}"
                     CornerRadius="50"
                     HeightRequest="100"
+                    BackgroundColor="{StaticResource AccentColor}"
                     HighlightColor="White"
                     HighlightIconColor="{StaticResource AccentColor}"
                     HorizontalOptions="Center"

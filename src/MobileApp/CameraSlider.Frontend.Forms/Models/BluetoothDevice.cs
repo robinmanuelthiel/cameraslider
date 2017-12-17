@@ -1,4 +1,5 @@
 ﻿using System;
+using CameraSlider.Frontend.Shared.Abstractions;
 using CameraSlider.Frontend.Shared.Models;
 using Plugin.BLE.Abstractions.Contracts;
 namespace CameraSlider.Frontend.Forms.Models

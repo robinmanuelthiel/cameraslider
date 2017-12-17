@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using ButtonCircle.FormsPlugin.Droid;
 
 namespace CameraSlider.Frontend.Forms.Droid
 {
@@ -20,6 +21,7 @@ namespace CameraSlider.Frontend.Forms.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            ButtonCircleRenderer.Init();
             LoadApplication(new App());
         }
     }

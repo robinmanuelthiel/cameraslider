@@ -2,7 +2,9 @@
 <Application
 	x:Class="CameraSlider.Frontend.Forms.App"
 	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttoncircle="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
+    >
 	<Application.Resources>
 		<!-- Application resource dictionary -->
 		<ResourceDictionary>
@@ -29,6 +31,10 @@
 				iOS="Center" />
 
             <!-- Styles -->
+            <Style x:Key="PageStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+            </Style>
+            
             <Style x:Key="SubTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Small" />
                 <Setter Property="TextColor" Value="{StaticResource SecondaryForegroundColor}" />
@@ -41,8 +47,7 @@
 
             <Style x:Key="ControlHeaderStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
-                <Setter Property="FontAttributes" Value="Bold" />
-               
+                <Setter Property="FontAttributes" Value="Bold" />               
             </Style>
 
             <!-- Picker -->
@@ -94,7 +99,25 @@
                         <On Platform="iOS" Value="0,20,0,0"/>
                     </OnPlatform>
                 </Setter>
-            </Style>            
+            </Style>        
+
+            <!-- Cricle Button -->
+            <Style x:Key="CircleButtonStyle" TargetType="buttoncircle:CircleButton">
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="WidthRequest" Value="50" />
+                <Setter Property="FontSize">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android" Value="16" />
+                        <On Platform="iOS" Value="18" />
+                    </OnPlatform>
+                </Setter>
+                <Setter Property="BorderThickness">
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="Android" Value="4" />
+                        <On Platform="iOS" Value="2" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
         </ResourceDictionary>
 	</Application.Resources>
 </Application>

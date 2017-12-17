@@ -12,11 +12,18 @@ using System.Linq;
 
 namespace CameraSlider.Frontend.Shared.ViewModels
 {
-    public class MainViewModel : AsyncViewModelBase
+    public class MainPageViewModel : AsyncViewModelBase
     {
         private INavigationService navigationService;
         private IDialogService dialogService;
         private IBluetoothLeService bluetoothLeService;
+
+        private ObservableCollection<MenuItem> menuItems;
+        public ObservableCollection<MenuItem> MenuItems
+        {
+            get { return menuItems; }
+            set { menuItems = value; RaisePropertyChanged(); }
+        }
 
         public bool isDeviceConnected;
         public bool IsDeviceConnected
@@ -83,12 +90,17 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             }
         }
 
-        public MainViewModel(INavigationService navigationService, IDialogService dialogService, IBluetoothLeService bluetoothLeService)
+        public MainPageViewModel(INavigationService navigationService, IDialogService dialogService, IBluetoothLeService bluetoothLeService)
         {
             this.navigationService = navigationService;
             this.dialogService = dialogService;
             this.bluetoothLeService = bluetoothLeService;
 
+            menuItems = new ObservableCollection<MenuItem>
+            {
+                new MenuItem("Status", "Not connected", ""),
+                new MenuItem("Configuration", "Not configured", ""),
+            };
             exposureTimeOptions = new ObservableCollection<ExposureTime>(ExposureTime.Times);
             exposureTime = exposureTimeOptions.FirstOrDefault(e => e.Milliseconds == 8);
         }

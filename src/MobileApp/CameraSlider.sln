@@ -21,11 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraSlider.Frontend.Forms
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xamarin.Forms.Flex.FlexButton", "Xamarin.Forms.Flex.FlexButton", "{19D4EEF6-178E-4C98-82F1-81C33AC48DCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.Flex", "FlexButton\Xamarin.Forms.Flex\Xamarin.Forms.Flex.csproj", "{FEBB5760-21BE-4A51-845F-7F4017970B00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.Flex", "..\..\..\FlexButton\FlexButton\Xamarin.Forms.Flex\Xamarin.Forms.Flex.csproj", "{FEBB5760-21BE-4A51-845F-7F4017970B00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.Flex.Android", "FlexButton\Xamarin.Forms.Flex.Android\Xamarin.Forms.Flex.Android.csproj", "{7C0CA7BC-842F-4492-AE49-C530618315F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.Flex.Android", "..\..\..\FlexButton\FlexButton\Xamarin.Forms.Flex.Android\Xamarin.Forms.Flex.Android.csproj", "{7C0CA7BC-842F-4492-AE49-C530618315F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.Flex.iOS", "Xamarin.Forms.Flex.iOS\Xamarin.Forms.Flex.iOS.csproj", "{43DD689A-3918-43EB-B654-8E1C54F23C72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.Flex.iOS", "..\..\..\FlexButton\FlexButton\Xamarin.Forms.Flex.iOS\Xamarin.Forms.Flex.iOS.csproj", "{43DD689A-3918-43EB-B654-8E1C54F23C72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

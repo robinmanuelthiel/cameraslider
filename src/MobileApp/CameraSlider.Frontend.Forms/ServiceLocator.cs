@@ -28,12 +28,12 @@ namespace CameraSlider.Frontend.Forms
             SimpleIoc.Default.Register<Shared.Services.IDialogService, DialogService>();
 
             // Register View Models
-            SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<DeviceSelectionViewModel>();
             SimpleIoc.Default.Register<ConfigurationViewModel>();
         }
 
-        public MainViewModel MainViewModel { get { return SimpleIoc.Default.GetInstance<MainViewModel>(); } }
+        public MainPageViewModel MainPageViewModel { get { return SimpleIoc.Default.GetInstance<MainPageViewModel>(); } }
         public DeviceSelectionViewModel DeviceSelectionViewModel { get { return SimpleIoc.Default.GetInstance<DeviceSelectionViewModel>(); } }
         public ConfigurationViewModel ConfigurationViewModel { get { return SimpleIoc.Default.GetInstance<ConfigurationViewModel>(); } }
 

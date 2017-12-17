@@ -8,6 +8,7 @@ using Plugin.BLE.Abstractions.Exceptions;
 using System.Text;
 using CameraSlider.Frontend.Shared.Models;
 using CameraSlider.Frontend.Forms.Models;
+using CameraSlider.Frontend.Shared.Abstractions;
 
 namespace CameraSlider.Frontend.Forms.Services
 {

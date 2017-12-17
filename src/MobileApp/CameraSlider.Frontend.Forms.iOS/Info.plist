@@ -65,5 +65,9 @@
 			</array>
 		</dict>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MaterialIcons-Regular.ttf</string>
+	</array>
 </dict>
 </plist>

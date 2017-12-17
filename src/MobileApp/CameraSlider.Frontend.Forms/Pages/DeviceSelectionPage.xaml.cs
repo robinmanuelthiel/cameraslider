@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using CameraSlider.Frontend.Shared.ViewModels;
 using CameraSlider.Frontend.Shared.Models;
 using CameraSlider.Frontend.Forms.Models;
+using CameraSlider.Frontend.Shared.Abstractions;
 
 namespace CameraSlider.Frontend.Forms.Pages
 {

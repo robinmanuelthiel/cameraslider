@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using IDialogService = CameraSlider.Frontend.Shared.Services.IDialogService;
 using MvvmHelpers;
+using CameraSlider.Frontend.Shared.Abstractions;
 
 namespace CameraSlider.Frontend.Shared.ViewModels
 {
