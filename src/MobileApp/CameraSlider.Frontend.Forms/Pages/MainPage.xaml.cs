@@ -130,10 +130,6 @@ namespace CameraSlider.Frontend.Forms.Pages
 
         #endregion
 
-
-
-
-
         #region Settings
 
         async void SettingsButton_Clicked(object sender, System.EventArgs e)

@@ -76,8 +76,8 @@
                                 VerticalOptions="Center">
                                 <Image.IsVisible>
                                     <OnPlatform x:TypeArguments="x:Boolean">
-                                        <On Platform="iOS" Value="true" />
-                                        <On Platform="Android,WinPhone" Value="false" />
+                                        <On Platform="iOS,Android" Value="true" />
+                                        <On Platform="WinPhone" Value="false" />
                                     </OnPlatform>
                                 </Image.IsVisible>
                             </Image>

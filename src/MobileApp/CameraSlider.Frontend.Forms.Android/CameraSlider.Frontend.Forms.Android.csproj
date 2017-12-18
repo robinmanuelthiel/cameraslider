@@ -218,6 +218,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\info.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\info.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\info.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\next.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\next.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\next.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\next.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\next.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
