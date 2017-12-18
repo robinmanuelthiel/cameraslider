@@ -25,13 +25,6 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             set { menuItems = value; RaisePropertyChanged(); }
         }
 
-        public bool isDeviceConnected;
-        public bool IsDeviceConnected
-        {
-            get { return isDeviceConnected; }
-            set { isDeviceConnected = value; RaisePropertyChanged(); }
-        }
-
         private ObservableCollection<ExposureTime> exposureTimeOptions;
         public ObservableCollection<ExposureTime> ExposureTimeOptions
         {
@@ -44,14 +37,6 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         {
             get { return exposureTime; }
             set { exposureTime = value; RaisePropertyChanged(); }
-        }
-
-        public string ConnectionStatus
-        {
-            get
-            {
-                return isDeviceConnected ? "Connected" : "Not connected";
-            }
         }
 
         private RelayCommand navigateToDeviceSelectionCommand;
@@ -107,26 +92,20 @@ namespace CameraSlider.Frontend.Shared.ViewModels
 
         public async Task TestConnectionAsync(string serviceUuid, string characteristicUuid)
         {
-            IsDeviceConnected = false;
-
-            if (bluetoothLeService.ConnectedDevice != null)
+            // Test Device connetion
+            if (bluetoothLeService.ConnectedDevice != null && await bluetoothLeService.WriteToServiceCharacteristicAsync("test#", serviceUuid, characteristicUuid))
             {
-                if (await bluetoothLeService.WriteToServiceCharacteristicAsync("test#", serviceUuid, characteristicUuid))
-                {
-                    IsDeviceConnected = true;
-                }
-                else
-                {
-                    await dialogService.DisplayDialogAsync("Connection failed", "Could not connect with device. Please check the connection and select the correct device.", "Ok");
-                }
+                MenuItems.First().Subtitle = "Connected";
             }
-
-            RaisePropertyChanged(nameof(ConnectionStatus));
+            else
+            {
+                MenuItems.First().Subtitle = "Not connected";
+            }
         }
 
         public override Task RefreshAsync()
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

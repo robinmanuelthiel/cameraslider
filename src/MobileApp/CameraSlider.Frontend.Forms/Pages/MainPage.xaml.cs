@@ -82,24 +82,8 @@ namespace CameraSlider.Frontend.Forms.Pages
             }
         }
 
-        void ConnectButton_TouchedUp()
-        {
-            //ConnectButton.IsEnabled = false;
-            //viewModel.NavigateToDeviceSelectionCommand.Execute(null);
-            //ConnectButton.IsEnabled = true;
-        }
+        #region Slider Controls
 
-
-        async void SettingsButton_Clicked(object sender, System.EventArgs e)
-        {
-            SettingsButton.IsEnabled = false;
-            Overlay.IsVisible = true;
-            await Task.WhenAll(
-                Overlay.FadeTo(0.65, 250),
-                SettingsContainer.TranslateTo(0, 0, 250, Easing.CubicOut)
-            );
-            isSettingsContainerOpen = true;
-        }
 
         async void TakePictureButton_TouchedUp()
         {
@@ -144,6 +128,25 @@ namespace CameraSlider.Frontend.Forms.Pages
             await bluetoothLeService.WriteToServiceCharacteristicAsync("off#", serviceUuid, characteristicUuid);
         }
 
+        #endregion
+
+
+
+
+
+        #region Settings
+
+        async void SettingsButton_Clicked(object sender, System.EventArgs e)
+        {
+            SettingsButton.IsEnabled = false;
+            Overlay.IsVisible = true;
+            await Task.WhenAll(
+                Overlay.FadeTo(0.65, 250),
+                SettingsContainer.TranslateTo(0, 0, 250, Easing.CubicOut)
+            );
+            isSettingsContainerOpen = true;
+        }
+
         async void Page_Tapped(object sender, System.EventArgs e)
         {
             if (isSettingsContainerOpen)
@@ -167,5 +170,7 @@ namespace CameraSlider.Frontend.Forms.Pages
             isSettingsContainerOpen = false;
             SettingsButton.IsEnabled = true;
         }
+
+        #endregion
     }
 }
