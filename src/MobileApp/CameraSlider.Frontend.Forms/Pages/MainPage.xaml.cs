@@ -17,6 +17,7 @@ namespace CameraSlider.Frontend.Forms.Pages
     {
         private MainPageViewModel viewModel;
         private IBluetoothLeService bluetoothLeService;
+        private bool isSettingsContainerOpen;
 
         private const string cameraSliderGuid = "00000000-0000-0000-0000-606405d147b4";
         private const string serviceUuid = "0000ffe0-0000-1000-8000-00805f9b34fb";
@@ -36,6 +37,7 @@ namespace CameraSlider.Frontend.Forms.Pages
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+
             //ConnectButton.TouchedUp += ConnectButton_TouchedUp;
             MoveLeftButton.TouchedDown += MoveLeftButton_TouchedDown;
             MoveLeftButton.TouchedUp += MoveButton_TouchedUp;
@@ -49,6 +51,10 @@ namespace CameraSlider.Frontend.Forms.Pages
         protected override async void OnDisappearing()
         {
             base.OnDisappearing();
+            if (isSettingsContainerOpen)
+            {
+                await SlideSettingsDown(false);
+            }
 
             await StopSliderMovement();
 
@@ -61,6 +67,7 @@ namespace CameraSlider.Frontend.Forms.Pages
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
+            (sender as ListView).SelectedItem = null;
             var pos = viewModel.MenuItems.IndexOf(e.SelectedItem as Shared.Models.MenuItem);
             switch (pos)
             {
@@ -73,8 +80,6 @@ namespace CameraSlider.Frontend.Forms.Pages
                 default:
                     break;
             }
-
-            (sender as ListView).SelectedItem = null;
         }
 
         void ConnectButton_TouchedUp()
@@ -82,6 +87,18 @@ namespace CameraSlider.Frontend.Forms.Pages
             //ConnectButton.IsEnabled = false;
             //viewModel.NavigateToDeviceSelectionCommand.Execute(null);
             //ConnectButton.IsEnabled = true;
+        }
+
+
+        async void SettingsButton_Clicked(object sender, System.EventArgs e)
+        {
+            SettingsButton.IsEnabled = false;
+            Overlay.IsVisible = true;
+            await Task.WhenAll(
+                Overlay.FadeTo(0.6, 250),
+                SettingsContainer.TranslateTo(0, 0, 250, Easing.CubicOut)
+            );
+            isSettingsContainerOpen = true;
         }
 
         async void TakePictureButton_TouchedUp()
@@ -126,6 +143,30 @@ namespace CameraSlider.Frontend.Forms.Pages
         async Task StopSliderMovement()
         {
             await bluetoothLeService.WriteToServiceCharacteristicAsync("off#", serviceUuid, characteristicUuid);
+        }
+
+        async void Page_Tapped(object sender, System.EventArgs e)
+        {
+            if (isSettingsContainerOpen)
+                await SlideSettingsDown();
+        }
+
+        async Task SlideSettingsDown(bool animate = true)
+        {
+            if (animate)
+            {
+                await Task.WhenAll(
+                    Overlay.FadeTo(0, 250),
+                    SettingsContainer.TranslateTo(0, 300, 250, Easing.CubicOut)
+                );
+            }
+            else
+            {
+                SettingsContainer.TranslationY = 300;
+            }
+            Overlay.IsVisible = false;
+            isSettingsContainerOpen = false;
+            SettingsButton.IsEnabled = true;
         }
     }
 }

@@ -24,7 +24,7 @@
                 </OnPlatform>
             </ToolbarItem.Order>
         </ToolbarItem>
-	</ContentPage.ToolbarItems>
+	</ContentPage.ToolbarItems>       
 
     <Grid>
         <Grid.RowDefinitions>
@@ -43,7 +43,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="20">
+                        <Grid Padding="20" BackgroundColor="{StaticResource BackgroundColor}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
@@ -88,63 +88,23 @@
 
             <ListView.Footer>
                 <StackLayout Padding="20,0,20,20" >
-                <Label
-                    Text="Exposure Time"
-                    Margin="{StaticResource DefaultTopThickness}"
-                    Style="{StaticResource ControlHeaderStyle}" />
-                <Picker
-                    Style="{StaticResource PickerStyle}"
-                    ItemsSource="{Binding ExposureTimeOptions}"
-                    SelectedItem="{Binding ExposureTime}"
-                    ItemDisplayBinding="{Binding Name}"
-                    SelectedIndex="0" />
+
                 </StackLayout>
             </ListView.Footer>
         </ListView>
 
-                <!--<flex:FlexButton
-                        x:Name="ConnectButton"
-                        Grid.Column="1"
-                        Grid.RowSpan="2"
-                        CornerRadius="20"
-                        HeightRequest="40"
-                        WidthRequest="40"
-                        BackgroundColor="{StaticResource AccentColor}"
-                        IconColor="White"
-                        HighlightColor="White"
-                        HighlightIconColor="{StaticResource AccentColor}"
-                        HorizontalOptions="Center"
-                        Icon="connect.png" />-->
-
-                <!--<Label
-                    Text="Speed"
-                    Margin="{StaticResource DefaultTopThickness}"
-                    Style="{StaticResource ControlHeaderStyle}" />
-
-                 <Slider
-                    x:Name="SpeedSlider"
-                    Maximum="2000"
-                    Minimum="500"
-                    Value="1300"
-                    Style="{StaticResource SliderStyle}" />-->
-
-                <!-- Exposure Time -->
-
-
-
-        <Grid 
-            VerticalOptions="End"  
+        <Grid             
             Grid.Row="1"
             Padding="20,10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!-- Controls -->
             <StackLayout
                 Grid.Row="0"
+                VerticalOptions="End"  
                 HorizontalOptions="Center"
                 Orientation="Horizontal">
 
@@ -182,6 +142,69 @@
                     IconColor="{StaticResource AccentColor}"
                     WidthRequest="76" />
             </StackLayout>
+
+            <!-- Settings -->
+            <Button
+                x:Name="SettingsButton"
+                Grid.Row="1"
+                Text="SETTINGS"
+                HorizontalOptions="Center"
+                FontSize="{StaticResource FontSizeSmall}"
+                TextColor="{StaticResource AccentColor}"
+                Clicked="SettingsButton_Clicked"
+                BackgroundColor="Transparent"
+                BorderWidth="0"/>
         </Grid>
+
+        <Grid x:Name="Overlay" BackgroundColor="Black" Opacity="0" IsVisible="false" Grid.RowSpan="2">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer x:Name="SlideSettingsDownGesture" Tapped="Page_Tapped" />
+            </Grid.GestureRecognizers>
+        </Grid>
+        
+        <Grid
+            Margin="20,20,20,0"
+            TranslationY="300"
+            Grid.RowSpan="2"
+            VerticalOptions="End"
+            x:Name="SettingsContainer">
+
+            <Frame
+                BackgroundColor="#222"
+                CornerRadius="10"
+                TranslationY="10"
+                HasShadow="false"
+                Opacity="0.97"
+                Padding="20,20,20,40">
+                <StackLayout Spacing="10">
+                    <StackLayout>
+                        <Label
+                            Text="Exposure Time"
+                            Margin="{StaticResource DefaultTopThickness}"
+                            Style="{StaticResource ControlHeaderStyle}" />
+                        <Picker
+                            Style="{StaticResource PickerStyle}"
+                            ItemsSource="{Binding ExposureTimeOptions}"
+                            SelectedItem="{Binding ExposureTime}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedIndex="0" />
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                            Text="Speed"
+                            Margin="{StaticResource DefaultTopThickness}"
+                            Style="{StaticResource ControlHeaderStyle}" />
+                         <Slider
+                            x:Name="SpeedSlider"
+                            Maximum="2000"
+                            Minimum="500"
+                            Value="1300"
+                            Style="{StaticResource SliderStyle}" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            
+        </Grid>            
     </Grid>
 </ContentPage>

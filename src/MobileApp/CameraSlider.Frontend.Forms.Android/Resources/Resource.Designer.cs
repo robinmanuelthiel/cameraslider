@@ -4423,6 +4423,9 @@ namespace CameraSlider.Frontend.Forms.Droid
 			// aapt resource value: 0x7f0b018a
 			public const int MainTheme_Base = 2131427722;
 			
+			// aapt resource value: 0x7f0b018c
+			public const int NoShadowButton = 2131427724;
+			
 			// aapt resource value: 0x7f0b002d
 			public const int Platform_AppCompat = 2131427373;
 			

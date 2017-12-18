@@ -2,9 +2,7 @@
 <Application
 	x:Class="CameraSlider.Frontend.Forms.App"
 	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:buttoncircle="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
-    >
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 	<Application.Resources>
 		<!-- Application resource dictionary -->
 		<ResourceDictionary>
@@ -119,23 +117,7 @@
                 </Setter>
             </Style>        
 
-            <!-- Cricle Button -->
-            <Style x:Key="CircleButtonStyle" TargetType="buttoncircle:CircleButton">
-                <Setter Property="HeightRequest" Value="50" />
-                <Setter Property="WidthRequest" Value="50" />
-                <Setter Property="FontSize">
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="Android" Value="16" />
-                        <On Platform="iOS" Value="18" />
-                    </OnPlatform>
-                </Setter>
-                <Setter Property="BorderThickness">
-                    <OnPlatform x:TypeArguments="x:Int32">
-                        <On Platform="Android" Value="4" />
-                        <On Platform="iOS" Value="2" />
-                    </OnPlatform>
-                </Setter>
-            </Style>
+
         </ResourceDictionary>
 	</Application.Resources>
 </Application>

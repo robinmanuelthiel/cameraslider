@@ -140,12 +140,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.121934\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="ButtonCircle.FormsPlugin.Abstractions">
-      <HintPath>..\packages\Plugins.Forms.ButtonCircle.1.2.53\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="ButtonCircle.FormsPlugin.Android">
-      <HintPath>..\packages\Plugins.Forms.ButtonCircle.1.2.53\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Android.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AppCenter.Android.Bindings">
       <HintPath>..\packages\Microsoft.AppCenter.1.1.0\lib\MonoAndroid403\Microsoft.AppCenter.Android.Bindings.dll</HintPath>
     </Reference>

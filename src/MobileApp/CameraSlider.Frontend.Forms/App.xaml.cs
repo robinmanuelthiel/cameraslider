@@ -32,6 +32,7 @@ namespace CameraSlider.Frontend.Forms
             // Create Naviagation Page
             var navigationPage = new Xamarin.Forms.NavigationPage();
             navigationPage.BarBackgroundColor = (Color)Resources["AccentColor"];
+            navigationPage.BackgroundColor = (Color)Resources["BackgroundColor"];
             navigationPage.BarTextColor = Color.White;
             navigationPage.On<iOS>().SetPrefersLargeTitles(true);
 

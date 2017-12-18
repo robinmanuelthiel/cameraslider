@@ -3,7 +3,8 @@
     x:Class="CameraSlider.Frontend.Forms.Pages.DeviceSelectionPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:converters="clr-namespace:CameraSlider.Frontend.Forms.Converters;assembly=CameraSlider.Frontend.Forms"   
+    xmlns:converters="clr-namespace:CameraSlider.Frontend.Forms.Converters;assembly=CameraSlider.Frontend.Forms"
+    IsBusy="{Binding IsBusy, Mode=OneWay}"
 	Title="Bluetooth Devices"
     BackgroundColor="{StaticResource BackgroundColor}">
 
@@ -20,11 +21,9 @@
             IsEnabled="{Binding IsBusy, Converter={StaticResource BoolToNegatedBoolConverter}}"
             ItemsSource="{Binding BluetoothDevices}"
             BackgroundColor="Transparent"
-            IsPullToRefreshEnabled="true"
             SeparatorVisibility="None"
             HasUnevenRows="true"
-            RefreshCommand="{Binding RefreshCommand}"
-            IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+            RefreshCommand="{Binding RefreshCommand}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -40,15 +39,9 @@
             HeightRequest="{StaticResource ActivityIndicatorHeight}"
             HorizontalOptions="Fill"
             IsRunning="True"
+            Color="{StaticResource AccentColor}"
             IsVisible="{Binding IsBusy, Mode=OneWay}"
             VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}">
-            <ActivityIndicator.IsVisible>
-                <OnPlatform x:TypeArguments="x:Boolean">
-                    <On Platform="Android" Value="false"/>
-                    <On Platform="WinPhone" Value="true"/>
-                    <On Platform="iOS" Value="false"/>
-                </OnPlatform>                
-            </ActivityIndicator.IsVisible>
         </ActivityIndicator>
 	</Grid>
 </ContentPage>

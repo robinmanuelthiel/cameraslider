@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ButtonCircle.FormsPlugin.iOS;
 using Foundation;
 using Microsoft.AppCenter.Distribute;
 using UIKit;
@@ -25,7 +24,6 @@ namespace CameraSlider.Frontend.Forms.iOS
         {
             Xamarin.Forms.Forms.Init();
             Xamarin.Forms.FlexButton.Init();
-            ButtonCircleRenderer.Init();
 
             Distribute.DontCheckForUpdatesInDebug();
 
