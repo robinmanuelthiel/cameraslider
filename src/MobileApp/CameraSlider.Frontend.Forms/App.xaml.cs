@@ -73,8 +73,13 @@ namespace CameraSlider.Frontend.Forms
 
             Push.PushNotificationReceived += async (object sender, PushNotificationReceivedEventArgs e) =>
             {
-                var dialogService = SimpleIoc.Default.GetInstance<IDialogService>();
-                await dialogService?.DisplayDialogAsync(e.Title, e.Message, "Ok");
+                // On Android, App Center Pushes do not have Title or message at the moment, when opened
+                // from a notification and received in the background.
+                if (e.Title != null || e.Message != null)
+                {
+                    var dialogService = SimpleIoc.Default.GetInstance<IDialogService>();
+                    await dialogService?.DisplayDialogAsync(e.Title, e.Message, "Ok");
+                }
             };
         }
 

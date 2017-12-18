@@ -95,7 +95,7 @@ namespace CameraSlider.Frontend.Forms.Pages
             SettingsButton.IsEnabled = false;
             Overlay.IsVisible = true;
             await Task.WhenAll(
-                Overlay.FadeTo(0.7, 250),
+                Overlay.FadeTo(0.65, 250),
                 SettingsContainer.TranslateTo(0, 0, 250, Easing.CubicOut)
             );
             isSettingsContainerOpen = true;
