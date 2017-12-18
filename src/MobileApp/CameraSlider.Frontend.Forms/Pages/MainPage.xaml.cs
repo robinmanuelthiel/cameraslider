@@ -132,8 +132,7 @@ namespace CameraSlider.Frontend.Forms.Pages
             await bluetoothLeService.WriteToServiceCharacteristicAsync(directionCommand, serviceUuid, characteristicUuid);
 
             // Speed
-            //var speedValue = 2500 - (int)SpeedSlider.Value;
-            var speedValue = 500;
+            var speedValue = 2500 - (int)SpeedSlider.Value;
             await bluetoothLeService.WriteToServiceCharacteristicAsync($"sp{speedValue}#", serviceUuid, characteristicUuid);
 
             // Start

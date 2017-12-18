@@ -199,7 +199,7 @@
                             x:Name="SpeedSlider"
                             Maximum="2000"
                             Minimum="500"
-                            Value="1300"
+                            Value="2000"
                             Style="{StaticResource SliderStyle}" />
                     </StackLayout>
                 </StackLayout>
