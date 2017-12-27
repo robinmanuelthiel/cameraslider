@@ -18,6 +18,7 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         private readonly int bufferTime = 250;
         private readonly int speed = 1;
         private int stepsPerInterval;
+        private int horizontalRotationStepsPerInterval;
 
         private int numberOfShots;
         public int NumberOfShots
@@ -40,6 +41,13 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             set { totalSteps = value; RaisePropertyChanged(); CalculateProcedureValues(); }
         }
 
+        private int horizontalRotationSteps;
+        public int HorizontalRotationSteps
+        {
+            get { return horizontalRotationSteps; }
+            set { horizontalRotationSteps = value; RaisePropertyChanged(); CalculateProcedureValues(); }
+        }
+
         private ObservableCollection<SliderDirection> directionOptions;
         public ObservableCollection<SliderDirection> DirectionOptions
         {
@@ -52,6 +60,13 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         {
             get { return direction; }
             set { direction = value; RaisePropertyChanged(); }
+        }
+
+        private SliderDirection rotationDirection;
+        public SliderDirection RotationDirection
+        {
+            get { return rotationDirection; }
+            set { rotationDirection = value; RaisePropertyChanged(); }
         }
 
         private ObservableCollection<ExposureTime> exposureTimeOptions;
@@ -92,12 +107,14 @@ namespace CameraSlider.Frontend.Shared.ViewModels
                         // Send Direction
                         var directionCommand = direction == SliderDirection.Right ? "dr#" : "dl#";
                         await bluetoothLeService.WriteToServiceCharacteristicAsync(directionCommand, serviceUuid, characteristicUuid);
+                        var rotationDirectionCommand = rotationDirection == SliderDirection.Right ? "hrdr#" : "hrdl#";
+                        await bluetoothLeService.WriteToServiceCharacteristicAsync(rotationDirectionCommand, serviceUuid, characteristicUuid);
 
                         // Send Exposure Time
                         await bluetoothLeService.WriteToServiceCharacteristicAsync($"et{ExposureTime.Milliseconds}#", serviceUuid, characteristicUuid);
 
                         // Send Procedure
-                        await bluetoothLeService.WriteToServiceCharacteristicAsync($"pr{stepsPerInterval},{NumberOfShots},{maxExposureTime}#", serviceUuid, characteristicUuid);
+                        await bluetoothLeService.WriteToServiceCharacteristicAsync($"pr{stepsPerInterval},{horizontalRotationStepsPerInterval},{NumberOfShots},{maxExposureTime}#", serviceUuid, characteristicUuid);
                     }
                 }, () => MaxExposureTime >= 0));
             }
@@ -127,6 +144,7 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         private void CalculateProcedureValues()
         {
             stepsPerInterval = TotalSteps / NumberOfShots;
+            horizontalRotationStepsPerInterval = horizontalRotationSteps / NumberOfShots;
             MaxExposureTime = (Interval * 1000) - (2 * bufferTime) - ExposureTime.Milliseconds - (stepsPerInterval * speed * 2);
             SendToSliderCommand.RaiseCanExecuteChanged();
         }

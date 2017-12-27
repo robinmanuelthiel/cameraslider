@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CameraSlider.Frontend.Shared.Abstractions;
 using CameraSlider.Frontend.Shared.Models;
+using MvvmHelpers;
 
 namespace CameraSlider.Frontend.Shared.Services
 {
@@ -18,7 +20,8 @@ namespace CameraSlider.Frontend.Shared.Services
         /// Scans for devices async.
         /// </summary>
         /// <returns>The for devices async.</returns>
-        Task<List<IBluetoothDevice>> ScanForDevicesAsync();
+        //Task<List<IBluetoothDevice>> ScanForDevicesAsync();
+        Task ScanForDevicesAsync(ObservableCollection<IBluetoothDevice> bluetoothDevices);
 
         /// <summary>
         /// Writes to service characteristic async.
@@ -41,5 +44,6 @@ namespace CameraSlider.Frontend.Shared.Services
         /// </summary>
         /// <value><c>true</c> if is bluetooth le available; otherwise, <c>false</c>.</value>
         bool GetConnectionStatus();
+
     }
 }

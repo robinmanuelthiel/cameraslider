@@ -223,6 +223,16 @@
     <AndroidResource Include="Resources\drawable-xhdpi\next.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\next.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\next.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\rotateleft.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\rotateright.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\rotateleft.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\rotateright.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\rotateleft.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\rotateright.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\rotateleft.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\rotateright.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\rotateleft.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\rotateright.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

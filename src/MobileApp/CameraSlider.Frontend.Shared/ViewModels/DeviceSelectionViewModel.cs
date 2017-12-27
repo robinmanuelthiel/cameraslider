@@ -25,7 +25,6 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             set { bluetoothDevices = value; RaisePropertyChanged(); }
         }
 
-
         private RelayCommand<IBluetoothDevice> connectToDeviceCommand;
         public RelayCommand<IBluetoothDevice> ConnectToDeviceCommand
         {
@@ -66,8 +65,9 @@ namespace CameraSlider.Frontend.Shared.ViewModels
             if (bluetoothLeService.GetConnectionStatus())
             {
                 // Get a list of BluetoothLE devices
-                var availableBluetoothDevices = await bluetoothLeService.ScanForDevicesAsync();
-                BluetoothDevices.ReplaceRange(availableBluetoothDevices);
+                BluetoothDevices.Clear();
+                await bluetoothLeService.ScanForDevicesAsync(BluetoothDevices);
+                //BluetoothDevices.ReplaceRange(availableBluetoothDevices);
 
                 IsBusy = false;
             }

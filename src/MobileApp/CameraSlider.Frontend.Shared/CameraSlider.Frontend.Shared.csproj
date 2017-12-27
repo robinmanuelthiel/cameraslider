@@ -42,6 +42,7 @@
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="ViewModels\AboutPageViewModel.cs" />
     <Compile Include="Models\ThirdPartyLibrary.cs" />
+    <Compile Include="Models\MotorType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />

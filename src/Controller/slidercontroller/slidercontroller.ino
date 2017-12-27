@@ -7,10 +7,15 @@ SoftwareSerial bluetooth(rxpin, txpin);
 
 // Motor
 const int motorStepPin = 5; // Motor 
-const int directionLedPin = 2; // Direction 
+const int motorDirectionPin = 2; // Direction main motor
+const int horizontalRotationMotorStepPin = 6; // Horizontal rotation motor
+const int horizontalRotationMotorDirectionPin = 3; // Direction main motor
+
 bool isMotorRunning = false;
+bool ishorizontalRotationMotorRunning = false;
 int motorDirection = 0; // 0 = left, 1 = right
-int speed = 300;
+int horizontalRotationMotorDirection = 0; // 1 = left, 0 = right (reverse to main motor, because rotation motor is hanging upside down)
+int speed = 500;
 
 // Serial
 const char endMarker = '#';
@@ -25,7 +30,8 @@ bool isShutterToBeTriggered = false;
 
 // Procedure
 bool isProcedureRunning = false;
-int stepsPerInterval = 200; 
+int stepsPerInterval = 200;
+int horitontalRotationStepsPerInterval = 200;
 int shots = 5;
 
 int maxExposureTime = 4000; 
@@ -40,7 +46,9 @@ void setup()
   bluetooth.println("Bluetooth ready");
 
   pinMode(motorStepPin, OUTPUT);
-  pinMode(directionLedPin, OUTPUT);
+  pinMode(motorDirectionPin, OUTPUT);
+  pinMode(horizontalRotationMotorStepPin, OUTPUT);
+  pinMode(horizontalRotationMotorDirectionPin, OUTPUT);
   pinMode(shutterPin, OUTPUT);
 }
 
@@ -62,14 +70,27 @@ void loop()
   {
     for (int i = 0; i < shots; i++)
     {
-
-      // Direction
+      // ----------------------------------------
+      // DIRECTION
+      // ----------------------------------------
+      
+      // Main motor direction
       if (motorDirection == 0)
-        digitalWrite(directionLedPin, LOW);
+        digitalWrite(motorDirectionPin, LOW);
       else
-        digitalWrite(directionLedPin, HIGH);
+        digitalWrite(motorDirectionPin, HIGH);
 
-      // Motor
+      // Horizontal rotation motor direction
+      if (horizontalRotationMotorDirection == 0)
+        digitalWrite(horizontalRotationMotorDirectionPin, LOW);
+      else
+        digitalWrite(horizontalRotationMotorDirectionPin, HIGH);
+
+      // ----------------------------------------
+      // MOTOR
+      // ----------------------------------------
+
+      // Main motor
       for(int j = 0; j < stepsPerInterval; j++)
       {
         digitalWrite(motorStepPin,HIGH);
@@ -78,9 +99,19 @@ void loop()
         delay(1);
       }
 
-      // Turn off direction pin
-      digitalWrite(directionLedPin, LOW);
- 
+      // Horizontal rotation motor
+      for(int j = 0; j < horitontalRotationStepsPerInterval; j++)
+      {
+        digitalWrite(horizontalRotationMotorStepPin,HIGH);
+        delay(1);
+        digitalWrite(horizontalRotationMotorStepPin,LOW);
+        delay(1);
+      }
+
+      // Turn off direction pins
+      digitalWrite(motorDirectionPin, LOW);
+      digitalWrite(horizontalRotationMotorDirectionPin, LOW);
+      
       //digitalWrite(en1, HIGH);
       delay (bufferTime);
       digitalWrite(shutterPin, HIGH);
@@ -95,8 +126,6 @@ void loop()
     Serial.println("Finished procedure.");
   }
 
-
-
   // Shutter
   if (isShutterToBeTriggered)
   {
@@ -107,25 +136,41 @@ void loop()
     isShutterToBeTriggered = false;
   }
 
-  // Move 
-  if (isMotorRunning)
+if (ishorizontalRotationMotorRunning)
   {
-    // Direction
-    if (motorDirection == 0)
-      digitalWrite(directionLedPin, LOW);
-    else
-      digitalWrite(directionLedPin, HIGH);
-      
-    // Step
-    digitalWrite(motorStepPin, HIGH);
-    delayMicroseconds(speed);
-    digitalWrite(motorStepPin, LOW);
-    delayMicroseconds(speed);      
+    StepMotor(horizontalRotationMotorStepPin, horizontalRotationMotorDirectionPin, horizontalRotationMotorDirection, speed);    
   }
   else
   {
-    digitalWrite(directionLedPin, LOW);
+    digitalWrite(horizontalRotationMotorDirectionPin, LOW);
   }
+  
+  // Move 
+  if (isMotorRunning)
+  {
+    StepMotor(motorStepPin, motorDirectionPin, motorDirection, speed);
+  }
+  else
+  {
+    digitalWrite(motorDirectionPin, LOW);
+  }
+  
+  
+}
+
+void StepMotor(int stepPin, int directionPin, int motorDirection, int motorSpeed)
+{
+  // Direction
+  if (motorDirection == 0)
+    digitalWrite(directionPin, LOW);
+  else
+    digitalWrite(directionPin, HIGH);
+    
+  // Step
+  digitalWrite(stepPin, HIGH);
+  delayMicroseconds(motorSpeed);
+  digitalWrite(stepPin, LOW);
+  delayMicroseconds(motorSpeed);
 }
 
 void readBluetoothSerial()
@@ -167,12 +212,20 @@ void processBluetoothInput()
       isMotorRunning = true;
     else if (strcmp(receivedChars, "off") == 0)
       isMotorRunning = false;
+    if (strcmp(receivedChars, "hron") == 0)
+      ishorizontalRotationMotorRunning = true;
+    else if (strcmp(receivedChars, "hroff") == 0)
+      ishorizontalRotationMotorRunning = false;
 
     // Direction
     if (strcmp(receivedChars, "dl") == 0) // left
       motorDirection = 0;
     else if (strcmp(receivedChars, "dr") == 0) // right
       motorDirection = 1;
+    if (strcmp(receivedChars, "hrdl") == 0) // left
+      horizontalRotationMotorDirection = 1;
+    else if (strcmp(receivedChars, "hrdr") == 0) // right
+      horizontalRotationMotorDirection = 0;
 
     // Speed
     if (command.indexOf("sp") != -1)
@@ -187,17 +240,20 @@ void processBluetoothInput()
       exposureTime = command.substring(2).toInt();
 
     // Procedure
-    if (command.indexOf("pr") != -1) // Example: pr100,10
+    if (command.indexOf("pr") != -1)
     { 
       // Get procedure values out of command      
-      Serial.println("Procedure command detected.");      
+      Serial.println("Procedure command detected.");
       
       stepsPerInterval = command.substring(2, command.indexOf(",")).toInt();
-      shots = command.substring(command.indexOf(",") + 1, command.lastIndexOf(",")).toInt();
+      horitontalRotationStepsPerInterval = command.substring(command.indexOf(",") + 1, command.lastIndexOf(",")).toInt();     
+      shots = command.substring(command.indexOf(",", command.indexOf(",") + 1) + 1, command.lastIndexOf(",")).toInt();
       maxExposureTime = command.substring(command.lastIndexOf(",") + 1).toInt();
 
       Serial.print("Steps per Interval: ");
       Serial.println(stepsPerInterval);
+      Serial.print("Horizontal rotation steps per Interval: ");
+      Serial.println(horitontalRotationStepsPerInterval);
       Serial.print("Number of shots: ");
       Serial.println(shots);
       Serial.print("Max exposure time: ");

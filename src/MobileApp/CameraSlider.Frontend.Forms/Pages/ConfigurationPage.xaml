@@ -23,7 +23,7 @@
                 Keyboard="Numeric"/>
             <Label Text="First things first: How long should the full ride of your slider be for this procedure?" Style="{StaticResource ExplainationTextStyle}" />
 
-            <!-- Direction -->
+             <!-- Direction -->
             <Label
                 Text="Direction"
                 Margin="{StaticResource DefaultTopThickness}"
@@ -32,6 +32,29 @@
                 Style="{StaticResource PickerStyle}"
                 ItemsSource="{Binding DirectionOptions}"
                 SelectedItem="{Binding Direction}"
+                SelectedIndex="0" />
+            <Label Text="If you are unsure about the directions, go back to the remote controls and try them out." Style="{StaticResource ExplainationTextStyle}" />
+            
+            <!-- Horizontal Rotation -->
+            <Label
+                Text="Horizontal rotation steps"
+                Margin="{StaticResource DefaultTopThickness}"
+                Style="{StaticResource ControlHeaderStyle}" />
+            <Entry
+                Text="{Binding HorizontalRotationSteps}"
+                Style="{StaticResource EntryStyle}"
+                Keyboard="Numeric"/>
+            <Label Text="TODO" Style="{StaticResource ExplainationTextStyle}" />
+                        
+            <!-- Horizontal rotation direction -->
+            <Label
+                Text="Horizontal rotation direction"
+                Margin="{StaticResource DefaultTopThickness}"
+                Style="{StaticResource ControlHeaderStyle}" />
+            <Picker
+                Style="{StaticResource PickerStyle}"
+                ItemsSource="{Binding DirectionOptions}"
+                SelectedItem="{Binding RotationDirection}"
                 SelectedIndex="0" />
             <Label Text="If you are unsure about the directions, go back to the remote controls and try them out." Style="{StaticResource ExplainationTextStyle}" />
 
@@ -75,17 +98,13 @@
                 Text="Maximum Exposure Time"
                 Margin="{StaticResource DefaultTopThickness}"
                 Style="{StaticResource ControlHeaderStyle}" />
-            <Entry
+            <Label
                 Text="{Binding MaxExposureTime}"
-                Style="{StaticResource EntryStyle}"
-                TextColor="#999999"
-                IsEnabled="false" />
+                TextColor="{StaticResource SecondaryForegroundColor}" />
             <Label
                 Text="This value gets calculated from your inputs and represents the full duration of which the camera stands still."
-                Style="{StaticResource ExplainationTextStyle}"
-                />
-
-            
+                Style="{StaticResource ExplainationTextStyle}" />
+                            
             <Button
                 Text="Send to slider"
                 Command="{Binding SendToSliderCommand}"

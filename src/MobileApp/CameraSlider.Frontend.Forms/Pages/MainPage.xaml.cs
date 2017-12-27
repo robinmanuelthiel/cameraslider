@@ -38,12 +38,18 @@ namespace CameraSlider.Frontend.Forms.Pages
         {
             base.OnAppearing();
 
-            //ConnectButton.TouchedUp += ConnectButton_TouchedUp;
             MoveLeftButton.TouchedDown += MoveLeftButton_TouchedDown;
             MoveLeftButton.TouchedUp += MoveButton_TouchedUp;
+
             MoveRightButton.TouchedDown += MoveRightButton_TouchedDown;
             MoveRightButton.TouchedUp += MoveButton_TouchedUp;
+
             TakePictureButton.TouchedUp += TakePictureButton_TouchedUp;
+
+            RotateLeftButton.TouchedDown += RotateLeftButton_TouchedDown;
+            RotateRightButton.TouchedDown += RotateRightButton_TouchedDown;
+            RotateRightButton.TouchedUp += RotateButton_TouchedUp;
+            RotateLeftButton.TouchedUp += RotateButton_TouchedUp;
 
             await viewModel.TestConnectionAsync(serviceUuid, characteristicUuid);
         }
@@ -56,13 +62,18 @@ namespace CameraSlider.Frontend.Forms.Pages
                 await SlideSettingsDown(false);
             }
 
-            await StopSliderMovement();
+            await StopSliderMovement(MotorType.Main);
+            await StopSliderMovement(MotorType.HorizontalRotation);
 
             MoveLeftButton.TouchedDown -= MoveLeftButton_TouchedDown;
             MoveLeftButton.TouchedUp -= MoveButton_TouchedUp;
             MoveRightButton.TouchedDown -= MoveRightButton_TouchedDown;
             MoveRightButton.TouchedUp -= MoveButton_TouchedUp;
             TakePictureButton.TouchedUp -= TakePictureButton_TouchedUp;
+            RotateLeftButton.TouchedDown -= RotateLeftButton_TouchedDown;
+            RotateRightButton.TouchedDown -= RotateRightButton_TouchedDown;
+            RotateRightButton.TouchedUp -= RotateButton_TouchedUp;
+            RotateLeftButton.TouchedUp -= RotateButton_TouchedUp;
         }
 
         void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
@@ -91,28 +102,53 @@ namespace CameraSlider.Frontend.Forms.Pages
             await bluetoothLeService.WriteToServiceCharacteristicAsync("shutter#", serviceUuid, characteristicUuid);
         }
 
+        // Rotation
+        async void RotateLeftButton_TouchedDown()
+        {
+            await StartMotorMovement(MotorType.HorizontalRotation, SliderDirection.Left);
+        }
+        async void RotateRightButton_TouchedDown()
+        {
+            await StartMotorMovement(MotorType.HorizontalRotation, SliderDirection.Right);
+        }
+        async void RotateButton_TouchedUp()
+        {
+            await StopSliderMovement(MotorType.HorizontalRotation);
+        }
+
+        // Movement
         async void MoveLeftButton_TouchedDown()
         {
-            //SpeedSlider.IsEnabled = false;
-            await StartSliderMovement(SliderDirection.Left);
+            await StartMotorMovement(MotorType.Main, SliderDirection.Left);
         }
-
         async void MoveRightButton_TouchedDown()
         {
-            //SpeedSlider.IsEnabled = false;
-            await StartSliderMovement(SliderDirection.Right);
+            await StartMotorMovement(MotorType.Main, SliderDirection.Right);
         }
-
         async void MoveButton_TouchedUp()
         {
-            await StopSliderMovement();
-            //SpeedSlider.IsEnabled = true;
+            await StopSliderMovement(MotorType.Main);
         }
 
-        async Task StartSliderMovement(SliderDirection direction)
+        async Task StartMotorMovement(MotorType motor, SliderDirection direction)
         {
             // Direction
-            var directionCommand = direction == SliderDirection.Right ? "dr#" : "dl#";
+            string directionCommand;
+            string motorCommand;
+
+            switch (motor)
+            {
+                default:
+                    directionCommand = direction == SliderDirection.Right ? "dr#" : "dl#";
+                    motorCommand = "on#";
+                    break;
+                case MotorType.HorizontalRotation:
+                    directionCommand = direction == SliderDirection.Right ? "hrdr#" : "hrdl#";
+                    motorCommand = "hron#";
+                    break;
+            }
+
+            // Direction
             await bluetoothLeService.WriteToServiceCharacteristicAsync(directionCommand, serviceUuid, characteristicUuid);
 
             // Speed
@@ -120,12 +156,24 @@ namespace CameraSlider.Frontend.Forms.Pages
             await bluetoothLeService.WriteToServiceCharacteristicAsync($"sp{speedValue}#", serviceUuid, characteristicUuid);
 
             // Start
-            await bluetoothLeService.WriteToServiceCharacteristicAsync("on#", serviceUuid, characteristicUuid);
+            await bluetoothLeService.WriteToServiceCharacteristicAsync(motorCommand, serviceUuid, characteristicUuid);
         }
 
-        async Task StopSliderMovement()
+        async Task StopSliderMovement(MotorType motor)
         {
-            await bluetoothLeService.WriteToServiceCharacteristicAsync("off#", serviceUuid, characteristicUuid);
+            string motorCommand;
+
+            switch (motor)
+            {
+                default:
+                    motorCommand = "off#";
+                    break;
+                case MotorType.HorizontalRotation:
+                    motorCommand = "hroff#";
+                    break;
+            }
+
+            await bluetoothLeService.WriteToServiceCharacteristicAsync(motorCommand, serviceUuid, characteristicUuid);
         }
 
         #endregion

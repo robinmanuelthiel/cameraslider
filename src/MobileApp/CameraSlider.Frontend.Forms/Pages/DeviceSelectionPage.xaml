@@ -18,7 +18,6 @@
         <ListView
             x:Name="DeviceList"
             ItemSelected="ListView_ItemSelected"
-            IsEnabled="{Binding IsBusy, Converter={StaticResource BoolToNegatedBoolConverter}}"
             ItemsSource="{Binding BluetoothDevices}"
             BackgroundColor="Transparent"
             SeparatorVisibility="None"

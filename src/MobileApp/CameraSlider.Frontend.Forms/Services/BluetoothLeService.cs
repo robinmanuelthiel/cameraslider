@@ -9,6 +9,7 @@ using System.Text;
 using CameraSlider.Frontend.Shared.Models;
 using CameraSlider.Frontend.Forms.Models;
 using CameraSlider.Frontend.Shared.Abstractions;
+using System.Collections.ObjectModel;
 
 namespace CameraSlider.Frontend.Forms.Services
 {
@@ -25,12 +26,12 @@ namespace CameraSlider.Frontend.Forms.Services
             adapter = CrossBluetoothLE.Current.Adapter;
         }
 
-        public async Task<List<IBluetoothDevice>> ScanForDevicesAsync()
+        public async Task ScanForDevicesAsync(ObservableCollection<IBluetoothDevice> devices)
         {
-            var devices = new List<IBluetoothDevice>();
+            //var devices = new List<IBluetoothDevice>();
             adapter.DeviceDiscovered += (s, a) => devices.Add(new BluetoothDevice(a.Device));
             await adapter.StartScanningForDevicesAsync();
-            return devices;
+            //return devices;
         }
 
         public async Task<bool> WriteToServiceCharacteristicAsync(string message, string serviceUuid, string characteristicUuid)
