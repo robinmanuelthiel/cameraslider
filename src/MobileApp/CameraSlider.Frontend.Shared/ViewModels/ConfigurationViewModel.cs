@@ -145,7 +145,12 @@ namespace CameraSlider.Frontend.Shared.ViewModels
         {
             stepsPerInterval = TotalSteps / NumberOfShots;
             horizontalRotationStepsPerInterval = horizontalRotationSteps / NumberOfShots;
-            MaxExposureTime = (Interval * 1000) - (2 * bufferTime) - ExposureTime.Milliseconds - (stepsPerInterval * speed * 2);
+            MaxExposureTime = (Interval * 1000)
+                - (2 * bufferTime)
+                - ExposureTime.Milliseconds
+                - (stepsPerInterval * speed * 2)
+                - (horizontalRotationStepsPerInterval * speed * 2);
+
             SendToSliderCommand.RaiseCanExecuteChanged();
         }
     }
