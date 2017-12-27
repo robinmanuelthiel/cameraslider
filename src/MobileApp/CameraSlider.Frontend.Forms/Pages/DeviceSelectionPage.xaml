@@ -22,6 +22,8 @@
             BackgroundColor="Transparent"
             SeparatorVisibility="None"
             HasUnevenRows="true"
+            IsPullToRefreshEnabled="true"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             RefreshCommand="{Binding RefreshCommand}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -33,14 +35,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-		<ActivityIndicator
-            HeightRequest="{StaticResource ActivityIndicatorHeight}"
-            HorizontalOptions="Fill"
-            IsRunning="True"
-            Color="{StaticResource AccentColor}"
-            IsVisible="{Binding IsBusy, Mode=OneWay}"
-            VerticalOptions="{StaticResource ActivityIndicatorLayoutOptions}">
-        </ActivityIndicator>
 	</Grid>
 </ContentPage>
