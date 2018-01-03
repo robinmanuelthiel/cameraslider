@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Flex;
 using Foundation;
 using Microsoft.AppCenter.Distribute;
 using UIKit;
@@ -23,7 +24,7 @@ namespace CameraSlider.Frontend.Forms.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Xamarin.Forms.Forms.Init();
-            Xamarin.Forms.FlexButton.Init();
+            FlexButton.Init();
 
             Distribute.DontCheckForUpdatesInDebug();
 

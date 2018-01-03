@@ -5,15 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:effects="clr-namespace:CameraSlider.Frontend.Forms.Effects"
     xmlns:extensions="clr-namespace:CameraSlider.Frontend.Forms.Extensions"
-    xmlns:buttoncircle="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
+    xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
     xmlns:local="clr-namespace:CameraSlider.Frontend.Forms"
-    xmlns:flex="clr-namespace:Xamarin.Forms.Flex;assembly=Xamarin.Forms.Flex"
     Title="Camera Slider"
     Style="{StaticResource PageStyle}">
 
 	<ContentPage.ToolbarItems>        
         <ToolbarItem
-            Name="About"
+            Text="About"
             Command="{Binding NavigateToAboutCommand}"
             Icon="info.png"
             Order="Secondary">
@@ -113,7 +112,7 @@
                         x:Name="RotateLeftButton"                    
                         CornerRadius="38"
                         HeightRequest="76"
-                        HighlightColor="{StaticResource AccentColor}"
+                        HighlightBackgroundColor="{StaticResource AccentColor}"
                         HighlightIconColor="White"
                         HorizontalOptions="Center"
                         Icon="rotateleft.png"
@@ -124,7 +123,7 @@
                         x:Name="RotateRightButton"                    
                         CornerRadius="38"
                         HeightRequest="76"
-                        HighlightColor="{StaticResource AccentColor}"
+                        HighlightBackgroundColor="{StaticResource AccentColor}"
                         HighlightIconColor="White"
                         HorizontalOptions="Center"
                         Icon="rotateright.png"
@@ -138,7 +137,7 @@
                         x:Name="MoveLeftButton"                    
                         CornerRadius="38"
                         HeightRequest="76"
-                        HighlightColor="{StaticResource AccentColor}"
+                        HighlightBackgroundColor="{StaticResource AccentColor}"
                         HighlightIconColor="White"
                         HorizontalOptions="Center"
                         Icon="left.png"
@@ -150,18 +149,19 @@
                         CornerRadius="50"
                         HeightRequest="100"
                         BackgroundColor="{StaticResource AccentColor}"
-                        HighlightColor="White"
+                        HighlightBackgroundColor="White"
                         HighlightIconColor="{StaticResource AccentColor}"
                         HorizontalOptions="Center"
                         Icon="camera.png"
                         IconColor="White"
+                        IconPadding="36"
                         WidthRequest="100" />
 
                     <flex:FlexButton
                         x:Name="MoveRightButton"
                         CornerRadius="38"
                         HeightRequest="76"
-                        HighlightColor="{StaticResource AccentColor}"
+                        HighlightBackgroundColor="{StaticResource AccentColor}"
                         HighlightIconColor="White"
                         HorizontalOptions="Center"
                         Icon="right.png"

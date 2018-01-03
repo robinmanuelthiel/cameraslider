@@ -96,36 +96,36 @@ namespace CameraSlider.Frontend.Forms.Pages
         #region Slider Controls
 
 
-        async void TakePictureButton_TouchedUp()
+        async void TakePictureButton_TouchedUp(object sender, EventArgs args)
         {
             await bluetoothLeService.WriteToServiceCharacteristicAsync($"et{viewModel.ExposureTime.Milliseconds}#", serviceUuid, characteristicUuid);
             await bluetoothLeService.WriteToServiceCharacteristicAsync("shutter#", serviceUuid, characteristicUuid);
         }
 
         // Rotation
-        async void RotateLeftButton_TouchedDown()
+        async void RotateLeftButton_TouchedDown(object sender, EventArgs args)
         {
             await StartMotorMovement(MotorType.HorizontalRotation, SliderDirection.Left);
         }
-        async void RotateRightButton_TouchedDown()
+        async void RotateRightButton_TouchedDown(object sender, EventArgs args)
         {
             await StartMotorMovement(MotorType.HorizontalRotation, SliderDirection.Right);
         }
-        async void RotateButton_TouchedUp()
+        async void RotateButton_TouchedUp(object sender, EventArgs args)
         {
             await StopSliderMovement(MotorType.HorizontalRotation);
         }
 
         // Movement
-        async void MoveLeftButton_TouchedDown()
+        async void MoveLeftButton_TouchedDown(object sender, EventArgs args)
         {
             await StartMotorMovement(MotorType.Main, SliderDirection.Left);
         }
-        async void MoveRightButton_TouchedDown()
+        async void MoveRightButton_TouchedDown(object sender, EventArgs args)
         {
             await StartMotorMovement(MotorType.Main, SliderDirection.Right);
         }
-        async void MoveButton_TouchedUp()
+        async void MoveButton_TouchedUp(object sender, EventArgs args)
         {
             await StopSliderMovement(MotorType.Main);
         }

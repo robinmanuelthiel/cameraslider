@@ -133,6 +133,9 @@
     <Reference Include="Plugin.VersionTracking">
       <HintPath>..\packages\Plugin.VersionTracking.2.1.0\lib\netstandard1.0\Plugin.VersionTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Flex">
+      <HintPath>..\packages\Forms.Controls.FlexButton.0.1.3\lib\netstandard1.0\Flex.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -142,10 +145,6 @@
     <ProjectReference Include="..\CameraSlider.Frontend.Shared\CameraSlider.Frontend.Shared.csproj">
       <Project>{2a716aa2-291f-41d3-843a-6e0c81bab78a}</Project>
       <Name>CameraSlider.Frontend.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\FlexButton\FlexButton\Xamarin.Forms.Flex\Xamarin.Forms.Flex.csproj">
-      <Project>{FEBB5760-21BE-4A51-845F-7F4017970B00}</Project>
-      <Name>Xamarin.Forms.Flex</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

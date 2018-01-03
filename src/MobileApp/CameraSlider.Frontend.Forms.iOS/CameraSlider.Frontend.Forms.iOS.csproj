@@ -223,15 +223,17 @@
     <Reference Include="Plugin.VersionTracking">
       <HintPath>..\packages\Plugin.VersionTracking.2.1.0\lib\Xamarin.iOS10\Plugin.VersionTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Flex">
+      <HintPath>..\packages\Forms.Controls.FlexButton.0.1.3\lib\xamarinios10\Flex.dll</HintPath>
+    </Reference>
+    <Reference Include="Flex.iOS">
+      <HintPath>..\packages\Forms.Controls.FlexButton.0.1.3\lib\xamarinios10\Flex.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CameraSlider.Frontend.Forms\CameraSlider.Frontend.Forms.csproj">
       <Project>{045324F4-F286-497D-BE1B-12E8B1D453DD}</Project>
       <Name>CameraSlider.Frontend.Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\FlexButton\FlexButton\Xamarin.Forms.Flex.iOS\Xamarin.Forms.Flex.iOS.csproj">
-      <Project>{43DD689A-3918-43EB-B654-8E1C54F23C72}</Project>
-      <Name>Xamarin.Forms.Flex.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

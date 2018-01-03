@@ -182,6 +182,12 @@
     <Reference Include="Plugin.DeviceInfo">
       <HintPath>..\packages\Xam.Plugin.DeviceInfo.3.0.2\lib\MonoAndroid10\Plugin.DeviceInfo.dll</HintPath>
     </Reference>
+    <Reference Include="Flex.Android">
+      <HintPath>..\packages\Forms.Controls.FlexButton.0.1.3\lib\monoandroid10\Flex.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Flex">
+      <HintPath>..\packages\Forms.Controls.FlexButton.0.1.3\lib\monoandroid10\Flex.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -246,10 +252,6 @@
     <ProjectReference Include="..\CameraSlider.Frontend.Forms\CameraSlider.Frontend.Forms.csproj">
       <Project>{045324F4-F286-497D-BE1B-12E8B1D453DD}</Project>
       <Name>CameraSlider.Frontend.Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\FlexButton\FlexButton\Xamarin.Forms.Flex.Android\Xamarin.Forms.Flex.Android.csproj">
-      <Project>{7C0CA7BC-842F-4492-AE49-C530618315F9}</Project>
-      <Name>Xamarin.Forms.Flex.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
